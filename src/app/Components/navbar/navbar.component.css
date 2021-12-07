@@ -1,0 +1,11 @@
+nav {
+    font-size: 1.2em;
+    background-color: #2C8A41;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /*z-index: 2;*/
+    display: flex;
+    justify-content: space-around;
+}

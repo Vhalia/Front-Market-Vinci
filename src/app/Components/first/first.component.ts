@@ -16,8 +16,6 @@ export class FirstComponent implements OnInit {
       .subscribe((Response) =>{
         if(Response) console.log(Response)
       })
-    
-   console.log("hello")
   }
 
 }
