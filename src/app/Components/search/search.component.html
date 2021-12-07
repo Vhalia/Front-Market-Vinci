@@ -1,1 +1,8 @@
-<p>search works!</p>
+<div id="sidebar"></div>
+<br />
+<div>
+  <app-product-card
+    *ngFor="let prod of prods"
+    [product]="prod"
+  ></app-product-card>
+</div>
