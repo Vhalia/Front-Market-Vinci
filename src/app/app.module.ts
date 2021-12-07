@@ -8,6 +8,8 @@ import { ProductCardComponent } from './Components/product-card/product-card.com
 import { HomeComponent } from './Components/home/home.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { SearchComponent } from './Components/search/search.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { SearchComponent } from './Components/search/search.component';
     ProductCardComponent,
     HomeComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NzButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
