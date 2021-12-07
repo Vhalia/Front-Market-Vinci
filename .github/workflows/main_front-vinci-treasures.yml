@@ -21,11 +21,10 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -51,6 +50,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'Front-Vinci-Treasures'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B384E91AA7B240F7AF793E825BCA8B29 }}
-          package: .
+          publish-profile: $
+          package: ./dist/front-vinci-treasures
