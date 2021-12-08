@@ -5,7 +5,73 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    /*z-index: 2;*/
+    z-index: 2;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
+
+#titleNavBar{
+    margin-left: 2%;
+    font-size: 200%;
+    color: white !important;
+}
+
+#searchNavBar{
+    background-color: #2C8A41;
+    color: white;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: solid 2px white;
+    font-size: 140%;
+    padding-right: 10%;
+}
+
+::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+#objectsPageNavbar, #AboutUsNavbar{
+    color: white;
+    padding-right: 20px;
+    font-size: 130%;
+}
+
+#leftNavBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-right: 2%;
+}
+
+#addButtonNavbar{
+
+    margin-top: 20px;
+    color: #2C8A41;
+}
+
+#buttonSize{
+    width: 110%;
+    height: 110%;
+}
+
+[nz-button] {
+    margin-top: -45%;
+    width: 85%;
+    height: 85%;
+}
+
+.profileImg{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
+
+.containerDropdown{
+    padding-right: -20%;
+}
+

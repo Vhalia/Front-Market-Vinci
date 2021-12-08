@@ -1,7 +1,23 @@
 <nav>
-    <a routerLink="/">Vinci Treasures</a>
-    <input placeholder="Recherche" type="text"/>
-    <a><button>Ajouter un Objet</button></a>
-    <a routerLink="/search" >Objets</a>
-    <a>A propos</a>
+    <a id = "titleNavBar" routerLink="/">Vinci Treasures</a>
+    <input id= "searchNavBar" placeholder="Recherche" type="text"/>
+    <a id="addButtonNavbar"  routerLink="/ajouter"><button id="buttonSize">Ajouter un Objet</button></a>
+    <div id="leftNavBar">
+        <a id="objectsPageNavbar" routerLink="/recherche" >Objets</a>
+        <a id="AboutUsNavbar">A propos</a>
+        <div>
+            <ng-container class="containerDropdown" *ngFor="let position of listOfPosition">
+                <img  nz-button nz-dropdown [nzDropdownMenu]="menu" [nzPlacement]="position" 
+                class="profileImg" src="../../../assets/default_profil.jpg" alt="image par defaut"/>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item><a routerLink="/profil" >Profil</a></li>
+                  <li nz-menu-item>Historique</li>
+                  <li nz-menu-item>Deconnexion</li>
+                </ul>
+              </nz-dropdown-menu>
+            </ng-container>
+          </div>
+    </div>
+   
 </nav>
