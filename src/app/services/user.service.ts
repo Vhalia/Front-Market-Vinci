@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http : HttpClient) { }
 
   getAll(): Observable<User[]> {
-    return this.http.get<User[]>("https://vinci-treasures-back.azurewebsites.net/weatherforecast")
+    return this.http.get<User[]>("https://vinci-treasures-back.azurewebsites.net/users")
       .pipe(tap(_ => console.log('fetched Products')),);
   }
 
