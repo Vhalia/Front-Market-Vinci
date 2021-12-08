@@ -16,6 +16,9 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzCardModule } from 'ng-zorro-antd/card';
 
 import { SearchSidebarComponent } from './Components/search-sidebar/search-sidebar.component';
+import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProductComponent } from './Components/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { SearchSidebarComponent } from './Components/search-sidebar/search-sideb
     SearchComponent,
     ProfileComponent,
     SearchSidebarComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,8 @@ import { SearchSidebarComponent } from './Components/search-sidebar/search-sideb
     NzGridModule,
     NzListModule,
     NzCardModule,
+    DemoNgZorroAntdModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

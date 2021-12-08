@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzPlacementType } from 'ng-zorro-antd/dropdown';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  listOfPosition: NzPlacementType[] = ['bottomRight'];
+
 
   constructor() { }
 
