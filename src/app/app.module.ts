@@ -11,7 +11,17 @@ import { SearchComponent } from './Components/search/search.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddProductComponent } from './Components/add-product/add-product.component'; 
+import { AddProductComponent } from './Components/add-product/add-product.component';
+import { AdminComponent } from './Components/admin/admin.component'; 
+import { FormsModule } from '@angular/forms';
+
+
+//ICONS
+import { IconDefinition } from '@ant-design/icons-angular';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+//ADD ICONS HERE
+import { LikeOutline, DislikeOutline } from '@ant-design/icons-angular/icons';
+const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
 
 
 @NgModule({
@@ -22,14 +32,17 @@ import { AddProductComponent } from './Components/add-product/add-product.compon
     NavbarComponent,
     SearchComponent,
     ProfileComponent,
-    AddProductComponent
+    AddProductComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     DemoNgZorroAntdModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    NzIconModule.forRoot(icons)
   ],
   providers: [],
   bootstrap: [AppComponent]
