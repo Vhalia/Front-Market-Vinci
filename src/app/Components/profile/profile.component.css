@@ -1,3 +1,14 @@
 #profile{
-    margin-top: 35px;
+    margin-top: 8%;
+}
+
+.half-profile{
+    margin-left: 5%;
+    margin-right: 5%;
+    max-width: 40%;
+}
+
+#pwd-change{
+    padding-top: 3%;
+    padding-left: 3%;
 }
