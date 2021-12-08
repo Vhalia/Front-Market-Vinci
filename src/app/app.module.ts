@@ -12,6 +12,10 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProductComponent } from './Components/add-product/add-product.component'; 
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
     HomeComponent,
     NavbarComponent,
     SearchComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,9 @@ import { NzListModule } from 'ng-zorro-antd/list';
     HttpClientModule,
     NzButtonModule,
     NzGridModule,
-    NzListModule
+    NzListModule,
+    DemoNgZorroAntdModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
