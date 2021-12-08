@@ -10,6 +10,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class SearchComponent implements OnInit {
   prods: Product[] = [];
+  isLoading: boolean = false;
 
   constructor(private productService: ProductService) {}
 
@@ -29,11 +30,22 @@ export class SearchComponent implements OnInit {
         id: '2',
         name: 'fer a repasser 2',
         state: 'a donner',
-        description: 'Bonjour, JPP. Il est insuportable!',
+        description:
+          'Bonjour, JPP. Il est insuportable! Bonjour, JPP. Il est insuportable!',
         isValidated: true,
         reasonNotValidated: '',
         adress: '41 clo chapelle au champs, 1200 Bruxelles',
         sentType: 'A donner',
+      },
+      {
+        id: '3',
+        name: 'un objet random',
+        state: 'a troquer',
+        description: "Bonjour, je sais pas ce que c'est",
+        isValidated: true,
+        reasonNotValidated: '',
+        adress: '41 clo chapelle au champs, 1200 Bruxelles',
+        sentType: 'A troquer',
       },
       {
         id: '3',

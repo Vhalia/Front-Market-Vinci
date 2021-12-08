@@ -10,6 +10,12 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzCardModule } from 'ng-zorro-antd/card';
+
+import { SearchSidebarComponent } from './Components/search-sidebar/search-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +24,20 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     HomeComponent,
     NavbarComponent,
     SearchComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchSidebarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NzButtonModule
+    NzButtonModule,
+    NzLayoutModule,
+    NzGridModule,
+    NzListModule,
+    NzCardModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

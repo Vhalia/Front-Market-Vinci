@@ -1,0 +1,12 @@
+.main {
+  /* TODO : changer taille en fonction de la navbar */
+  padding-top: 50px;
+}
+
+.search-sidebar {
+  background-color: rgb(115, 194, 115);
+}
+
+.card-comp {
+  width: 275px;
+}
