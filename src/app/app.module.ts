@@ -9,7 +9,10 @@ import { HomeComponent } from './Components/home/home.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-import { NzButtonModule } from 'ng-zorro-antd/button';
+import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProductComponent } from './Components/add-product/add-product.component'; 
+
 
 @NgModule({
   declarations: [
@@ -18,13 +21,15 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     HomeComponent,
     NavbarComponent,
     SearchComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NzButtonModule
+    DemoNgZorroAntdModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
