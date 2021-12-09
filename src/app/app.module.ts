@@ -9,20 +9,20 @@ import { HomeComponent } from './Components/home/home.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+
+import { SearchSidebarComponent } from './Components/search-sidebar/search-sidebar.component';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './Components/add-product/add-product.component';
-import { AdminComponent } from './Components/admin/admin.component'; 
+import { AdminComponent } from './Components/admin/admin.component';
 import { FormsModule } from '@angular/forms';
-
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 //ADD ICONS HERE
 import { LikeOutline, DislikeOutline } from '@ant-design/icons-angular/icons';
-const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
-
+const icons: IconDefinition[] = [LikeOutline, DislikeOutline];
 
 @NgModule({
   declarations: [
@@ -32,8 +32,10 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     NavbarComponent,
     SearchComponent,
     ProfileComponent,
+    SearchSidebarComponent,
     AddProductComponent,
-    AdminComponent
+    AddProductComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +44,9 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     DemoNgZorroAntdModule,
     BrowserAnimationsModule,
     FormsModule,
-    NzIconModule.forRoot(icons)
+    NzIconModule.forRoot(icons),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
