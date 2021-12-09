@@ -15,7 +15,7 @@
         [nzMin]="minPriceAll"
         [nzMax]="maxPriceAll"
         [nzStep]="1"
-        (nzOnAfterChange)="onAfterSliderChange($event)"
+        (ngModelChange)="onSliderChange($event)"
       ></nz-slider>
     </div>
     <br />
@@ -54,6 +54,7 @@
         <button nz-button (click)="onSubmit()" class="filterButton">
           Filtrer
         </button>
+        <button nz-button (click)="onReset()" class="resetButton">Reset</button>
       </div>
     </div>
   </div>

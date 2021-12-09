@@ -71,7 +71,9 @@ export class SearchComponent implements OnInit {
         sentType: 'A troquer',
       },
     ];
+    this.filtredProducts = this.prods;
   }
+
   async loadQueryParams() {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any;
