@@ -1,0 +1,28 @@
+.sidebar {
+  padding-top: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.tooltip-range {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectAllLabel {
+  border-bottom: 1px solid black;
+  margin-bottom: 7px;
+}
+
+.filters {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
