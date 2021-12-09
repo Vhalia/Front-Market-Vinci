@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
 
   async ngOnInit() {
     this.user = await this.getOne("dragon@vinci.zw");
-
     this.loading = false;
 
     if(this.user.like > 0 && this.user.dislike == 0){
@@ -29,9 +28,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  
+
   async getOne(mail : string): Promise<User> {
     return await lastValueFrom(this.userService.getOne(mail));
   }
-
   
 }
