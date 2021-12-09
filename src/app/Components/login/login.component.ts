@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { User } from 'src/app/Model/User';
-import { LocalStorageService } from 'src/app/services/localStorage.service';
+import { LocalStorageService } from 'src/app/services/sessionStorage.service';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private fb: FormBuilder, private userService: UserService, private localStorage : LocalStorageService) {}
+  constructor(private fb: FormBuilder, 
+              private userService: UserService,
+              private localStorage : LocalStorageService,
+              private router: Router) {}
 
   userToConnect = {} as User
   userConnected = {} as User
@@ -31,7 +35,8 @@ export class LoginComponent implements OnInit {
       this.userToConnect.mail = data.userName
       this.userToConnect.password = data.password
       this.userConnected = await this.loginAUser()
-      this.localStorage.addToLocalStorage('user', this.userConnected)
+      this.localStorage.addToSessionStorage('user', this.userConnected)
+      this.router.navigate(['/']);
       
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
