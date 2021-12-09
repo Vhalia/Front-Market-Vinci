@@ -14,15 +14,18 @@ import { SearchSidebarComponent } from './Components/search-sidebar/search-sideb
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './Components/add-product/add-product.component';
-import { AdminComponent } from './Components/admin/admin.component';
-import { FormsModule } from '@angular/forms';
+import { AdminComponent } from './Components/admin/admin.component'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 //ADD ICONS HERE
 import { LikeOutline, DislikeOutline } from '@ant-design/icons-angular/icons';
-const icons: IconDefinition[] = [LikeOutline, DislikeOutline];
+import { RegisterComponent } from './Components/register/register.component';
+import { LoginComponent } from './Components/login/login.component';
+const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
+
 
 @NgModule({
   declarations: [
@@ -36,6 +39,8 @@ const icons: IconDefinition[] = [LikeOutline, DislikeOutline];
     AddProductComponent,
     AddProductComponent,
     AdminComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ const icons: IconDefinition[] = [LikeOutline, DislikeOutline];
     BrowserAnimationsModule,
     FormsModule,
     NzIconModule.forRoot(icons),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

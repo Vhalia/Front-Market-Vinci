@@ -13,6 +13,7 @@ nav {
 }
 
 #titleNavBar{
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
     margin-left: 2%;
     font-size: 200%;
     color: white !important;
