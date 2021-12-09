@@ -1,1 +1,56 @@
-<p>search-sidebar works!</p>
+<div class="sidebar">
+  <h3 class="sidebar-title">Filtres</h3>
+  <div class="filters">
+    <!-- Price filter -->
+    <div>
+      <p>
+        <b><u>Prix</u></b>
+      </p>
+      <div class="tooltip-range"><span>0</span> <span>500</span></div>
+      <nz-slider
+        nzRange
+        [(ngModel)]="priceRange"
+        [nzMin]="minPrice"
+        [nzMax]="maxPrice"
+        [nzStep]="1"
+        (nzOnAfterChange)="onAfterSliderChange($event)"
+      ></nz-slider>
+    </div>
+    <br />
+    <!-- SentType filter -->
+    <div>
+      <p>
+        <b><u>sentType</u></b>
+      </p>
+      <nz-radio-group [(ngModel)]="radioValue">
+        <label nz-radio nzValue="donner">Donner</label>
+        <label nz-radio nzValue="troquer">Troquer</label>
+        <label nz-radio nzValue="vendre">Vendre</label>
+      </nz-radio-group>
+    </div>
+    <br />
+    <!-- Categorie filter -->
+    <div>
+      <p>
+        <b><u>categorie</u></b>
+      </p>
+      <div class="selectAllLabel">
+        <label
+          nz-checkbox
+          [(ngModel)]="allChecked"
+          (ngModelChange)="updateAllChecked()"
+        >
+          Sélctionner tous
+        </label>
+      </div>
+      <nz-checkbox-group
+        [(ngModel)]="listCategorie"
+        (ngModelChange)="updateSingleChecked()"
+      ></nz-checkbox-group>
+      <br /><br />
+      <button nz-button nzType="primary" (click)="onSubmit()">
+        Primary Button
+      </button>
+    </div>
+  </div>
+</div>

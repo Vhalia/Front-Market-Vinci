@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
         name: 'fer a repasser 2',
         state: 'a donner',
         description:
-          'Bonjour, JPP. Il est insuportable! Bonjour, JPP. Il est insuportable!',
+          'Bonjour, JPP. Il est insuportable! Bonjour, JPP. Il est insuportable!Bonjour, JPP. Il est insuportable!Bonjour, JPP. Il est insuportable!',
         isValidated: true,
         reasonNotValidated: '',
         adress: '41 clo chapelle au champs, 1200 Bruxelles',

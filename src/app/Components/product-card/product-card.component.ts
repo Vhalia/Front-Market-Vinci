@@ -12,7 +12,5 @@ export class ProductCardComponent implements OnInit {
   @Input()
   product!: Product;
 
-  ngOnInit(): void {
-    console.log(this.product);
-  }
+  ngOnInit(): void {}
 }

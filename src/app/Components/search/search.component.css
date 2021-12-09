@@ -5,8 +5,16 @@
 
 .search-sidebar {
   background-color: rgb(115, 194, 115);
+  position: fixed;
+  z-index: 1;
+  height: 100%;
 }
 
 .card-comp {
   width: 275px;
+}
+
+.list-products {
+  margin-top: 3%;
+  margin-left: 22.5%;
 }
