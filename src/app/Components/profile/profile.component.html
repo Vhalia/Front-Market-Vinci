@@ -1,34 +1,46 @@
 <div id="profile">
     <div nz-row><!--top half of profile-->
         <div nz-col nzSpan="12" class="half-profile"><!--Top left of profile-->
-            <ul nz-list nzSize="large">
+            <ul nz-list nzSize="large" [nzLoading]="loading">
                 <li nz-list-item nzNoFlex>
-                    <h1>John Smith</h1>
+                    <h1>{{user.name}} {{user.surname}}</h1>
                 </li>
-                <li nz-list-item nzNoFlex>
+                <li nz-list-item nzNoFlex class="profile-info-item">
                     <ul nz-list-item-actions>
                         <nz-list-item-action>
                             <a>edit</a>
                         </nz-list-item-action>
                     </ul>
-                    <b>Mail:</b> john.smith@mail.com
+                    <b>Mail:</b> {{user.mail}}
                 </li>
-                <li nz-list-item nzNoFlex>
-                    <ul nz-list-item-actions>
-                        <nz-list-item-action>
-                            <a>edit</a>
-                        </nz-list-item-action>
-                    </ul>
-                    <b>Location:</b> Campus de Alma
+                <li nz-list-item nzNoFlex class="profile-info-item" >
+                    <div nz-row>
+                        <div nz-col nzSpan="20">
+                            <b>Location:</b> {{user.campus}}
+                        </div>
+                        <div nz-col nzSpan="4">
+                            <ul nz-list-item-actions>
+                                <nz-list-item-action>
+                                    <a>edit</a>
+                                </nz-list-item-action>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
-                <li id="pwd-change"><button>Modifier le mot de passe</button></li>
+                <li nz-list-item nzNoFlex class="profile-info-item">
+                    <b>Evaluations:</b> {{user.like + user.dislike}} ({{evaluation}}% de positives)
+                </li>
+                <li id="pwd-change-button">
+                    <button nz-button nzType="default" class="profile-button" nzBlock>Modifier le mot de passe</button>
+                </li>
             </ul>
         </div>
         <div nz-col nzSpan="12" class="half-profile"><!--Top right of profile-->
-            <p >Mes badges</p>
+            <img id="profile-picture" src="../../../assets/default_profil.jpg" alt="image par defaut"/>
+            <div id="profile-redirect-buttons">
+                <button nz-button nzType="default" nzBlock class="profile-redirect-button profile-button">Mon historique</button>
+                <button nz-button nzType="default" nzBlock class="profile-redirect-button profile-button">Mes badges</button>
+            </div>
         </div>
-      </div>
-      <div>
-          
-      </div>
+    </div>
 </div>
