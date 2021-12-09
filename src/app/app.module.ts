@@ -9,12 +9,13 @@ import { HomeComponent } from './Components/home/home.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+
+import { SearchSidebarComponent } from './Components/search-sidebar/search-sidebar.component';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { AdminComponent } from './Components/admin/admin.component'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -34,6 +35,8 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     NavbarComponent,
     SearchComponent,
     ProfileComponent,
+    SearchSidebarComponent,
+    AddProductComponent,
     AddProductComponent,
     AdminComponent,
     RegisterComponent,
@@ -50,6 +53,6 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

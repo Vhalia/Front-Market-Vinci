@@ -1,1 +1,50 @@
-<p>search works!</p>
+<div class="main">
+  <nz-layout>
+    <nz-sider nzWidth="275px" class="search-sidebar"
+      ><app-search-sidebar></app-search-sidebar
+    ></nz-sider>
+
+    <nz-content class="list-products">
+      <nz-list nzGrid>
+        <div nz-row>
+          <div
+            *ngIf="isLoading"
+            nz-col
+            [nzXXl]="2"
+            [nzXl]="8"
+            [nzLg]="8"
+            [nzMd]="8"
+            [nzSm]="12"
+            [nzXs]="24"
+          >
+            <div nz-row nzJustify="space-around">
+              <div class="card-comp">
+                <nz-card [nzLoading]="true"> </nz-card>
+              </div>
+            </div>
+          </div>
+
+          <div nz-row *ngIf="!isLoading">
+            <div
+              nz-col
+              [nzXXl]="2"
+              [nzXl]="8"
+              [nzLg]="8"
+              [nzMd]="8"
+              [nzSm]="12"
+              [nzXs]="24"
+              *ngFor="let prod of prods"
+            >
+              <div nz-row nzJustify="space-around">
+                <app-product-card
+                  class="product-card"
+                  [product]="prod"
+                ></app-product-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nz-list>
+    </nz-content>
+  </nz-layout>
+</div>
