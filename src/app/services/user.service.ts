@@ -16,4 +16,9 @@ export class UserService {
       .pipe(tap(_ => console.log('fetched Products')),);
   }
 
+  getOne(mail: string): Observable<User> {
+    return this.http.get<User>("https://vinci-treasures-back.azurewebsites.net/users/" + mail)
+      .pipe(tap(_ => console.log('fetched user')));
+  }
+
 }

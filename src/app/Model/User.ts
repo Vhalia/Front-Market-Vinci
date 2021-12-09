@@ -7,4 +7,6 @@ export interface User {
     dislike : number;
     campus : string;
     password : string;
+    isBanned : boolean;
+    isAdmin : boolean;
 }
