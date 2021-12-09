@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 
 @Component({
   selector: 'app-add-product',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sessionStorageService : SessionStorageService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    if(this.sessionStorageService.getFromSessionStorage('user') === undefined)
+      this.router.navigate(['/']);
   }
 
 }

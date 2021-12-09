@@ -18,4 +18,8 @@ export class SessionStorageService {
       return JSON.parse(myObject);
     return undefined;
   }
+
+  deleteFromSessionStorage(name : string) : void {
+    sessionStorage.removeItem(name);
+  }
 }

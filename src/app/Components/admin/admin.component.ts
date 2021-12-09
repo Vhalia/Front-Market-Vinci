@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     let user = this.sessionService.getFromSessionStorage('user');
-    if(user === null)
+    if(user === undefined)
       this.router.navigate(['/login']);
     if(user.isAdmin == false)
       this.router.navigate(['/'])
@@ -36,7 +36,6 @@ export class AdminComponent implements OnInit {
     this.userService.getAll().subscribe(users => {
       this.users = users
       this.listOfDisplayData = users
-      console.log(users);
     })
   }
 

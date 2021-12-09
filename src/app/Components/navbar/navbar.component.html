@@ -9,7 +9,7 @@
   
   <div id="leftNavBar">
     <a id="objectsPageNavbar" routerLink="/recherche">Objets</a>
-    <a id="AboutUsNavbar">A propos</a>
+    <a id="AboutUsNavbar" routerLink="/">A propos</a>
     <div *ngIf="isConnected">
       <ng-container
         class="containerDropdown"
@@ -28,7 +28,7 @@
           <ul nz-menu>
             <li nz-menu-item><a routerLink="/profil">Profil</a></li>
             <li nz-menu-item>Historique</li>
-            <li nz-menu-item>Deconnexion</li>
+            <li nz-menu-item><a routerLink="/logout">Deconnexion</a></li>
           </ul>
         </nz-dropdown-menu>
       </ng-container>

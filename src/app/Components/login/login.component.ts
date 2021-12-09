@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.sessionStorageService.getFromSessionStorage('user') != null)
+    if(this.sessionStorageService.getFromSessionStorage('user') !== undefined)
       this.router.navigate(['/']);
 
     this.validateForm = this.fb.group({
