@@ -6,12 +6,14 @@
       <p>
         <b><u>Prix</u></b>
       </p>
-      <div class="tooltip-range"><span>0</span> <span>500</span></div>
+      <div class="tooltip-range">
+        <span>{{ minPriceAll }}</span> <span>{{ maxPriceAll }}</span>
+      </div>
       <nz-slider
         nzRange
         [(ngModel)]="priceRange"
-        [nzMin]="minPrice"
-        [nzMax]="maxPrice"
+        [nzMin]="minPriceAll"
+        [nzMax]="maxPriceAll"
         [nzStep]="1"
         (nzOnAfterChange)="onAfterSliderChange($event)"
       ></nz-slider>
@@ -22,7 +24,7 @@
       <p>
         <b><u>sentType</u></b>
       </p>
-      <nz-radio-group [(ngModel)]="radioValue">
+      <nz-radio-group [(ngModel)]="type">
         <label nz-radio nzValue="donner">Donner</label>
         <label nz-radio nzValue="troquer">Troquer</label>
         <label nz-radio nzValue="vendre">Vendre</label>
@@ -48,9 +50,11 @@
         (ngModelChange)="updateSingleChecked()"
       ></nz-checkbox-group>
       <br /><br />
-      <button nz-button nzType="primary" (click)="onSubmit()">
-        Primary Button
-      </button>
+      <div class="buttonDiv">
+        <button nz-button (click)="onSubmit()" class="filterButton">
+          Filtrer
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { NONE_TYPE } from '@angular/compiler';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/Model/Product';
 import { ProductService } from '../../services/product.service';
@@ -10,11 +10,24 @@ import { ProductService } from '../../services/product.service';
 })
 export class SearchComponent implements OnInit {
   prods: Product[] = [];
+  filtredProducts: Product[] = [];
   isLoading: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  //Filter settings
+  minPrice: number = -1;
+  maxPrice: number = -1;
+  type: string = 'all';
+  categories: number[] = [];
 
-  ngOnInit(): void {
+  constructor(
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  async ngOnInit() {
+    await this.loadQueryParams();
+
+    //replace by this.getAll();
     this.prods = [
       {
         id: '1',
@@ -58,14 +71,39 @@ export class SearchComponent implements OnInit {
         sentType: 'A troquer',
       },
     ];
-    console.log(this.prods);
-    //this.getAll();
+  }
+  async loadQueryParams() {
+    const params = this.activatedRoute.snapshot.queryParamMap;
+    let tmp: any;
+
+    //minPrice
+    tmp = Number(params.get('minPrice'));
+    tmp <= 0 ? (this.minPrice = 0) : (this.minPrice = tmp);
+
+    //maxPrice
+    tmp = Number(params.get('maxPrice'));
+    tmp < 0 ? (this.maxPrice = 0) : (this.maxPrice = tmp);
+
+    //sentType
+    tmp = params.get('type');
+    if (tmp === 'donner' || tmp === 'troquer' || tmp === 'vendre')
+      this.type = tmp;
+    else this.type = 'all';
+
+    //Categories
+    tmp = params.get('cat');
+    if (tmp !== null) {
+      let tempS: string[] = tmp.split(',');
+      if (tmp.length === 0) this.categories = [];
+      else this.categories = tempS.map((item) => Number(item));
+    }
+
+    return;
   }
 
   getAll(): void {
     this.productService.getAll().subscribe((prods) => {
       this.prods = prods;
-      console.log(prods);
     });
   }
 }

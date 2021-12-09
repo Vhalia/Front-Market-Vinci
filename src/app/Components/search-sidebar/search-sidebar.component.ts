@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-search-sidebar',
@@ -6,38 +6,62 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-sidebar.component.css'],
 })
 export class SearchSidebarComponent implements OnInit {
-  minPrice = 0;
-  maxPrice = 500;
+  minPriceAll: number = 0;
+  maxPriceAll: number = 500;
+  @Input() minPrice: number = this.minPriceAll;
+  @Input() maxPrice: number = this.maxPriceAll;
+  @Input() selectedCategories: number[] = [];
+  @Input() type = '';
+
   priceRange = [this.minPrice, this.maxPrice];
   selectedSentType: string = '';
-  selectedCategories: string[] = [];
-  radioValue = 'donner';
   allChecked = false;
 
   //TODO: changer value en id de categorie
   listCategorie = [
-    { label: 'Maison et Jardin', value: '1', checked: false },
-    { label: 'Famille', value: '2', checked: false },
     {
-      label: 'Vêtements et accessoires',
-      value: '3',
+      label: 'Maison et Jardin',
+      value: 1,
       checked: false,
     },
-    { label: 'Loisirs - hobbys', value: '4', checked: false },
-    { label: 'Electronique', value: '5', checked: false },
+    {
+      label: 'Famille',
+      value: 2,
+      checked: false,
+    },
+    {
+      label: 'Vêtements et accessoires',
+      value: 3,
+      checked: false,
+    },
+    {
+      label: 'Loisirs - hobbys',
+      value: 4,
+      checked: false,
+    },
+    {
+      label: 'Electronique',
+      value: 5,
+      checked: false,
+    },
   ];
 
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.maxPrice === 0)
+      this.priceRange = [this.minPrice, this.maxPriceAll];
+    else this.priceRange = [this.minPrice, this.maxPrice];
+
+    this.listCategorie.forEach(
+      (elt) => (elt.checked = this.selectedCategories.includes(elt.value))
+    );
+  }
 
   parserEuro = (value: string): string => value.replace('€ ', '');
   formatterEuro = (value: number): string => `${value} €`;
 
-  sort(): void {}
-
   onAfterSliderChange(value: number[] | number) {
     console.log(`value: ${value}`);
-    this.sort();
   }
 
   updateAllChecked(): void {
