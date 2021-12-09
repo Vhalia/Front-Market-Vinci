@@ -13,7 +13,7 @@ import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { AdminComponent } from './Components/admin/admin.component'; 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 //ICONS
@@ -46,7 +46,8 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     DemoNgZorroAntdModule,
     BrowserAnimationsModule,
     FormsModule,
-    NzIconModule.forRoot(icons)
+    NzIconModule.forRoot(icons),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

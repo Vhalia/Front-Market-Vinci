@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import {HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../Model/User';
 import { catchError, Observable, tap } from 'rxjs';
 
@@ -9,11 +8,20 @@ import { catchError, Observable, tap } from 'rxjs';
 })
 export class UserService {
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(private http : HttpClient) { }
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>("https://vinci-treasures-back.azurewebsites.net/users")
       .pipe(tap(_ => console.log('fetched Products')),);
+  }
+
+  login(userToConnect : User): Observable<User> {
+    return this.http.post<User>("https://vinci-treasures-back.azurewebsites.net/login",userToConnect, this.httpOptions )
+    .pipe(tap(_ => console.log('fetched Products')),);
   }
 
 }

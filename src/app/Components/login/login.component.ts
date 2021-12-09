@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { lastValueFrom } from 'rxjs';
+import { User } from 'src/app/Model/User';
+import { LocalStorageService } from 'src/app/services/localStorage.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +11,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
+  constructor(private fb: FormBuilder, private userService: UserService, private localStorage : LocalStorageService) {}
 
-  constructor() { }
+  userToConnect = {} as User
+  userConnected = {} as User
+  validateForm!: FormGroup;
 
   ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]]
+    });
   }
 
+  async submitForm(data: any) {
+    if (this.validateForm.valid) {
+      console.log("je passe dans le component")
+      this.userToConnect.mail = data.userName
+      this.userToConnect.password = data.password
+      this.userConnected = await this.loginAUser()
+      this.localStorage.addToLocalStorage('user', this.userConnected)
+      
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+  async loginAUser(): Promise<User>{
+    return await lastValueFrom(this.userService.login(this.userToConnect));
+  }
 }
