@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { User } from '../Model/User';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LocalStorageService {
+export class SessionStorageService {
 
   constructor() { }
 
@@ -11,7 +12,10 @@ export class LocalStorageService {
     sessionStorage.setItem(name, JSON.stringify(value));  
   }
 
-  getFromSessionStorage(name: string) : Object {
-    return JSON.parse(sessionStorage.getItem(name) || '{}');
+  getFromSessionStorage(name: string) : any {
+    let myObject = sessionStorage.getItem(name)
+    if(myObject != undefined)
+      return JSON.parse(myObject);
+    return undefined;
   }
 }

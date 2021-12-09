@@ -1,13 +1,16 @@
 <nav>
   <a id="titleNavBar" routerLink="/">Vinci Treasures</a>
   <input id="searchNavBar" placeholder="Recherche" type="text" />
-  <a id="addButtonNavbar" routerLink="/ajouter"
-    ><button id="buttonSize">Ajouter un Objet</button></a
-  >
+  <div *ngIf="isConnected">
+    <a id="addButtonNavbar" routerLink="/ajouter">
+      <button id="buttonSize">Ajouter un Objet</button>
+    </a>
+  </div>
+  
   <div id="leftNavBar">
     <a id="objectsPageNavbar" routerLink="/recherche">Objets</a>
     <a id="AboutUsNavbar">A propos</a>
-    <div>
+    <div *ngIf="isConnected">
       <ng-container
         class="containerDropdown"
         *ngFor="let position of listOfPosition"
@@ -29,6 +32,9 @@
           </ul>
         </nz-dropdown-menu>
       </ng-container>
+    </div>
+    <div *ngIf="!isConnected">
+      <a id="loginNavbar" routerLink="/login" >connexion</a>
     </div>
   </div>
 </nav>

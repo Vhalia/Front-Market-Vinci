@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/Model/User';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,10 +17,18 @@ export class AdminComponent implements OnInit {
   visible = false;  
   listOfDisplayData: User[] = [...this.users];
   
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService,
+              private sessionService : SessionStorageService,
+              private router : Router) { }
 
 
   ngOnInit(): void {
+    let user = this.sessionService.getFromSessionStorage('user');
+    if(user === null)
+      this.router.navigate(['/login']);
+    if(user.isAdmin == false)
+      this.router.navigate(['/'])
+
     this.getAllUsers()
   }
 
