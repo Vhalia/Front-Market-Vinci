@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { User } from 'src/app/Model/User';
-import { LocalStorageService } from 'src/app/services/sessionStorage.service';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   
   constructor(private fb: FormBuilder, 
               private userService: UserService,
-              private localStorage : LocalStorageService,
+              private sessionStorageService : SessionStorageService,
               private router: Router) {}
 
   userToConnect = {} as User
@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
 
   ngOnInit(): void {
+
+    if(this.sessionStorageService.getFromSessionStorage('user') !== undefined)
+      this.router.navigate(['/']);
+
     this.validateForm = this.fb.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]]
@@ -35,7 +39,8 @@ export class LoginComponent implements OnInit {
       this.userToConnect.mail = data.userName
       this.userToConnect.password = data.password
       this.userConnected = await this.loginAUser()
-      this.localStorage.addToSessionStorage('user', this.userConnected)
+      this.sessionStorageService.addToSessionStorage('user', this.userConnected)
+      location.reload();
       this.router.navigate(['/']);
       
     } else {

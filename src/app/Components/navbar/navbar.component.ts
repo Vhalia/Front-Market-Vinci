@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NzPlacementType } from 'ng-zorro-antd/dropdown';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,8 +10,14 @@ import { NzPlacementType } from 'ng-zorro-antd/dropdown';
 export class NavbarComponent implements OnInit {
   imageUrl = '../../../assets/default_profil.jpg';
   listOfPosition: NzPlacementType[] = ['bottomRight'];
+  isConnected = false;
 
-  constructor() {}
+  constructor(private sessionService : SessionStorageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.sessionService.getFromSessionStorage('user') != undefined){
+      console.log(this.sessionService.getFromSessionStorage('user'))
+      this.isConnected = true;
+    }
+  }
 }

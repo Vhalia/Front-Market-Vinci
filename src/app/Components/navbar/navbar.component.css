@@ -35,7 +35,7 @@ nav {
     opacity: 1;
 }
 
-#objectsPageNavbar, #AboutUsNavbar{
+#objectsPageNavbar, #AboutUsNavbar, #loginNavbar{
     color: white;
     padding-right: 20px;
     font-size: 130%;
@@ -50,14 +50,13 @@ nav {
 }
 
 #addButtonNavbar{
-
-    margin-top: 20px;
     color: #2C8A41;
 }
 
 #buttonSize{
+    margin-top: 14px;
     width: 110%;
-    height: 110%;
+    height: 35px;
 }
 
 [nz-button] {
