@@ -1,7 +1,12 @@
 <div class="main">
   <nz-layout>
     <nz-sider nzWidth="275px" class="search-sidebar"
-      ><app-search-sidebar></app-search-sidebar
+      ><app-search-sidebar
+        [minPrice]="minPrice"
+        [maxPrice]="maxPrice"
+        [type]="type"
+        [selectedCategories]="categories"
+      ></app-search-sidebar
     ></nz-sider>
 
     <nz-content class="list-products">
