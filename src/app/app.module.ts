@@ -21,6 +21,8 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 //ADD ICONS HERE
 import { LikeOutline, DislikeOutline } from '@ant-design/icons-angular/icons';
+import { RegisterComponent } from './Components/register/register.component';
+import { LoginComponent } from './Components/login/login.component';
 const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
 
 
@@ -33,7 +35,9 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     SearchComponent,
     ProfileComponent,
     AddProductComponent,
-    AdminComponent
+    AdminComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
