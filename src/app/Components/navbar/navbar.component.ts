@@ -4,16 +4,13 @@ import { NzPlacementType } from 'ng-zorro-antd/dropdown';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-
+  imageUrl = '../../../assets/default_profil.jpg';
   listOfPosition: NzPlacementType[] = ['bottomRight'];
 
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -26,3 +26,15 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+.filterButton {
+  color: white;
+  background-color: green;
+  border: 0;
+  border-radius: 10px;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: end;
+}
