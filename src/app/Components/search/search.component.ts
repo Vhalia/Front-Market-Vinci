@@ -2,6 +2,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/Model/Product';
 import { ProductService } from '../../services/product.service';
+import { UserService } from 'src/app/services/user.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -11,12 +13,12 @@ import { ProductService } from '../../services/product.service';
 export class SearchComponent implements OnInit {
   prods: Product[] = [];
   filtredProducts: Product[] = [];
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   //Filter settings
   minPrice: number = -1;
   maxPrice: number = -1;
-  type: string = 'all';
+  type: number = 3;
   categories: number[] = [];
 
   constructor(
@@ -26,52 +28,18 @@ export class SearchComponent implements OnInit {
 
   async ngOnInit() {
     await this.loadQueryParams();
-
-    //replace by this.getAll();
-    this.prods = [
-      {
-        id: '1',
-        name: 'fer a repasser',
-        state: 'en vente',
-        description: "Bonjour, je n'en peux plus. Il est insuportable",
-        isValidated: true,
-        reasonNotValidated: '',
-        adress: '43 clo chapelle au champs, 1200 Bruxelles',
-        sentType: 'A troquer',
-      },
-      {
-        id: '2',
-        name: 'fer a repasser 2',
-        state: 'a donner',
-        description:
-          'Bonjour, JPP. Il est insuportable! Bonjour, JPP. Il est insuportable!Bonjour, JPP. Il est insuportable!Bonjour, JPP. Il est insuportable!',
-        isValidated: true,
-        reasonNotValidated: '',
-        adress: '41 clo chapelle au champs, 1200 Bruxelles',
-        sentType: 'A donner',
-      },
-      {
-        id: '3',
-        name: 'un objet random',
-        state: 'a troquer',
-        description: "Bonjour, je sais pas ce que c'est",
-        isValidated: true,
-        reasonNotValidated: '',
-        adress: '41 clo chapelle au champs, 1200 Bruxelles',
-        sentType: 'A troquer',
-      },
-      {
-        id: '3',
-        name: 'un objet random',
-        state: 'a troquer',
-        description: "Bonjour, je sais pas ce que c'est",
-        isValidated: true,
-        reasonNotValidated: '',
-        adress: '41 clo chapelle au champs, 1200 Bruxelles',
-        sentType: 'A troquer',
-      },
-    ];
+    this.prods = await lastValueFrom(this.productService.getAll());
+    this.filtredProducts = this.prods;
+    this.filterList();
+    this.isLoading = false;
   }
+
+  filterList() {
+    this.filtredProducts = this.filtredProducts.filter((elt) => {
+      return this.type == 3 || elt.sentType == this.type;
+    });
+  }
+
   async loadQueryParams() {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any;
@@ -86,9 +54,8 @@ export class SearchComponent implements OnInit {
 
     //sentType
     tmp = params.get('type');
-    if (tmp === 'donner' || tmp === 'troquer' || tmp === 'vendre')
-      this.type = tmp;
-    else this.type = 'all';
+    if (tmp == 0 || tmp == 2 || tmp == 1) this.type = Number(tmp);
+    else this.type = 3;
 
     //Categories
     tmp = params.get('cat');

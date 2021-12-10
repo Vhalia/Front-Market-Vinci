@@ -31,10 +31,16 @@
   color: white;
   background-color: green;
   border: 0;
-  border-radius: 10px;
+  border-radius: 7px;
+  margin-top: 5px;
+}
+
+.resetButton {
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 .buttonDiv {
   display: flex;
-  justify-content: end;
+  justify-content: start;
 }
