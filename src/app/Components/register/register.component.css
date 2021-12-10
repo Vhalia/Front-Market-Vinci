@@ -7,6 +7,7 @@
 #formRegister{
     margin-top: 3%;
     width: 50%;
+    margin-left: 2%;
 }
 
 .inputLogin{
@@ -22,4 +23,15 @@
     
     width: 70.5%;
     padding-left: 9.5%;
+}
+
+.titleRegister{
+    margin-left: 14%;
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+    font-size: 500%;
+}
+
+.imgRegister{
+    margin-top: 3%;
+    margin-right: 15%;
 }

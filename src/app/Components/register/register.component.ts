@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { lastValueFrom } from 'rxjs';
 import { User } from 'src/app/Model/User';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -17,15 +19,14 @@ export class RegisterComponent implements OnInit {
 
   async submitForm() {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
       this.newUser.mail = this.validateForm.value.email;
       this.newUser.name = this.validateForm.value.nickname;
       this.newUser.surname = this.validateForm.value.name;
       this.newUser.campus = this.validateForm.value.campus;
       this.newUser.password = this.validateForm.value.password;
-      let response = await this.loginAUser()
-      console.log(response)
-      
+      let userConnected = await this.loginAUser()
+      this.sessionStorageService.addToSessionStorage('user', userConnected)
+      location.reload();
 
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async loginAUser(): Promise<User>{
-    return await lastValueFrom(this.userService.login(this.newUser));
+    return await lastValueFrom(this.userService.createOne(this.newUser));
   }
 
   updateConfirmValidator(): void {
@@ -55,9 +56,14 @@ export class RegisterComponent implements OnInit {
     return {};
   };
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(private fb: FormBuilder, private userService: UserService,
+              private sessionStorageService : SessionStorageService,
+              private router: Router) {}
 
   ngOnInit(): void {
+    if(this.sessionStorageService.getFromSessionStorage('user') !== undefined)
+    this.router.navigate(['/']);
+
     this.validateForm = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],

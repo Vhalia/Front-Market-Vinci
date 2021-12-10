@@ -37,4 +37,9 @@ export class UserService {
     return obj;
   }
 
+  updateOne(id: string, userToUpdate: User): Observable<User> {
+    return this.http.patch<User>("https://vinci-treasures-back.azurewebsites.net/users/" + id, userToUpdate, this.httpOptions)
+      .pipe(tap(_ => console.log('user updated')));
+  }
+
 }
