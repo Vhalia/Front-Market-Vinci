@@ -29,6 +29,7 @@ import {
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { LogoutComponent } from './Components/logout/logout.component';
+import { DetailProductComponent } from './Components/detail-product/detail-product.component';
 const icons: IconDefinition[] = [LikeOutline, DislikeOutline, AlertOutline];
 
 @NgModule({
@@ -46,6 +47,7 @@ const icons: IconDefinition[] = [LikeOutline, DislikeOutline, AlertOutline];
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
+    DetailProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,4 +15,12 @@ export class ProductService {
       .get<Product[]>('https://vinci-treasures-back.azurewebsites.net/products')
       .pipe(tap((_) => console.log('fetched Products')));
   }
+
+  getById(productId: string): Observable<Product> {
+    return this.http
+      .get<Product>(
+        'https://vinci-treasures-back.azurewebsites.net/products/' + productId
+      )
+      .pipe(tap((_) => console.log('fetched One Product')));
+  }
 }

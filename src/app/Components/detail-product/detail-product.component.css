@@ -1,0 +1,23 @@
+.container {
+  margin-top: 125px;
+}
+
+.left-column {
+  padding-left: 7.5%;
+  padding-right: 5%;
+}
+
+.prod-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.product-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-content {
+  padding-top: 3%;
+  font-size: large;
+}

@@ -13,7 +13,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzFormModule } from 'ng-zorro-antd/form';
-
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   exports: [
@@ -29,8 +29,9 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     FormsModule,
     NzSliderModule,
     NzTableModule,
-    NzIconModule, 
-    NzFormModule
-  ]
+    NzIconModule,
+    NzFormModule,
+    NzSpinModule,
+  ],
 })
 export class DemoNgZorroAntdModule {}
