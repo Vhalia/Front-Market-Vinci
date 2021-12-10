@@ -2,8 +2,9 @@
     <div nz-row><!--top half of profile-->
         <div nz-col nzSpan="12" class="half-profile"><!--Top left of profile-->
             <ul nz-list nzSize="large" [nzLoading]="loading">
-                <li nz-list-item nzNoFlex>
+                <li nz-list-item>
                     <h1>{{user.name}} {{user.surname}}</h1>
+                    <button nz-button nzType="primary" id="ban-button">Bannir {{user.name}} {{user.surname}}</button>
                 </li>
                 <li nz-list-item nzNoFlex class="profile-info-item" >
                     <app-profile-element 

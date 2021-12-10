@@ -30,6 +30,19 @@
     margin-right: 20%;
 }
 
+#ban-button{
+    color: red;
+    background-color: white;
+    border-color: red;
+    border-radius: 5px;
+}
+
+#ban-button:hover{
+    color: white;
+    background-color: red;
+    border-color: white;
+}
+
 .profile-button{
     font-size: 1.20em;
     color: #2C8A41;

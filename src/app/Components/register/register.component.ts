@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       this.newUser.surname = this.validateForm.value.name;
       this.newUser.campus = this.validateForm.value.campus;
       this.newUser.password = this.validateForm.value.password;
-      let userConnected = await this.loginAUser()
+      let userConnected = await this.registerAUser()
       this.sessionStorageService.addToSessionStorage('user', userConnected)
       location.reload();
 
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  async loginAUser(): Promise<User>{
+  async registerAUser(): Promise<User>{
     return await lastValueFrom(this.userService.createOne(this.newUser));
   }
 
