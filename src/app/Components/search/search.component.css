@@ -1,6 +1,6 @@
 .main {
   /* TODO : changer taille en fonction de la navbar */
-  padding-top: 50px;
+  margin-top: 100px;
 }
 
 .search-sidebar {
@@ -17,4 +17,8 @@
 .list-products {
   margin-top: 3%;
   margin-left: 22.5%;
+}
+
+.custom-col {
+  padding: 5px;
 }

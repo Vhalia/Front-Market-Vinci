@@ -1,5 +1,52 @@
 <div class="main">
-  <nz-layout>
+  <div nz-row>
+    <div
+      nz-col
+      [nzXXl]="5"
+      [nzXl]="6"
+      [nzLg]="8"
+      [nzMd]="10"
+      [nzSm]="12"
+      [nzXs]="12"
+    >
+      <app-search-sidebar
+        [minPrice]="minPrice"
+        [maxPrice]="maxPrice"
+        [type]="type"
+        [selectedCategories]="categories"
+      ></app-search-sidebar>
+    </div>
+    <div
+      nz-col
+      [nzXXl]="19"
+      [nzXl]="18"
+      [nzLg]="16"
+      [nzMd]="14"
+      [nzSm]="12"
+      [nzXs]="12"
+    >
+      <nz-list nzGrid>
+        <div nz-row [nzJustify]="'space-around'">
+          <div
+            nz-col
+            [nzXXl]="5"
+            [nzXl]="8"
+            [nzLg]="10"
+            [nzMd]="12"
+            [nzSm]="24"
+            [nzXs]="24"
+            *ngFor="let product of filtredProducts"
+            class="custom-col"
+          >
+            <nz-list-item>
+              <app-product-card [product]="product"></app-product-card>
+            </nz-list-item>
+          </div>
+        </div>
+      </nz-list>
+    </div>
+  </div>
+  <!-- <nz-layout>
     <nz-sider nzWidth="275px" class="search-sidebar"
       ><app-search-sidebar
         [minPrice]="minPrice"
@@ -15,10 +62,10 @@
           <div
             *ngIf="isLoading"
             nz-col
-            [nzXXl]="2"
-            [nzXl]="8"
-            [nzLg]="8"
-            [nzMd]="8"
+            [nzXXl]="12"
+            [nzXl]="12"
+            [nzLg]="12"
+            [nzMd]="12"
             [nzSm]="12"
             [nzXs]="24"
           >
@@ -51,5 +98,5 @@
         </div>
       </nz-list>
     </nz-content>
-  </nz-layout>
+  </nz-layout> -->
 </div>
