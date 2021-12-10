@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-sidebar',
@@ -6,18 +7,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./search-sidebar.component.css'],
 })
 export class SearchSidebarComponent implements OnInit {
+  constructor(private router: Router) {}
+
   minPriceAll: number = 0;
   maxPriceAll: number = 500;
   @Input() minPrice: number = this.minPriceAll;
   @Input() maxPrice: number = this.maxPriceAll;
   @Input() selectedCategories: number[] = [];
-  @Input() type = '';
+  @Input() type: number = 3;
 
   priceRange = [this.minPrice, this.maxPrice];
   selectedSentType: string = '';
   allChecked = false;
 
-  //TODO: changer value en id de categorie
   listCategorie = [
     {
       label: 'Maison et Jardin',
@@ -46,7 +48,6 @@ export class SearchSidebarComponent implements OnInit {
     },
   ];
 
-  constructor() {}
   ngOnInit(): void {
     if (this.maxPrice === 0)
       this.priceRange = [this.minPrice, this.maxPriceAll];
@@ -57,11 +58,8 @@ export class SearchSidebarComponent implements OnInit {
     );
   }
 
-  parserEuro = (value: string): string => value.replace('€ ', '');
-  formatterEuro = (value: number): string => `${value} €`;
-
-  onAfterSliderChange(value: number[] | number) {
-    console.log(`value: ${value}`);
+  onSliderChange(value: number[]) {
+    this.priceRange = value;
   }
 
   updateAllChecked(): void {
@@ -86,8 +84,33 @@ export class SearchSidebarComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log('onSubmit');
-    //redirect page with ?params
+  async onSubmit() {
+    await this.router.navigate(['/recherche'], {
+      queryParams: {
+        minPrice: this.priceRange[0],
+        maxPrice: this.priceRange[1],
+        type: this.type,
+        cat: this.getSelectedCategories(),
+      },
+    });
+    location.reload();
+  }
+
+  async onReset() {
+    this.minPrice = 0;
+    this.maxPrice = this.maxPriceAll;
+    this.type = 3;
+    this.selectedCategories = [];
+    await this.router.navigate(['/recherche']);
+    location.reload();
+  }
+
+  getSelectedCategories(): string {
+    let retour: string = '';
+    this.listCategorie.forEach((element) => {
+      if (element.checked) retour = retour.concat(String(element.value), ',');
+    });
+    retour = retour.slice(0, retour.length - 1);
+    return retour;
   }
 }
