@@ -7,6 +7,7 @@ import { AddProductComponent } from '../Components/add-product/add-product.compo
 import { AdminComponent } from '../Components/admin/admin.component';
 import { LoginComponent } from '../Components/login/login.component';
 import { RegisterComponent } from '../Components/register/register.component';
+import { LogoutComponent } from '../Components/logout/logout.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'ajouter', component: AddProductComponent},
   {path:'admin', component: AdminComponent},
   {path:'login', component: LoginComponent},
-  {path:'register', component: RegisterComponent}
+  {path:'register', component: RegisterComponent},
+  {path:'logout', component: LogoutComponent}
 ];
 
 @NgModule({

@@ -21,11 +21,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 //ADD ICONS HERE
-import { LikeOutline, DislikeOutline } from '@ant-design/icons-angular/icons';
+import { LikeOutline, DislikeOutline, AlertOutline } from '@ant-design/icons-angular/icons';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { ProfileElementComponent } from './Components/profile-element/profile-element.component';
-const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
+import { LogoutComponent } from './Components/logout/logout.component';
+const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline ];
 
 
 @NgModule({
@@ -42,7 +43,8 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     AdminComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileElementComponent
+    ProfileElementComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
