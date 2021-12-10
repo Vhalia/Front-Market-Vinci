@@ -24,6 +24,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { LikeOutline, DislikeOutline } from '@ant-design/icons-angular/icons';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
+import { ProfileElementComponent } from './Components/profile-element/profile-element.component';
 const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
 
 
@@ -40,7 +41,8 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline ];
     AddProductComponent,
     AdminComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileElementComponent
   ],
   imports: [
     BrowserModule,

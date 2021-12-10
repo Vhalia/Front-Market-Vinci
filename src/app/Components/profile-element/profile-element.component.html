@@ -1,0 +1,33 @@
+<div nz-row *ngIf="!displayUpdate">
+    <div nz-col nzSpan="20">
+        <b>{{title}}: </b>{{value}}
+    </div>
+    <div nz-col nzSpan="4">
+        <ul nz-list-item-actions *ngIf="displayEdit">
+            <nz-list-item-action>
+                <a (click)="displayUpdateInput()">edit</a>
+            </nz-list-item-action>
+        </ul>
+    </div>
+</div>
+
+<div nz-row *ngIf="displayUpdate">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div nz-col nzSpan="20">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Veuillez entrer votre {{title}}!">
+                  <nz-input-group>
+                    <input formControlName="newValueInput" nz-input placeholder="{{title}}" class="profile-elt-input"/>
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+        </div>
+        <div nz-col nzSpan="4">
+            <nz-form-item>
+                <nz-form-control>
+                  <button nz-button nzType="primary" [disabled]="!validateForm.valid">Modifier</button>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </form>
+</div> 
