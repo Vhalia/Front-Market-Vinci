@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProfileElementComponent implements OnInit {
 
   validateForm!: FormGroup;
-
-  submitForm(): void {
-    console.log('submit', this.validateForm.value);
-  }
 
   displayUpdateInput(): void {
     this.displayUpdate = true;
@@ -31,6 +27,13 @@ export class ProfileElementComponent implements OnInit {
 
   @Input()
   displayUpdate!: boolean;
+
+  @Output()
+  mailUpdate = new EventEmitter<string>();
+
+  sendMailUpdate(value: string){
+    this.mailUpdate.emit(value);
+  }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
