@@ -10,14 +10,14 @@ import { RegisterComponent } from '../Components/register/register.component';
 import { LogoutComponent } from '../Components/logout/logout.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path:'recherche', component: SearchComponent},
-  {path:'profil', component: ProfileComponent},
-  {path:'ajouter', component: AddProductComponent},
-  {path:'admin', component: AdminComponent},
-  {path:'login', component: LoginComponent},
-  {path:'register', component: RegisterComponent},
-  {path:'logout', component: LogoutComponent}
+  { path: '', component: HomeComponent },
+  { path: 'recherche', component: SearchComponent },
+  { path: 'profil', component: ProfileComponent },
+  { path: 'ajouter', component: AddProductComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'logout', component: LogoutComponent },
 ];
 
 @NgModule({

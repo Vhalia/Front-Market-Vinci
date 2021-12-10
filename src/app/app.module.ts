@@ -14,20 +14,19 @@ import { SearchSidebarComponent } from './Components/search-sidebar/search-sideb
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './Components/add-product/add-product.component';
-import { AdminComponent } from './Components/admin/admin.component'; 
+import { AdminComponent } from './Components/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 //ADD ICONS HERE
-import { LikeOutline, DislikeOutline, AlertOutline } from '@ant-design/icons-angular/icons';
+import { LikeOutline, DislikeOutline, AlertOutline, UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { ProfileElementComponent } from './Components/profile-element/profile-element.component';
 import { LogoutComponent } from './Components/logout/logout.component';
-const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline ];
-
+const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, UserOutline, LockOutline ];
 
 @NgModule({
   declarations: [
@@ -44,6 +43,7 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline ];
     RegisterComponent,
     LoginComponent,
     ProfileElementComponent,
+
     LogoutComponent,
   ],
   imports: [
@@ -54,7 +54,7 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline ];
     BrowserAnimationsModule,
     FormsModule,
     NzIconModule.forRoot(icons),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
