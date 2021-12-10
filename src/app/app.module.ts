@@ -14,7 +14,7 @@ import { SearchSidebarComponent } from './Components/search-sidebar/search-sideb
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './Components/add-product/add-product.component';
-import { AdminComponent } from './Components/admin/admin.component'; 
+import { AdminComponent } from './Components/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //ICONS
@@ -27,7 +27,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { ProfileElementComponent } from './Components/profile-element/profile-element.component';
 import { LogoutComponent } from './Components/logout/logout.component';
 const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, UserOutline, LockOutline ];
-
 
 @NgModule({
   declarations: [
@@ -44,6 +43,7 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, Use
     RegisterComponent,
     LoginComponent,
     ProfileElementComponent,
+
     LogoutComponent,
   ],
   imports: [
@@ -54,7 +54,7 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, Use
     BrowserAnimationsModule,
     FormsModule,
     NzIconModule.forRoot(icons),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

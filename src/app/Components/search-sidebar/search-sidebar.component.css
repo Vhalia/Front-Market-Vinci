@@ -1,5 +1,5 @@
 .sidebar {
-  padding-top: 50px;
+  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -31,10 +31,16 @@
   color: white;
   background-color: green;
   border: 0;
-  border-radius: 10px;
+  border-radius: 7px;
+  margin-top: 5px;
+}
+
+.resetButton {
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 .buttonDiv {
   display: flex;
-  justify-content: end;
+  justify-content: flex-start;
 }
