@@ -6,7 +6,13 @@
                     <h1>{{user.name}} {{user.surname}}</h1>
                 </li>
                 <li nz-list-item nzNoFlex class="profile-info-item" >
-                    <app-profile-element title="mail" value="{{user.mail}}" [displayEdit]="true" [displayUpdate]="false">
+                    <app-profile-element 
+                        title="mail" 
+                        value="{{user.mail}}" 
+                        [displayEdit]="true" 
+                        [displayUpdate]="false"
+                        (mailUpdateEvent)="updateMail($event)"
+                    >
                     </app-profile-element>
                 </li>
                 <li nz-list-item nzNoFlex class="profile-info-item" >

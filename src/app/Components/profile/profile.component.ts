@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { User } from 'src/app/Model/User';
 import { UserService } from 'src/app/services/user.service';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service'
+import { ProfileElementComponent } from '../profile-element/profile-element.component';
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +20,20 @@ export class ProfileComponent implements OnInit {
   dislike : number = 0;
   evaluation : number = 0;
 
-  constructor( private userService : UserService) { }
+  constructor( private userService : UserService, private sessionService : SessionStorageService) { }
+
+  async updateMail(newMail: any) {
+    
+    this.userToUpdate.mail = newMail;
+    
+    await this.updateOne();
+    this.sessionService.addToSessionStorage("user", this.userToUpdate);
+    this.ngOnInit();
+    location.reload();
+  }
 
   async ngOnInit() {
-    this.user = await this.getOne("dragon@vinci.be");
+    this.user = await this.getOne(this.sessionService.getFromSessionStorage("user").mail);
     this.loading = false;
 
     this.user.ratings.forEach(rating => {

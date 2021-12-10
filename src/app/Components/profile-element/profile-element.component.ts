@@ -29,10 +29,11 @@ export class ProfileElementComponent implements OnInit {
   displayUpdate!: boolean;
 
   @Output()
-  mailUpdate = new EventEmitter<string>();
+  mailUpdateEvent = new EventEmitter<string>();
 
-  sendMailUpdate(value: string){
-    this.mailUpdate.emit(value);
+  mailUpdate(value: any){
+    console.log(value);
+    this.mailUpdateEvent.emit(value.newValueInput);
   }
 
   ngOnInit(): void {
