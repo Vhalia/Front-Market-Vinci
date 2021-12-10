@@ -1,0 +1,25 @@
+#mainPageRegister{
+    margin-top: 8%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#formRegister{
+    margin-top: 3%;
+    width: 50%;
+}
+
+.inputLogin{
+    width: 60%;
+}
+
+.submitButton{
+    background-color: #2C8A41;
+    border-color: #2C8A41;
+}
+
+.inputSelect{
+    
+    width: 70.5%;
+    padding-left: 9.5%;
+}
