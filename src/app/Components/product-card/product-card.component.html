@@ -14,7 +14,12 @@
     >
   </nz-card>
   <ng-template #sentType>
-    <a>{{ product.sentType }}</a>
+    <div *ngIf="product.sentType !== 1">
+      <a>{{ dictSentType[product.sentType] }}</a>
+    </div>
+    <div *ngIf="product.sentType === 1">
+      <a>{{ dictSentType[product.sentType] }} : {{ product.price }}€</a>
+    </div>
   </ng-template>
   <ng-template #coverTemplate>
     <img alt="example" src="https://source.unsplash.com/random/250x175" />

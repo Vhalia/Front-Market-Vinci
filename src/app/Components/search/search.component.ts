@@ -2,7 +2,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/Model/Product';
 import { ProductService } from '../../services/product.service';
-import { UserService } from 'src/app/services/user.service';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
@@ -35,9 +34,19 @@ export class SearchComponent implements OnInit {
   }
 
   filterList() {
-    this.filtredProducts = this.filtredProducts.filter((elt) => {
-      return this.type == 3 || elt.sentType == this.type;
-    });
+    //TODO : ajouter filtre pour produits validés
+    this.filtredProducts = this.filtredProducts.filter(
+      (elt) => this.type == 3 || elt.sentType == this.type
+    );
+    if (this.maxPrice !== 0) {
+      this.filtredProducts = this.filtredProducts.filter(
+        (elt) => this.maxPrice >= elt.price && elt.price >= this.minPrice
+      );
+    }
+    this.filtredProducts = this.filtredProducts.filter(
+      (elt) => this.minPrice <= elt.price
+    );
+    //TODO: ajouter filtre par catégorie quand back sera impl
   }
 
   async loadQueryParams() {
@@ -50,7 +59,7 @@ export class SearchComponent implements OnInit {
 
     //maxPrice
     tmp = Number(params.get('maxPrice'));
-    tmp < 0 ? (this.maxPrice = 0) : (this.maxPrice = tmp);
+    tmp < 0 ? (this.maxPrice = 10000000000) : (this.maxPrice = tmp);
 
     //sentType
     tmp = params.get('type');
@@ -64,13 +73,6 @@ export class SearchComponent implements OnInit {
       if (tmp.length === 0) this.categories = [];
       else this.categories = tempS.map((item) => Number(item));
     }
-
     return;
-  }
-
-  getAll(): void {
-    this.productService.getAll().subscribe((prods) => {
-      this.prods = prods;
-    });
   }
 }
