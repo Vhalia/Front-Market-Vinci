@@ -25,9 +25,10 @@
         <b><u>sentType</u></b>
       </p>
       <nz-radio-group [(ngModel)]="type">
-        <label nz-radio nzValue="donner">Donner</label>
-        <label nz-radio nzValue="troquer">Troquer</label>
-        <label nz-radio nzValue="vendre">Vendre</label>
+        <label nz-radio [nzValue]="3">Tous</label>
+        <label nz-radio [nzValue]="0">Donner</label>
+        <label nz-radio [nzValue]="2">Troquer</label>
+        <label nz-radio [nzValue]="1">Vendre</label>
       </nz-radio-group>
     </div>
     <br />

@@ -14,7 +14,7 @@ export class SearchSidebarComponent implements OnInit {
   @Input() minPrice: number = this.minPriceAll;
   @Input() maxPrice: number = this.maxPriceAll;
   @Input() selectedCategories: number[] = [];
-  @Input() type = '';
+  @Input() type: number = 3;
 
   priceRange = [this.minPrice, this.maxPrice];
   selectedSentType: string = '';
@@ -58,9 +58,6 @@ export class SearchSidebarComponent implements OnInit {
     );
   }
 
-  parserEuro = (value: string): string => value.replace('€ ', '');
-  formatterEuro = (value: number): string => `${value} €`;
-
   onSliderChange(value: number[]) {
     this.priceRange = value;
   }
@@ -87,8 +84,8 @@ export class SearchSidebarComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    this.router.navigate(['/recherche'], {
+  async onSubmit() {
+    await this.router.navigate(['/recherche'], {
       queryParams: {
         minPrice: this.priceRange[0],
         maxPrice: this.priceRange[1],
@@ -96,15 +93,16 @@ export class SearchSidebarComponent implements OnInit {
         cat: this.getSelectedCategories(),
       },
     });
+    location.reload();
   }
 
   async onReset() {
     this.minPrice = 0;
     this.maxPrice = this.maxPriceAll;
-    this.type = 'all';
+    this.type = 3;
     this.selectedCategories = [];
     await this.router.navigate(['/recherche']);
-    this.ngOnInit();
+    location.reload();
   }
 
   getSelectedCategories(): string {
@@ -112,7 +110,6 @@ export class SearchSidebarComponent implements OnInit {
     this.listCategorie.forEach((element) => {
       if (element.checked) retour = retour.concat(String(element.value), ',');
     });
-    //remove last ','
     retour = retour.slice(0, retour.length - 1);
     return retour;
   }
