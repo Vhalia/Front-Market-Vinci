@@ -25,12 +25,21 @@ import {
   LikeOutline,
   DislikeOutline,
   AlertOutline,
+  UserOutline,
+  LockOutline,
 } from '@ant-design/icons-angular/icons';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
+import { ProfileElementComponent } from './Components/profile-element/profile-element.component';
 import { LogoutComponent } from './Components/logout/logout.component';
 import { DetailProductComponent } from './Components/detail-product/detail-product.component';
-const icons: IconDefinition[] = [LikeOutline, DislikeOutline, AlertOutline];
+const icons: IconDefinition[] = [
+  LikeOutline,
+  DislikeOutline,
+  AlertOutline,
+  UserOutline,
+  LockOutline,
+];
 
 @NgModule({
   declarations: [
@@ -46,6 +55,7 @@ const icons: IconDefinition[] = [LikeOutline, DislikeOutline, AlertOutline];
     AdminComponent,
     RegisterComponent,
     LoginComponent,
+    ProfileElementComponent,
     LogoutComponent,
     DetailProductComponent,
   ],
