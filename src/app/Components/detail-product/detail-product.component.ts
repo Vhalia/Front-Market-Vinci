@@ -13,6 +13,8 @@ export class DetailProductComponent implements OnInit {
   id: string = '';
   product!: Product;
   isLoading: boolean = true;
+  average: number = 0;
+  hasAnAverage: boolean = false;
   dictSentType: string[] = ['A Donner', 'A Vendre', 'A Troquer', 'Tous'];
 
   constructor(
@@ -32,5 +34,13 @@ export class DetailProductComponent implements OnInit {
     this.id = tmp;
     console.log(this.id);
     this.product = await lastValueFrom(this.productService.getById(this.id));
+    if (this.product.seller.ratings.length !== 0) {
+      let ratings = this.product.seller.ratings;
+      ratings.forEach((rating) => {
+        this.average += rating.like;
+      });
+      this.average = Math.round((this.average / ratings.length) * 100) / 100;
+      this.hasAnAverage = true;
+    }
   }
 }

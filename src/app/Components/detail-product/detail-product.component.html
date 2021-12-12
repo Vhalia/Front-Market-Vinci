@@ -5,7 +5,7 @@
       <div nz-col [nzXs]="10" class="left-column">
         <div class="product-title">
           <h1>{{ product.name }}</h1>
-          <span>{{ dictSentType[product.sentType] }}</span>
+          <span class="btn">{{ dictSentType[product.sentType] }}</span>
         </div>
         <img
           nz-image
@@ -16,7 +16,10 @@
         <div>
           <p>
             Vendu par <a>{{ product.seller.surname }}</a>
-            <span> (0% d'évaluation positives)</span>
+            <span *ngIf="hasAnAverage">
+              ( {{ average }}% d'évaluation positives )
+            </span>
+            <span *ngIf="!hasAnAverage"> ( Encore aucune évaluation )</span>
           </p>
         </div>
       </div>

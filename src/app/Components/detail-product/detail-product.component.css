@@ -1,5 +1,5 @@
 .container {
-  margin-top: 125px;
+  padding-top: 125px;
 }
 
 .left-column {
@@ -20,4 +20,11 @@
 .product-content {
   padding-top: 3%;
   font-size: large;
+}
+
+.btn {
+  border: 1px solid black;
+  margin-bottom: 15px;
+  padding: 7.5px 15px;
+  border-radius: 12.5px;
 }
