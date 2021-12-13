@@ -13,7 +13,7 @@ export interface Product {
   //1 = vendre
   //2 = troquer
   //3 = all
-  sentType: number;
+  sentType: string;
   price: number;
   type: string;
 }

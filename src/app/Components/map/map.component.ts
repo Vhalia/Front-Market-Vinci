@@ -8,7 +8,7 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements AfterViewInit {
   private map: any;
-  @Input() address!: string;
+  @Input() adress!: string;
 
   private initMap(): void {
     this.map = L.map('map', {

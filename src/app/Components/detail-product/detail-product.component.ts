@@ -15,7 +15,12 @@ export class DetailProductComponent implements OnInit {
   isLoading: boolean = true;
   average: number = 0;
   hasAnAverage: boolean = false;
-  dictSentType: string[] = ['A Donner', 'A Vendre', 'A Troquer', 'Tous'];
+  dictSentType: Map<string, string> = new Map([
+    ['ADonner', 'A Donner'],
+    ['AVendre', 'A Vendre'],
+    ['AEchanger', 'A Echanger'],
+    ['Tous', 'Tous'],
+  ]);
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService

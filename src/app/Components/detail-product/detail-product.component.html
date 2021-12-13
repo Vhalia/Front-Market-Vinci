@@ -5,7 +5,7 @@
       <div nz-col [nzXs]="10" class="left-column">
         <div class="product-title">
           <h1>{{ product.name }}</h1>
-          <span class="btn">{{ dictSentType[product.sentType] }}</span>
+          <span class="btn">{{ dictSentType.get(product.sentType) }}</span>
         </div>
         <img
           nz-image
@@ -36,8 +36,7 @@
           <h3>Campus</h3>
           {{ product.adress }}
         </div>
-        <!-- TODO : add map -->
-        <app-map></app-map>
+        <app-map [adress]="product.adress"></app-map>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,12 +10,20 @@ import { Router } from '@angular/router';
 export class SearchSidebarComponent implements OnInit {
   constructor(private router: Router) {}
 
+  dictSentType: Map<string, string> = new Map([
+    ['ADonner', 'A Donner'],
+    ['AVendre', 'A Vendre'],
+    ['AEchanger', 'A Echanger'],
+    ['Tous', 'Tous'],
+  ]);
+
   minPriceAll: number = 0;
   maxPriceAll: number = 500;
+  @Input() productName: string = '';
   @Input() minPrice: number = this.minPriceAll;
   @Input() maxPrice: number = this.maxPriceAll;
-  @Input() selectedCategories: number[] = [];
-  @Input() type: number = 3;
+  @Input() selectedCategories: string[] = [];
+  @Input() type: string = 'Tous';
 
   priceRange = [this.minPrice, this.maxPrice];
   selectedSentType: string = '';
@@ -23,27 +32,27 @@ export class SearchSidebarComponent implements OnInit {
   listCategorie = [
     {
       label: 'Maison et Jardin',
-      value: 1,
+      value: 'Jardin',
       checked: false,
     },
     {
       label: 'Famille',
-      value: 2,
+      value: 'Famille',
       checked: false,
     },
     {
       label: 'Vêtements et accessoires',
-      value: 3,
+      value: 'Vetements',
       checked: false,
     },
     {
       label: 'Loisirs - hobbys',
-      value: 4,
+      value: 'Loisirs',
       checked: false,
     },
     {
       label: 'Electronique',
-      value: 5,
+      value: 'Electroniques',
       checked: false,
     },
   ];
@@ -87,6 +96,7 @@ export class SearchSidebarComponent implements OnInit {
   async onSubmit() {
     await this.router.navigate(['/recherche'], {
       queryParams: {
+        name: this.productName,
         minPrice: this.priceRange[0],
         maxPrice: this.priceRange[1],
         type: this.type,
@@ -97,9 +107,10 @@ export class SearchSidebarComponent implements OnInit {
   }
 
   async onReset() {
+    this.productName = '';
     this.minPrice = 0;
     this.maxPrice = this.maxPriceAll;
-    this.type = 3;
+    this.type = 'Tous';
     this.selectedCategories = [];
     await this.router.navigate(['/recherche']);
     location.reload();

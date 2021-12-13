@@ -10,7 +10,12 @@ import { Product } from 'src/app/Model/Product';
 export class ProductCardComponent implements OnInit {
   constructor(private router: Router) {}
 
-  dictSentType: string[] = ['A Donner', 'A Vendre', 'A Troquer', 'Tous'];
+  dictSentType: Map<string, string> = new Map([
+    ['ADonner', 'A Donner'],
+    ['AVendre', 'A Vendre'],
+    ['ATroquer', 'A Troquer'],
+    ['Tous', 'Tous'],
+  ]);
 
   @Input()
   product!: Product;
