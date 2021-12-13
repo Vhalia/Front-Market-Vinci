@@ -9,12 +9,16 @@ import { HomeComponent } from './Components/home/home.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProfileComponent } from './Components/profile/profile.component';
-
+import { ProfileMailComponent } from './Components/profile-mail/profile-mail.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { LoginComponent } from './Components/login/login.component';
+import { LogoutComponent } from './Components/logout/logout.component';
 import { SearchSidebarComponent } from './Components/search-sidebar/search-sidebar.component';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { AdminComponent } from './Components/admin/admin.component';
+import { ProfilePasswordComponent } from './Components/profile-password/profile-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //ICONS
@@ -22,10 +26,6 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 //ADD ICONS HERE
 import { LikeOutline, DislikeOutline, AlertOutline, UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
-import { RegisterComponent } from './Components/register/register.component';
-import { LoginComponent } from './Components/login/login.component';
-import { ProfileElementComponent } from './Components/profile-element/profile-element.component';
-import { LogoutComponent } from './Components/logout/logout.component';
 const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, UserOutline, LockOutline ];
 
 @NgModule({
@@ -42,9 +42,10 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, Use
     AdminComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileElementComponent,
+    ProfileMailComponent,
 
     LogoutComponent,
+      ProfilePasswordComponent,
   ],
   imports: [
     BrowserModule,

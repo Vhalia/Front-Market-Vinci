@@ -3,8 +3,8 @@
     <h1 class="titleRegister">S'inscrire</h1>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" nzTooltipTitle="Entrez votre adresse email vinci">E-mail</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="L'email est invalide">
-        <input nz-input formControlName="email" id="email" class="inputLogin"/>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Veuillez entrer un mail vinci">
+        <input nz-input formControlName="email" id="email" class="inputLogin" pattern="^[A-Za-z0-9.]+@+(vinci|student.vinci)+(.be)$"/>
       </nz-form-control>
     </nz-form-item>
 

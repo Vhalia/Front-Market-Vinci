@@ -14,19 +14,21 @@
 <div nz-row *ngIf="displayUpdate">
     <form 
         #elementupdate = "ngForm" 
-        nz-form [nzLayout]="'inline'" 
+        nz-form 
+        [nzLayout]="'inline'" 
         [formGroup]="validateForm" 
-        (ngSubmit)="sendMailUpdate(elementupdate.value)"
+        (ngSubmit)="mailUpdate(elementupdate.value)"
     >
         <div nz-col [nzSpan]="20">
             <nz-form-item>
-                <nz-form-control nzErrorTip="Veuillez entrer votre {{title}}!">
+                <nz-form-control  nzErrorTip="Veuillez entrer un mail vinci">
                   <nz-input-group>
                     <input 
                         formControlName="newValueInput" 
                         nz-input placeholder="{{title}}" 
                         ngModel="{{value}}" 
                         class="profile-elt-input"
+                        pattern="^[A-Za-z0-9.]+@+(vinci|student.vinci)+(.be)$"
                     />
                   </nz-input-group>
                 </nz-form-control>

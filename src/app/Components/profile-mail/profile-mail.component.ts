@@ -2,11 +2,11 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-profile-element',
-  templateUrl: './profile-element.component.html',
-  styleUrls: ['./profile-element.component.css']
+  selector: 'app-profile-mail',
+  templateUrl: './profile-mail.component.html',
+  styleUrls: ['./profile-mail.component.css']
 })
-export class ProfileElementComponent implements OnInit {
+export class ProfileMailComponent implements OnInit {
 
   validateForm!: FormGroup;
 
@@ -29,10 +29,11 @@ export class ProfileElementComponent implements OnInit {
   displayUpdate!: boolean;
 
   @Output()
-  mailUpdate = new EventEmitter<string>();
+  mailUpdateEvent = new EventEmitter<string>();
 
-  sendMailUpdate(value: string){
-    this.mailUpdate.emit(value);
+  mailUpdate(value: any){
+    console.log(value);
+    this.mailUpdateEvent.emit(value.newValueInput);
   }
 
   ngOnInit(): void {
