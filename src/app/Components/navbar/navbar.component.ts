@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.sessionService.getFromSessionStorage('user') != undefined){
-      console.log(this.sessionService.getFromSessionStorage('user'))
       this.isConnected = true;
     }
   }

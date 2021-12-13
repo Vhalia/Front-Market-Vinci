@@ -70,8 +70,7 @@ export class RegisterComponent implements OnInit {
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       nickname: [null, [Validators.required]],
       name: [null, [Validators.required]],
-      campus: [null, [Validators.required]],
-      agree: [false]
+      campus: [null, [Validators.required]]
     });
   }
 }

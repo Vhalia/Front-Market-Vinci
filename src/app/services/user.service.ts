@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../Model/User';
 import { catchError, Observable, tap } from 'rxjs';
+import { uploadFileRequest } from '../Model/UploadFileRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,6 @@ export class UserService {
   }
 
   createOne(userToCreate : User): Observable<User> {
-    console.log('ici')
     let obj = this.http.post<User>("https://vinci-treasures-back.azurewebsites.net/users",userToCreate, this.httpOptions )
     .pipe(tap(_ => console.log('fetched user')),);
     console.log(obj)
@@ -39,6 +39,11 @@ export class UserService {
 
   updateOne(id: string, userToUpdate: User): Observable<User> {
     return this.http.patch<User>("https://vinci-treasures-back.azurewebsites.net/users/" + id, userToUpdate, this.httpOptions)
+      .pipe(tap(_ => console.log('user updated')));
+  }
+
+  updateImage(image : uploadFileRequest, idUser : string): Observable<User> {
+    return this.http.patch<User>("https://vinci-treasures-back.azurewebsites.net/users/" + idUser, image, this.httpOptions)
       .pipe(tap(_ => console.log('user updated')));
   }
 
