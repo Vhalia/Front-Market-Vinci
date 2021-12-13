@@ -1,85 +1,96 @@
 nav {
-    font-size: 1.2em;
-    background-color: #2C8A41;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 1%;
-    padding-bottom: 1%;
+  font-size: 1.2em;
+  background-color: #2c8a41;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
-#titleNavBar{
-    font-family: "Sunflower", Arial, Helvetica, sans-serif;
-    margin-left: 2%;
-    font-size: 200%;
-    color: white !important;
+#titleNavBar {
+  font-family: "Sunflower", Arial, Helvetica, sans-serif;
+  margin-left: 2%;
+  font-size: 200%;
+  color: white !important;
 }
 
-#searchNavBar{
-    background-color: #2C8A41;
-    color: white;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: solid 2px white;
-    font-size: 140%;
-    padding-right: 10%;
+#searchNavBar {
+  background-color: #2c8a41;
+  color: white;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: solid 2px white;
+  font-size: 140%;
+  padding-right: 10%;
 }
 
 ::placeholder {
-    color: white;
-    opacity: 1;
+  color: white;
+  opacity: 1;
 }
 
-#objectsPageNavbar, #AboutUsNavbar, #loginNavbar{
-    color: white;
-    padding-right: 20px;
-    font-size: 130%;
+#objectsPageNavbar,
+#AboutUsNavbar,
+#loginNavbar {
+  color: white;
+  padding-right: 20px;
+  font-size: 130%;
 }
 
-#leftNavBar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 20px;
-    margin-right: 2%;
+#leftNavBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-right: 2%;
 }
 
-#addButtonNavbar{
-    color: #2C8A41;
+#addButtonNavbar {
+  color: #2c8a41;
 }
 
-#buttonSize{
-    margin-top: 14px;
-    width: 110%;
-    height: 35px;
+#buttonSize {
+  margin-top: 14px;
+  width: 110%;
+  height: 35px;
 }
 
 [nz-button] {
-    margin-top: -45%;
-    width: 85%;
-    height: 85%;
+  margin-top: -45%;
+  width: 85%;
+  height: 85%;
 }
 
-.profileImg{
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
+.profileImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
 }
 
-.containerDropdown{
-    padding-right: -20%;
+.containerDropdown {
+  padding-right: -20%;
 }
 
-.dropdown-button{
-    color: #2C8A41;
+.dropdown-button {
+  color: #2c8a41;
 }
 
-#dropdown-disconnect{
-    color: red;
+#dropdown-disconnect {
+  color: red;
 }
 
+.searchDiv {
+  display: flex;
+}
+
+.btnSearch {
+  background-color: transparent;
+  border: 0;
+  color: white;
+}
