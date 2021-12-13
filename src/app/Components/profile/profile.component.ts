@@ -3,7 +3,6 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { User } from 'src/app/Model/User';
 import { UserService } from 'src/app/services/user.service';
 import { SessionStorageService } from 'src/app/services/sessionStorage.service'
-import { ProfileElementComponent } from '../profile-element/profile-element.component';
 
 @Component({
   selector: 'app-profile',
@@ -19,23 +18,15 @@ export class ProfileComponent implements OnInit {
   like : number = 0;
   dislike : number = 0;
   evaluation : number = 0;
+  isBanned : boolean = false;
 
   constructor( private userService : UserService, private sessionService : SessionStorageService) { }
 
-  async updateMail(newMail: any) {
-    
-    this.userToUpdate.mail = newMail;
-    
-    await this.updateOne();
-    this.sessionService.addToSessionStorage("user", this.userToUpdate);
-    this.ngOnInit();
-    location.reload();
-  }
-
   async ngOnInit() {
-    this.user = await this.getOne(this.sessionService.getFromSessionStorage("user").mail);
+    this.user = await this.getUser(this.sessionService.getFromSessionStorage("user").mail);
     this.loading = false;
 
+    //Calculating user ratings
     this.user.ratings.forEach(rating => {
       if(rating.like == 1){
         this.like++;
@@ -50,14 +41,45 @@ export class ProfileComponent implements OnInit {
       this.evaluation = Math.round(this.like / (this.like + this.dislike) * 100)
     }
 
+    //Initialising component variables
     this.userToUpdate = this.user;
+    this.isBanned = this.user.isBanned;
   }
 
-  async getOne(mail : string): Promise<User> {
+  async updateMail(newMail: any) {
+    this.userToUpdate.mail = newMail;
+    await this.updateUser();
+    this.sessionService.addToSessionStorage("user", this.userToUpdate);
+    location.reload();
+  }
+
+  async updatePassword(newPassword: any) {
+    this.userToUpdate.password = newPassword;
+    await this.updateUser();
+    this.sessionService.addToSessionStorage("user", this.userToUpdate);
+    location.reload();
+  }
+
+  async banUser() {
+    this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
+    await this.updateUser();
+    this.sessionService.addToSessionStorage("user", this.userToUpdate);
+    location.reload();
+  }
+
+  async unbanUser() {
+    this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
+    await this.updateUser();
+    this.sessionService.addToSessionStorage("user", this.userToUpdate);
+    location.reload();
+  }
+
+  //Methods calling services
+  async getUser(mail : string): Promise<User> {
     return await lastValueFrom(this.userService.getOne(mail));
   }
 
-  async updateOne(): Promise<User> {
+  async updateUser(): Promise<User> {
     return await lastValueFrom(this.userService.updateOne(this.user.id,this.userToUpdate));
   }
   

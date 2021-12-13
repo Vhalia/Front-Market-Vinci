@@ -4,32 +4,51 @@
             <ul nz-list nzSize="large" [nzLoading]="loading">
                 <li nz-list-item>
                     <h1>{{user.name}} {{user.surname}}</h1>
-                    <button nz-button nzType="primary" id="ban-button">Bannir {{user.name}} {{user.surname}}</button>
+                    <button nz-button nzType="primary" id="ban-button" (click)="banUser()" *ngIf="!isBanned">
+                        Bannir {{user.name}} {{user.surname}}
+                    </button>
+                    <button nz-button nzType="primary" id="unban-button" (click)="unbanUser()" *ngIf="isBanned">
+                        Débannir {{user.name}} {{user.surname}}
+                    </button>
                 </li>
                 <li nz-list-item nzNoFlex class="profile-info-item" >
-                    <app-profile-element 
+                    <app-profile-mail 
                         title="mail" 
                         value="{{user.mail}}" 
                         [displayEdit]="true" 
                         [displayUpdate]="false"
                         (mailUpdateEvent)="updateMail($event)"
                     >
-                    </app-profile-element>
+                    </app-profile-mail>
                 </li>
                 <li nz-list-item nzNoFlex class="profile-info-item" >
-                    <app-profile-element title="adresse" value="{{user.campus}}" [displayEdit]="true">
-                    </app-profile-element>
+                    <div nz-row>
+                        <div nz-col nzSpan="20">
+                            <b>adresse: </b>{{user.campus}}
+                        </div>
+                        <div nz-col nzSpan="4">
+                            <ul nz-list-item-actions>
+                                <nz-list-item-action>
+                                    <a >edit</a>
+                                </nz-list-item-action>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
                 <li nz-list-item nzNoFlex class="profile-info-item" >
-                    <app-profile-element 
-                        title="evaluations" 
-                        value="{{like + dislike}} ({{evaluation}}% de positives)" 
-                        [displayEdit]="false"
-                    >
-                    </app-profile-element>
+                    <div nz-row >
+                        <div nz-col nzSpan="20">
+                            <b>evaluations: </b>{{like + dislike}} ({{evaluation}}% de positives)
+                        </div>
+                        <div nz-col nzSpan="4">
+                        </div>
+                    </div>
                 </li>
                 <li id="pwd-change-button">
-                    <button nz-button nzType="default" class="profile-button" nzBlock>Modifier le mot de passe</button>
+                    <app-profile-password 
+                        [displayUpdatePwd]="false" 
+                        (passwordUpdateEvent)="updatePassword($event)">
+                    </app-profile-password>
                 </li>
             </ul>
         </div>

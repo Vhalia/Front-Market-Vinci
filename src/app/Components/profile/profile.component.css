@@ -14,7 +14,6 @@
 
 #pwd-change-button{
     padding-top: 3%;
-
 }
 
 #profile-picture{
@@ -34,12 +33,24 @@
     color: red;
     background-color: white;
     border-color: red;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 #ban-button:hover{
     color: white;
     background-color: red;
+}
+
+#unban-button{
+    color: rgb(0, 119, 255);
+    background-color: white;
+    border-color: rgb(0, 119, 255);
+    border-radius: 2px;
+}
+
+#unban-button:hover{
+    color: white;
+    background-color: rgb(0, 119, 255);
     border-color: white;
 }
 
@@ -49,11 +60,11 @@
     border-color: #2C8A41;
 }
 
-.profile-redirect-button{
-    margin-top: 5%;
-}
-
 .profile-button:hover{
     background-color: #2C8A41;
     color: white;
+}
+
+.profile-redirect-button{
+    margin-top: 5%;
 }
