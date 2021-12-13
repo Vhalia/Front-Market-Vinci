@@ -15,4 +15,5 @@ export interface Product {
   //3 = all
   sentType: number;
   price: number;
+  type: string;
 }
