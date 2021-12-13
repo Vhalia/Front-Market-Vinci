@@ -1,12 +1,22 @@
 <nav>
   <a id="titleNavBar" routerLink="/">Vinci Treasures</a>
-  <input id="searchNavBar" placeholder="Recherche" type="text" />
+  <div class="searchDiv">
+    <input
+      id="searchNavBar"
+      placeholder="Recherche"
+      type="text"
+      [(ngModel)]="searchInput"
+    />
+    <button (click)="submitSearch()" class="btnSearch">
+      <i nz-icon nzType="search" nzTheme="outline"></i>
+    </button>
+  </div>
   <div *ngIf="isConnected">
     <a id="addButtonNavbar" routerLink="/ajouter">
       <button id="buttonSize">Ajouter un Objet</button>
     </a>
   </div>
-  
+
   <div id="leftNavBar">
     <a id="objectsPageNavbar" routerLink="/recherche">Objets</a>
     <div *ngIf="isConnected">
@@ -25,15 +35,19 @@
         />
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul nz-menu>
-            <li nz-menu-item><a class="dropdown-button" routerLink="/profil">Profil</a></li>
+            <li nz-menu-item>
+              <a class="dropdown-button" routerLink="/profil">Profil</a>
+            </li>
             <li nz-menu-item><a class="dropdown-button">Historique</a></li>
-            <li nz-menu-item><a id="dropdown-disconnect" routerLink="/logout">Deconnexion</a></li>
+            <li nz-menu-item>
+              <a id="dropdown-disconnect" routerLink="/logout">Deconnexion</a>
+            </li>
           </ul>
         </nz-dropdown-menu>
       </ng-container>
     </div>
     <div *ngIf="!isConnected">
-      <a id="loginNavbar" routerLink="/login" >Connexion</a>
+      <a id="loginNavbar" routerLink="/login">Connexion</a>
     </div>
   </div>
 </nav>
