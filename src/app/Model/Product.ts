@@ -1,4 +1,5 @@
 import { uploadFileRequest } from "./UploadFileRequest";
+import { User } from "./User";
 
 export interface Product {
   id: string;
@@ -7,7 +8,8 @@ export interface Product {
   description: string;
   isValidated: boolean;
   reasonNotValidated: string;
-  sellerId: string;
+  seller: User;
+  sellerId : string;
   adress: string;
   //0 = donner
   //1 = vendre
