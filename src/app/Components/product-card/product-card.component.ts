@@ -9,6 +9,8 @@ import { Product } from 'src/app/Model/Product';
 export class ProductCardComponent implements OnInit {
   constructor() {}
 
+  dictSentType: string[] = ['A Donner', 'A Vendre', 'A Troquer', 'Tous'];
+
   @Input()
   product!: Product;
 

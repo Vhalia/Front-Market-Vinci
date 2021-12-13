@@ -1,25 +1,27 @@
 <a routerLink="/">
-  <div class="card-comp">
-    <nz-card
-      [nzCover]="coverTemplate"
-      [nzLoading]="false"
-      [nzHoverable]="true"
-      [nzActions]="[sentType]"
+  <nz-card
+    class="card-comp"
+    [nzCover]="coverTemplate"
+    [nzLoading]="false"
+    [nzHoverable]="true"
+    [nzActions]="[sentType]"
+  >
+    <nz-card-meta
+      nzTitle="{{ product.name }}"
+      nzDescription="{{ product.description }}"
     >
-      <nz-card-meta
-        nzTitle="{{ product.name }}"
-        nzDescription="{{ product.description }}"
-      >
-        <button nz-button nzType="primary" nzGhost>
-          Primary
-        </button></nz-card-meta
-      >
-    </nz-card>
-    <ng-template #sentType>
-      <a>{{ product.sentType }}</a>
-    </ng-template>
-    <ng-template #coverTemplate>
-      <img alt="example" src="https://source.unsplash.com/random/250x175" />
-    </ng-template>
-  </div>
+      <button nz-button nzType="primary" nzGhost>Primary</button></nz-card-meta
+    >
+  </nz-card>
+  <ng-template #sentType>
+    <div *ngIf="product.sentType !== 1">
+      <a>{{ dictSentType[product.sentType] }}</a>
+    </div>
+    <div *ngIf="product.sentType === 1">
+      <a>{{ dictSentType[product.sentType] }} : {{ product.price }}€</a>
+    </div>
+  </ng-template>
+  <ng-template #coverTemplate>
+    <img alt="example" src="https://source.unsplash.com/random/250x175" />
+  </ng-template>
 </a>
