@@ -75,3 +75,11 @@ nav {
     padding-right: -20%;
 }
 
+.dropdown-button{
+    color: #2C8A41;
+}
+
+#dropdown-disconnect{
+    color: red;
+}
+
