@@ -15,6 +15,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import {NzSelectModule} from 'ng-zorro-antd/select';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {NzSelectModule} from 'ng-zorro-antd/select';
     NzIconModule, 
     NzFormModule,
     NzInputModule,
-    NzSelectModule
+    NzSelectModule,
+    NzCarouselModule
   ]
 })
 export class DemoNgZorroAntdModule {}

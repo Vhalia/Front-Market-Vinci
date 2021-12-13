@@ -1,4 +1,4 @@
-import { User } from './User';
+import { uploadFileRequest } from "./UploadFileRequest";
 
 export interface Product {
   id: string;
@@ -7,7 +7,7 @@ export interface Product {
   description: string;
   isValidated: boolean;
   reasonNotValidated: string;
-  seller: User;
+  sellerId: string;
   adress: string;
   //0 = donner
   //1 = vendre
@@ -15,4 +15,5 @@ export interface Product {
   //3 = all
   sentType: number;
   price: number;
+  medias : uploadFileRequest[]
 }

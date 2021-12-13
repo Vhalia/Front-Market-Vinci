@@ -1,0 +1,47 @@
+#mainPageAddProduct{
+    margin-top: 7%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sizeImage{
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+}
+
+.renderImage{
+    margin: 1%;
+}
+
+#formAdd{
+    width: 60%;
+}
+
+#images{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.submitButton{
+    background-color: #2C8A41;
+    border-color: #2C8A41;
+}
+
+.titleAdd{
+    margin-left: 10%;
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+    font-size: 300%;
+}
+
+.underTitle{
+    margin-left: 10%;
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+    color: #2C8A41;
+    margin-bottom: 3%;
+}
+
+.uploadInput{
+    margin-left: 15%;
+}

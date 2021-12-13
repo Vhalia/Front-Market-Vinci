@@ -1,1 +1,104 @@
-<p>add-product works!</p>
+<div id="mainPageAddProduct">
+    <form id="formAdd" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <h1 class="titleAdd">Ajouter un objet</h1>
+        <p class="underTitle">afin de lui donner une seconde vie</p>
+
+        <nz-form-item>
+            <nz-form-label
+              [nzSm]="6"
+              [nzXs]="24"
+              nzFor="name"
+              nzRequired>
+              <span>Nom</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Il vous faut enter le nom de l'objet">
+              <input nz-input id="name" formControlName="name" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label
+              [nzSm]="6"
+              [nzXs]="24"
+              nzFor="description"
+              nzRequired>
+              <span>description</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Il vous faut enter une description">
+                <textarea
+                id="description" formControlName="description"
+                nz-input
+                placeholder="description de maximum 6 lignes"
+                [nzAutosize]="{ minRows: 1, maxRows: 6 }"
+              ></textarea>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="inputSelect">
+            <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="sentType"
+            nzRequired>
+            <span>type d'échange</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Il vous faut enter un type d'échange">
+            <nz-select [ngModel]="'sentType'" formControlName="sentType">
+                <nz-option [nzLabel]="'donner'" [nzValue]=0></nz-option>
+                <nz-option [nzLabel]="'vendre'" [nzValue]=1></nz-option>
+                <nz-option [nzLabel]="'troquer'" [nzValue]=2></nz-option>
+            </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label
+              [nzSm]="6"
+              [nzXs]="24"
+              nzFor="price"
+              nzRequired
+              nzTooltipTitle="sera automatiquement mis à 0 si l'objet est à donner ou troquer">
+              <span>prix</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Il vous faut entrer un prix">
+              <input value=0 type="number" nz-input id="price" formControlName="price" />
+            </nz-form-control>
+        </nz-form-item>
+    
+        <nz-form-item class="inputSelect">
+            <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="implantation"
+            nzRequired>
+            <span>implantation</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Il vous faut enter une implantation">
+            <nz-select [ngModel]="'implantation'" formControlName="implantation">
+                <nz-option [nzLabel]="'Ixelles'" [nzValue]="'Ixelles'"></nz-option>
+                <nz-option [nzLabel]="'Woluwe-saint-lambert'" [nzValue]="'Woluwe-saint-lambert'"></nz-option>
+                <nz-option [nzLabel]="'Louvain-la-Neuve'" [nzValue]="'Louvain-la-Neuve'"></nz-option>
+            </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+        
+        <div class="uploadInput">
+            <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+            <p>
+                <input type="file" (change)="selectFile($event)">
+            </p>
+        </div>
+
+        <nz-form-item nz-row class="register-area">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary" class="submitButton">ajouter le produit</button>
+          </nz-form-control>
+        </nz-form-item>
+
+    </form>
+    <div id="images">
+        <div  class="renderImage" nz-carousel-content *ngFor="let url of urls">
+            <img class="sizeImage" [src]="url">
+        </div>
+    </div>
+</div>
