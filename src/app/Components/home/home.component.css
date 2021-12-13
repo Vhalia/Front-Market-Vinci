@@ -1,0 +1,33 @@
+.homePage{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-top: 7%;
+
+}
+
+.homeTitle{
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+    font-size: 500%;
+    margin-top: 25%;
+    margin-left: 3%;
+}
+
+.firstPart, .secondPart{
+    display: flex;
+}
+
+.sentence{
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+    margin-left: 3%;
+    color: #2C8A41;
+    font-size: 130%;
+}
+
+.secondText{
+    font-size: 130%;
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+    color: #2C8A41;
+    margin-left: 3%;
+    margin-top: 10%;
+}
