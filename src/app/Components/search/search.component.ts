@@ -15,10 +15,11 @@ export class SearchComponent implements OnInit {
   isLoading: boolean = true;
 
   //Filter settings
+  productName: string = '';
   minPrice: number = -1;
   maxPrice: number = -1;
-  type: number = 3;
-  categories: number[] = [];
+  type: string = 'Tous';
+  categories: string[] = [];
 
   constructor(
     private productService: ProductService,
@@ -27,6 +28,7 @@ export class SearchComponent implements OnInit {
 
   async ngOnInit() {
     await this.loadQueryParams();
+
     this.prods = await lastValueFrom(this.productService.getAll());
     this.filtredProducts = this.prods;
     this.filterList();
@@ -34,9 +36,12 @@ export class SearchComponent implements OnInit {
   }
 
   filterList() {
-    //TODO : ajouter filtre pour produits validés
     this.filtredProducts = this.filtredProducts.filter(
-      (elt) => this.type == 3 || elt.sentType == this.type
+      (elt) => elt.isValidated
+    );
+
+    this.filtredProducts = this.filtredProducts.filter(
+      (elt) => this.type === 'Tous' || elt.sentType == this.type
     );
     if (this.maxPrice !== 0) {
       this.filtredProducts = this.filtredProducts.filter(
@@ -46,12 +51,27 @@ export class SearchComponent implements OnInit {
     this.filtredProducts = this.filtredProducts.filter(
       (elt) => this.minPrice <= elt.price
     );
-    //TODO: ajouter filtre par catégorie quand back sera impl
+    if (this.categories.length !== 0) {
+      this.filtredProducts = this.filtredProducts.filter((elt) =>
+        this.categories.includes(elt.type)
+      );
+    }
+    if (this.productName != '') {
+      this.filtredProducts = this.filtredProducts.filter((elt) =>
+        elt.name.includes(this.productName)
+      );
+    }
   }
 
   async loadQueryParams() {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any;
+
+    //name
+    tmp = params.get('name');
+    if (tmp != null) {
+      this.productName = tmp.trim();
+    }
 
     //minPrice
     tmp = Number(params.get('minPrice'));
@@ -63,15 +83,16 @@ export class SearchComponent implements OnInit {
 
     //sentType
     tmp = params.get('type');
-    if (tmp == 0 || tmp == 2 || tmp == 1) this.type = Number(tmp);
-    else this.type = 3;
+    if (tmp === 'ADonner' || tmp === 'AVendre' || tmp === 'AEchanger')
+      this.type = tmp;
+    else this.type = 'Tous';
 
     //Categories
     tmp = params.get('cat');
     if (tmp !== null) {
       let tempS: string[] = tmp.split(',');
       if (tmp.length === 0) this.categories = [];
-      else this.categories = tempS.map((item) => Number(item));
+      else this.categories = tempS.map((item) => item);
     }
     return;
   }

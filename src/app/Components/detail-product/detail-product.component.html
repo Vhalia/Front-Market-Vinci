@@ -1,0 +1,43 @@
+<div class="container">
+  <div *ngIf="isLoading"><nz-spin nzSimple [nzSize]="'large'"></nz-spin></div>
+  <div *ngIf="!isLoading">
+    <div nz-row>
+      <div nz-col [nzXs]="10" class="left-column">
+        <div class="product-title">
+          <h1>{{ product.name }}</h1>
+          <span class="btn">{{ dictSentType.get(product.sentType) }}</span>
+        </div>
+        <img
+          nz-image
+          class="prod-img"
+          src="https://source.unsplash.com/random/800x600"
+          alt="Product image"
+        />
+        <div>
+          <p>
+            Vendu par <a>{{ product.seller.surname }}</a>
+            <span *ngIf="hasAnAverage">
+              ( {{ average }}% d'évaluation positives )
+            </span>
+            <span *ngIf="!hasAnAverage"> ( Encore aucune évaluation )</span>
+          </p>
+        </div>
+      </div>
+      <div nz-col [nzXs]="14" class="product-content">
+        <div>
+          <h3>Description</h3>
+          {{ product.description }}
+        </div>
+        <div>
+          <h3>Prix</h3>
+          {{ product.price }}
+        </div>
+        <div>
+          <h3>Campus</h3>
+          {{ product.adress }}
+        </div>
+        <app-map [adress]="product.adress"></app-map>
+      </div>
+    </div>
+  </div>
+</div>

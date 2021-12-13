@@ -8,6 +8,7 @@ import { AdminComponent } from '../Components/admin/admin.component';
 import { LoginComponent } from '../Components/login/login.component';
 import { RegisterComponent } from '../Components/register/register.component';
 import { LogoutComponent } from '../Components/logout/logout.component';
+import { DetailProductComponent } from '../Components/detail-product/detail-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'detail', component: DetailProductComponent },
 ];
 
 @NgModule({

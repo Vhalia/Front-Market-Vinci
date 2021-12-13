@@ -10,9 +10,6 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { SearchComponent } from './Components/search/search.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ProfileMailComponent } from './Components/profile-mail/profile-mail.component';
-import { RegisterComponent } from './Components/register/register.component';
-import { LoginComponent } from './Components/login/login.component';
-import { LogoutComponent } from './Components/logout/logout.component';
 import { SearchSidebarComponent } from './Components/search-sidebar/search-sidebar.component';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,13 +17,32 @@ import { AddProductComponent } from './Components/add-product/add-product.compon
 import { AdminComponent } from './Components/admin/admin.component';
 import { ProfilePasswordComponent } from './Components/profile-password/profile-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './Components/register/register.component';
+import { LoginComponent } from './Components/login/login.component';
+import { LogoutComponent } from './Components/logout/logout.component';
+import { DetailProductComponent } from './Components/detail-product/detail-product.component';
+import { MapComponent } from './Components/map/map.component';
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+
 //ADD ICONS HERE
-import { LikeOutline, DislikeOutline, AlertOutline, UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
-const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, UserOutline, LockOutline ];
+import {
+  LikeOutline,
+  DislikeOutline,
+  AlertOutline,
+  UserOutline,
+  LockOutline,
+} from '@ant-design/icons-angular/icons';
+
+const icons: IconDefinition[] = [
+  LikeOutline,
+  DislikeOutline,
+  AlertOutline,
+  UserOutline,
+  LockOutline,
+];
 
 @NgModule({
   declarations: [
@@ -42,10 +58,12 @@ const icons: IconDefinition[] = [ LikeOutline, DislikeOutline, AlertOutline, Use
     AdminComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileMailComponent,
-
     LogoutComponent,
-      ProfilePasswordComponent,
+    DetailProductComponent,
+    MapComponent,
+    ProfileMailComponent,
+    LogoutComponent,
+    ProfilePasswordComponent,
   ],
   imports: [
     BrowserModule,

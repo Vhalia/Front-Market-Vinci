@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  MAP_API_URL:
+    'http://api.positionstack.com/v1/forward?access_key=5b4b50071b7d8598183cc8fc796ea5c4',
 };
 
 /*

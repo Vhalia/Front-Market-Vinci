@@ -1,6 +1,16 @@
 <div class="sidebar">
   <h3 class="sidebar-title">Filtres</h3>
   <div class="filters">
+    <!-- Name filter -->
+    <div>
+      <input
+        nz-input
+        [(ngModel)]="productName"
+        placeholder="Nom produit"
+        class="productNameInput"
+      />
+    </div>
+    <br />
     <!-- Price filter -->
     <div>
       <p>
@@ -25,10 +35,10 @@
         <b><u>sentType</u></b>
       </p>
       <nz-radio-group [(ngModel)]="type">
-        <label nz-radio [nzValue]="3">Tous</label>
-        <label nz-radio [nzValue]="0">Donner</label>
-        <label nz-radio [nzValue]="2">Troquer</label>
-        <label nz-radio [nzValue]="1">Vendre</label>
+        <label nz-radio nzValue="Tous">Tous</label>
+        <label nz-radio nzValue="ADonner">Donner</label>
+        <label nz-radio nzValue="AEchanger">Echanger</label>
+        <label nz-radio nzValue="AVendre">Vendre</label>
       </nz-radio-group>
     </div>
     <br />

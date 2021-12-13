@@ -1,4 +1,4 @@
-<a routerLink="/">
+<a (click)="handleClick()">
   <nz-card
     class="card-comp"
     [nzCover]="coverTemplate"
@@ -14,11 +14,14 @@
     >
   </nz-card>
   <ng-template #sentType>
-    <div *ngIf="product.sentType !== 1">
-      <a>{{ dictSentType[product.sentType] }}</a>
+    <div *ngIf="product.sentType === 'AEchanger'">
+      <a> A Echanger </a>
     </div>
-    <div *ngIf="product.sentType === 1">
-      <a>{{ dictSentType[product.sentType] }} : {{ product.price }}€</a>
+    <div *ngIf="product.sentType === 'ADonner'">
+      <a> A Donner </a>
+    </div>
+    <div *ngIf="product.sentType === 'AVendre'">
+      <a>{{ dictSentType.get(product.sentType) }} : {{ product.price }}€</a>
     </div>
   </ng-template>
   <ng-template #coverTemplate>
