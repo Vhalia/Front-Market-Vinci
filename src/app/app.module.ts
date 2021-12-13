@@ -33,6 +33,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { ProfileElementComponent } from './Components/profile-element/profile-element.component';
 import { LogoutComponent } from './Components/logout/logout.component';
 import { DetailProductComponent } from './Components/detail-product/detail-product.component';
+import { MapComponent } from './Components/map/map.component';
 const icons: IconDefinition[] = [
   LikeOutline,
   DislikeOutline,
@@ -58,6 +59,7 @@ const icons: IconDefinition[] = [
     ProfileElementComponent,
     LogoutComponent,
     DetailProductComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,6 @@ export class DetailProductComponent implements OnInit {
   average: number = 0;
   hasAnAverage: boolean = false;
   dictSentType: string[] = ['A Donner', 'A Vendre', 'A Troquer', 'Tous'];
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService

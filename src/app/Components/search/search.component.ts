@@ -29,12 +29,15 @@ export class SearchComponent implements OnInit {
     await this.loadQueryParams();
     this.prods = await lastValueFrom(this.productService.getAll());
     this.filtredProducts = this.prods;
+    console.log(this.prods);
     this.filterList();
     this.isLoading = false;
   }
 
   filterList() {
-    //TODO : ajouter filtre pour produits validés
+    this.filtredProducts = this.filtredProducts.filter(
+      (elt) => elt.isValidated
+    );
     this.filtredProducts = this.filtredProducts.filter(
       (elt) => this.type == 3 || elt.sentType == this.type
     );
