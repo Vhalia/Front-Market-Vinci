@@ -22,6 +22,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { LogoutComponent } from './Components/logout/logout.component';
 import { DetailProductComponent } from './Components/detail-product/detail-product.component';
 import { MapComponent } from './Components/map/map.component';
+import { HistoryComponent } from './Components/history/history.component';
+
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -64,6 +66,7 @@ const icons: IconDefinition[] = [
     ProfileMailComponent,
     LogoutComponent,
     ProfilePasswordComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
