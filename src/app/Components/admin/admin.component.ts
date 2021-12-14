@@ -83,7 +83,8 @@ export class AdminComponent implements OnInit {
   submitForm(id : string){
     if (this.validateForm.valid) {
       let body = {isValidated : false, reasonNotValidated : this.validateForm.value.reason}
-      console.log(body)
+      this.patchAProduct(id, body)
+      location.reload();
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

@@ -53,7 +53,7 @@ export class DetailProductComponent implements OnInit {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.id = tmp;
-    this.productService.getById(this.id).subscribe({
+    /*this.productService.getById(this.id).subscribe({
       next: (v) => {
         this.product = v;
       },
@@ -75,6 +75,6 @@ export class DetailProductComponent implements OnInit {
         }
         this.isLoading = false;
       },
-    });
+    });*/
   }
 }
