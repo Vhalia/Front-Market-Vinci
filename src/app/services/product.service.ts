@@ -39,4 +39,16 @@ export class ProductService {
     console.log(obj);
     return obj;
   }
+
+  getNotValidated(): Observable<Product[]> {
+    return this.http
+      .get<Product[]>('https://vinci-treasures-back.azurewebsites.net/products/notValidated')
+      .pipe(tap((_) => console.log('fetched Products')));
+  }
+
+  patchProduct(id : string, body : any): Observable<Product> {
+    return this.http
+      .patch<Product>('https://vinci-treasures-back.azurewebsites.net/products/'+ id +'/validate',body, this.httpOptions)
+      .pipe(tap((_) => console.log('fetched Products')));
+  }
 }

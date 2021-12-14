@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UploadOutline } from '@ant-design/icons-angular/icons';
 import { lastValueFrom } from 'rxjs';
 import { Product } from 'src/app/Model/Product';
 import { uploadFileRequest } from 'src/app/Model/UploadFileRequest';
-import { User } from 'src/app/Model/User';
 import { ProductService } from 'src/app/services/product.service';
 import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 @Component({
@@ -39,11 +36,13 @@ export class AddProductComponent implements OnInit {
       sentType: [null, [Validators.required]],
       price: [null, [Validators.required]],
       implantation: [null, [Validators.required]],
+      type: [null, [Validators.required]]
     });
   }
 
   async submitForm() {
     if (this.validateForm.valid) {
+      this.newProduct.type = this.validateForm.value.type
       this.newProduct.medias = this.medias;
       this.newProduct.name = this.validateForm.value.name;
       this.newProduct.description = this.validateForm.value.description;
@@ -102,7 +101,7 @@ export class AddProductComponent implements OnInit {
     reader.onload = (_event) => {
       this.msg = '';
       //this.url = reader.result;
-      console.log('2', reader.result);
+      console.log('B64', reader.result);
       this.urls[this.counter] = reader.result;
       this.medias[this.counter] = {} as uploadFileRequest;
       this.medias[this.counter].filePath = String(reader.result);
