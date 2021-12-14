@@ -2,7 +2,16 @@
     margin-top: 8%;
 }
 
-.banButton{
+.refuteButton{
     background-color: red;
     border-color: red;
+}
+
+.displayBanButton{
+    display: flex;   
+}
+
+.ValidButton{
+   background-color: #2C8A41; 
+   border-color: #2C8A41;
 }

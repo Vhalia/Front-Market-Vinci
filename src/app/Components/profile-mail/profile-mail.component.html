@@ -2,8 +2,8 @@
     <div nz-col nzSpan="20">
         <b>{{title}}: </b>{{value}}
     </div>
-    <div nz-col nzSpan="4">
-        <ul nz-list-item-actions *ngIf="displayEdit">
+    <div nz-col nzSpan="4" *ngIf="displayEdit">
+        <ul nz-list-item-actions>
             <nz-list-item-action>
                 <a (click)="displayUpdateInput()">edit</a>
             </nz-list-item-action>

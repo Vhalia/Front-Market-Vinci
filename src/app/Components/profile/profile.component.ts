@@ -3,6 +3,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { User } from 'src/app/Model/User';
 import { UserService } from 'src/app/services/user.service';
 import { SessionStorageService } from 'src/app/services/sessionStorage.service'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,31 +20,51 @@ export class ProfileComponent implements OnInit {
   dislike : number = 0;
   evaluation : number = 0;
   isBanned : boolean = false;
+  isAdmin : boolean = false;
+  ownProfile : boolean = false;
+  image : string = "";
 
-  constructor( private userService : UserService, private sessionService : SessionStorageService) { }
+  constructor( 
+    private userService : UserService, 
+    private sessionService : SessionStorageService, 
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
-    this.user = await this.getUser(this.sessionService.getFromSessionStorage("user").mail);
-    this.loading = false;
+    if(this.sessionService.getFromSessionStorage("user") === undefined){
+      this.router.navigate(['/']);
+    } else {
+      //Initialising component variables
+      const params = this.activatedRoute.snapshot.queryParamMap;
+      let mail: any = params.get('mail');
+      this.user = await this.getUser(mail);
 
-    //Calculating user ratings
-    this.user.ratings.forEach(rating => {
-      if(rating.like == 1){
-        this.like++;
-      } else if(rating.like == -1){
-        this.dislike++;
+      this.loading = false;
+      this.isAdmin = this.sessionService.getFromSessionStorage("user").isAdmin;
+      this.userToUpdate = this.user;
+      this.isBanned = this.user.isBanned;
+      if(this.sessionService.getFromSessionStorage("user").mail === this.user.mail){
+        this.ownProfile = true;
       }
-    });
+      if(this.user.image !== undefined){
+        this.image = this.user.image;
+      }
 
-    if(this.like > 0 && this.dislike == 0){
-      this.evaluation = 100;
-    } else if(this.like > 0 && this.dislike > 0) {
-      this.evaluation = Math.round(this.like / (this.like + this.dislike) * 100)
+      //Calculating user ratings
+      this.user.ratings.forEach(rating => {
+        if(rating.like == 1){
+          this.like++;
+        } else if(rating.like == -1){
+          this.dislike++;
+        }
+      });
+
+      if(this.like > 0 && this.dislike == 0){
+        this.evaluation = 100;
+      } else if(this.like > 0 && this.dislike > 0) {
+        this.evaluation = Math.round(this.like / (this.like + this.dislike) * 100);
+      }
     }
-
-    //Initialising component variables
-    this.userToUpdate = this.user;
-    this.isBanned = this.user.isBanned;
   }
 
   async updateMail(newMail: any) {
@@ -61,17 +82,21 @@ export class ProfileComponent implements OnInit {
   }
 
   async banUser() {
-    this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
-    await this.updateUser();
-    this.sessionService.addToSessionStorage("user", this.userToUpdate);
-    location.reload();
+    if(this.isAdmin){
+      this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
+      await this.updateUser();
+      this.sessionService.addToSessionStorage("user", this.userToUpdate);
+      location.reload();
+    }
   }
 
   async unbanUser() {
-    this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
-    await this.updateUser();
-    this.sessionService.addToSessionStorage("user", this.userToUpdate);
-    location.reload();
+    if(this.isAdmin){
+      this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
+      await this.updateUser();
+      this.sessionService.addToSessionStorage("user", this.userToUpdate);
+      location.reload();
+    }
   }
 
   //Methods calling services

@@ -15,7 +15,7 @@
       <nz-form-control
         [nzSm]="14"
         [nzXs]="24"
-        nzErrorTip="Il vous faut enter le nom de l'objet"
+        nzErrorTip="Il vous faut entrer le nom de l'objet"
       >
         <input nz-input id="name" formControlName="name" />
       </nz-form-control>
@@ -28,7 +28,7 @@
       <nz-form-control
         [nzSm]="14"
         [nzXs]="24"
-        nzErrorTip="Il vous faut enter une description"
+        nzErrorTip="Il vous faut entrer une description"
       >
         <textarea
           id="description"
@@ -40,22 +40,22 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item class="inputSelect">
+    <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sentType" nzRequired>
         <span>type d'échange</span>
       </nz-form-label>
       <nz-form-control
         [nzSm]="14"
         [nzXs]="24"
-        nzErrorTip="Il vous faut enter un type d'échange"
+        nzErrorTip="Il vous faut entrer le type d'échange"
       >
-        <nz-select [ngModel]="'sentType'" formControlName="sentType">
-          <nz-option [nzLabel]="'donner'" nzValue="ADonner"></nz-option>
-          <nz-option [nzLabel]="'vendre'" nzValue="AVendre"></nz-option>
-          <nz-option [nzLabel]="'troquer'" nzValue="AEchanger"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
+      <nz-radio-group id="sentType" formControlName="sentType" nzButtonStyle="solid">
+        <label nz-radio-button nzValue="ADonner">Donner</label>
+        <label nz-radio-button nzValue="AVendre">Vendre</label>
+        <label nz-radio-button nzValue="AEchanger">Troquer</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
 
     <nz-form-item>
       <nz-form-label
@@ -82,6 +82,27 @@
       </nz-form-control>
     </nz-form-item>
 
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="type" nzRequired>
+        <span>type</span>
+      </nz-form-label>
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Il vous faut entrer le type"
+      >
+      <nz-radio-group id="type" formControlName="type" nzButtonStyle="solid">
+        <label nz-radio-button nzValue="Maison">Maison</label>
+        <label nz-radio-button nzValue="Jardin">Jardin</label>
+        <label nz-radio-button nzValue="Famille">Famille</label>
+        <label nz-radio-button nzValue="Vetements">Vetements</label>
+        <label nz-radio-button nzValue="Accessoires">Accessoires</label>
+        <label nz-radio-button nzValue="Loisirs">Loisirs</label>
+        <label nz-radio-button nzValue="Electroniques">Electroniques</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+
     <nz-form-item class="inputSelect">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="implantation" nzRequired>
         <span>implantation</span>
@@ -89,7 +110,7 @@
       <nz-form-control
         [nzSm]="14"
         [nzXs]="24"
-        nzErrorTip="Il vous faut enter une implantation"
+        nzErrorTip="Il vous faut entrer une implantation"
       >
         <nz-select [ngModel]="'implantation'" formControlName="implantation">
           <nz-option [nzLabel]="'Ixelles'" [nzValue]="'Ixelles'"></nz-option>

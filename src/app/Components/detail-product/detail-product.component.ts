@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Product } from 'src/app/Model/Product';
 import { User } from 'src/app/Model/User';
@@ -30,7 +30,6 @@ export class DetailProductComponent implements OnInit {
     ['AEchanger', 'A Echanger'],
     ['Tous', 'Tous'],
   ]);
-
   isAnError: boolean = false;
   errorMessage: string = '';
 

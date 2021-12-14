@@ -13,7 +13,7 @@ export interface User {
   isAdmin: boolean;
   ratings: Rating[];
   image: string;
-  favTypes: undefined;
+  favTypes: undefined; 
   sold: string[];
   bought: string[];
   favProducts: string[];
