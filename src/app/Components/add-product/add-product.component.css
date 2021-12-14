@@ -45,3 +45,8 @@
 .uploadInput{
     margin-left: 15%;
 }
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    background-color: #2C8A41 !important;
+}
+

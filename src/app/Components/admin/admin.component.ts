@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/Model/Product';
 import { User } from 'src/app/Model/User';
+import { ProductService } from 'src/app/services/product.service';
 import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,12 +14,14 @@ import { UserService } from 'src/app/services/user.service';
 export class AdminComponent implements OnInit {
 
   users : User[] = [];
+  products : Product[] = [];
   
   searchValue = '';
   visible = false;  
   listOfDisplayData: User[] = [...this.users];
   
   constructor(private userService : UserService,
+              private productService : ProductService,
               private sessionService : SessionStorageService,
               private router : Router) { }
 
@@ -29,7 +33,14 @@ export class AdminComponent implements OnInit {
     if(user.isAdmin == false)
       this.router.navigate(['/'])
 
+
     this.getAllUsers()
+    this.getProductsNotValideted()
+  }
+  getProductsNotValideted(): void {
+    this.productService.getNotValidated().subscribe(products => {
+      this.products = products
+    })
   }
 
   getAllUsers(): void {

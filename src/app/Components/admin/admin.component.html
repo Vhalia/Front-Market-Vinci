@@ -8,8 +8,8 @@
             <i nz-icon nzType="search"></i>
           </nz-filter-trigger>
         </th>
-        <th>Name</th>
-        <th>Surname</th>
+        <th>Prénom</th>
+        <th>Nom</th>
         <th><i nz-icon nzType="alert" nzTheme="outline"></i> Admin</th>
         <th>Campus</th>
         <th><i nz-icon nzType="like"></i> Likes</th>
@@ -36,10 +36,35 @@
   <nz-dropdown-menu #menu="nzDropdownMenu">
     <div class="ant-table-filter-dropdown">
       <div class="search-box">
-        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
-        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
-        <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        <input type="text" nz-input placeholder="recherche" [(ngModel)]="searchValue" />
+        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">rechercher </button>
+        <button nz-button nzSize="small" (click)="reset()">Réinitaliser</button>
       </div>
     </div>
   </nz-dropdown-menu>
+</div>
+
+<div class="tabProductsToValidate">
+  <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+    <thead>
+      <tr>
+        <th>Nom de l'objet</th>
+        <th>Prénom du vendeur</th>
+        <th>Nom du vendeur</th>
+        <th>Adresse d'échange</th>
+        <th>Valider l'article</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.seller.name }}</td>
+        <td>{{ product.seller.surname }}</td>
+        <td>{{ product.adress}}</td>
+        <td> </td>
+        <td> </td>
+        <td><button nz-button nzType="primary" class="banButton">Valider</button></td>
+      </tr>
+    </tbody>
+  </nz-table>
 </div>
