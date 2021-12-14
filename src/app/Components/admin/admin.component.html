@@ -12,8 +12,6 @@
         <th>Nom</th>
         <th><i nz-icon nzType="alert" nzTheme="outline"></i> Admin</th>
         <th>Campus</th>
-        <th><i nz-icon nzType="like"></i> Likes</th>
-        <th><i nz-icon nzType="dislike"></i> Dislikes</th> 
         <th>Bannir</th>
       </tr>
     </thead>
@@ -27,9 +25,7 @@
           <div *ngIf="!data.isAdmin">non </div>
         </td>
         <td>{{ data.campus }}</td>
-        <td> </td>
-        <td> </td>
-        <td><button nz-button nzType="primary" class="banButton">Bannir {{data.name}}</button></td>
+        <td class="displayBanButton"><button nz-button nzType="primary" class="banButton">Bannir {{data.name}}</button></td>
       </tr>
     </tbody>
   </nz-table>
@@ -50,8 +46,8 @@
       <tr>
         <th>Nom de l'objet</th>
         <th>Prénom du vendeur</th>
-        <th>Nom du vendeur</th>
         <th>Adresse d'échange</th>
+        <th>raison de refus</th>
         <th>Valider l'article</th>
       </tr>
     </thead>
@@ -59,11 +55,9 @@
       <tr *ngFor="let product of products">
         <td>{{ product.name }}</td>
         <td>{{ product.seller.name }}</td>
-        <td>{{ product.seller.surname }}</td>
         <td>{{ product.adress}}</td>
-        <td> </td>
-        <td> </td>
-        <td><button nz-button nzType="primary" class="banButton">Valider</button></td>
+        <td>{{product.reasonNotValidated}}</td>
+        <td><button nz-button nzType="primary" class="ValidButton">Valider</button></td>
       </tr>
     </tbody>
   </nz-table>

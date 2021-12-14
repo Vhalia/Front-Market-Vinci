@@ -28,3 +28,11 @@
   padding: 7.5px 15px;
   border-radius: 12.5px;
 }
+
+.error {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: red;
+  font-size: 2em;
+}
