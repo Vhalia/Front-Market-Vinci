@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Product } from 'src/app/Model/Product';
+import { User } from 'src/app/Model/User';
 import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -12,11 +14,13 @@ import { ProductService } from 'src/app/services/product.service';
 export class DetailProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private userService: UserService
   ) {}
 
   id: string = '';
   product!: Product;
+  user!: User;
   isLoading: boolean = true;
   average: number = 0;
   hasAnAverage: boolean = false;
@@ -31,13 +35,13 @@ export class DetailProductComponent implements OnInit {
   errorMessage: string = '';
 
   async ngOnInit() {
-    await this.loadProduct();
-  }
-
-  async loadProduct() {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.id = tmp;
+    await this.getProduct();
+  }
+
+  async getProduct() {
     this.productService.getById(this.id).subscribe({
       next: (v) => {
         this.product = v;
@@ -48,17 +52,29 @@ export class DetailProductComponent implements OnInit {
         this.isLoading = false;
       },
       complete: () => {
-        this.isAnError = false;
-        if (!this.isAnError && this.product.seller.ratings.length !== 0) {
-          let ratings = this.product.seller.ratings;
-          ratings.forEach((rating) => {
-            this.average += rating.like;
-          });
-          this.average =
-            Math.round((this.average / ratings.length) * 100) / 100;
-          this.hasAnAverage = true;
-        }
-        this.isLoading = false;
+        console.log('getProduct complete');
+        this.userService.getOne(this.product.sellerMail).subscribe({
+          next: (v) => {
+            this.user = v;
+          },
+          error: (e) => {
+            this.isAnError = true;
+            this.errorMessage = e.message;
+            this.isLoading = false;
+          },
+          complete: () => {
+            if (!this.isAnError && this.user.ratings.length !== 0) {
+              let ratings = this.user.ratings;
+              ratings.forEach((rating) => {
+                this.average += rating.like;
+              });
+              this.average =
+                Math.round((this.average / ratings.length) * 100) / 100;
+              this.hasAnAverage = true;
+            }
+            this.isLoading = false;
+          },
+        });
       },
     });
   }

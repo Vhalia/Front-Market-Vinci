@@ -1,3 +1,4 @@
+import { Badge } from './Badge';
 import { Product } from './Product';
 import { Rating } from './Rating';
 
@@ -16,5 +17,5 @@ export interface User {
   sold: string[];
   bought: string[];
   favProducts: string[];
-  //   badges:
+  badges: Badge[];
 }

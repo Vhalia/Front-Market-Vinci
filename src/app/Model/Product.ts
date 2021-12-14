@@ -8,8 +8,8 @@ export interface Product {
   description: string;
   isValidated: boolean;
   reasonNotValidated: string;
-  seller: User;
   sellerId: string;
+  sellerMail: string;
   adress: string;
   //0 = donner
   //1 = vendre

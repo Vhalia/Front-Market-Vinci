@@ -22,6 +22,9 @@ import { LoginComponent } from './Components/login/login.component';
 import { LogoutComponent } from './Components/logout/logout.component';
 import { DetailProductComponent } from './Components/detail-product/detail-product.component';
 import { MapComponent } from './Components/map/map.component';
+import { ErrorComponent } from './Components/error/error.component';
+import { BadgeComponent } from './Components/badge/badge.component';
+import { BadgeCardComponent } from './Components/badge-card/badge-card.component';
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -35,7 +38,6 @@ import {
   UserOutline,
   LockOutline,
 } from '@ant-design/icons-angular/icons';
-import { ErrorComponent } from './Components/error/error.component';
 
 const icons: IconDefinition[] = [
   LikeOutline,
@@ -66,6 +68,8 @@ const icons: IconDefinition[] = [
     LogoutComponent,
     ProfilePasswordComponent,
     ErrorComponent,
+    BadgeComponent,
+    BadgeCardComponent,
   ],
   imports: [
     BrowserModule,
