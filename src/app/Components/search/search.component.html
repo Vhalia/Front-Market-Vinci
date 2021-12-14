@@ -30,7 +30,11 @@
         Une erreur est survenue <br />{{ errorMessage }}
       </div>
       <nz-list nzGrid *ngIf="!isAnError">
-        <div nz-row [nzJustify]="'space-around'">
+        <div
+          nz-row
+          [nzJustify]="'space-around'"
+          *ngIf="filtredProducts.length != 0"
+        >
           <div
             nz-col
             [nzXXl]="5"
@@ -47,6 +51,7 @@
             </nz-list-item>
           </div>
         </div>
+        <div *ngIf="filtredProducts.length == 0">Aucun produit</div>
       </nz-list>
     </div>
   </div>
