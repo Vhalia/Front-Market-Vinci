@@ -19,8 +19,14 @@ export class ProductCardComponent implements OnInit {
 
   @Input()
   product!: Product;
+  //TODO: changer url par defaut
+  imageUrl: string =
+    'https://blobuploadimage.blob.core.windows.net/produitsimages/caillasse.jpg';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.product.blobMedias.length != 0)
+      this.imageUrl = this.product.blobMedias[0];
+  }
 
   async handleClick() {
     await this.router.navigate(['/detail'], {
