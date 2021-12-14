@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Product } from 'src/app/Model/Product';
+import { User } from 'src/app/Model/User';
 import { ProductService } from 'src/app/services/product.service';
-import { SessionStorageService } from 'src/app/services/sessionStorage.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -11,9 +12,15 @@ import { SessionStorageService } from 'src/app/services/sessionStorage.service';
   styleUrls: ['./detail-product.component.css'],
 })
 export class DetailProductComponent implements OnInit {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductService,
+    private userService: UserService
+  ) {}
 
   id: string = '';
   product!: Product;
+  user!: User;
   isLoading: boolean = true;
   average: number = 0;
   hasAnAverage: boolean = false;
@@ -26,34 +33,15 @@ export class DetailProductComponent implements OnInit {
   isAnError: boolean = false;
   errorMessage: string = '';
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private productService: ProductService,
-    private sessionStorageService: SessionStorageService,
-    private router : Router
-  ) {}
-
   async ngOnInit() {
-    await this.loadProduct();
-    this.isLoading = false;
-
-    if(this.product.isValidated === true){
-      return;
-    }
-
-    if(this.product.isValidated === false && (this.sessionStorageService.getFromSessionStorage('user').id == this.product.sellerId||this.sessionStorageService.getFromSessionStorage('user').isAdmin === true)){
-      return;
-    }
-    else {
-      this.router.navigate(['/'])
-    }
-  }  
-
-  async loadProduct() {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.id = tmp;
-    /*this.productService.getById(this.id).subscribe({
+    await this.getProduct();
+  }
+
+  async getProduct() {
+    this.productService.getById(this.id).subscribe({
       next: (v) => {
         this.product = v;
       },
@@ -63,18 +51,30 @@ export class DetailProductComponent implements OnInit {
         this.isLoading = false;
       },
       complete: () => {
-        this.isAnError = false;
-        if (!this.isAnError && this.product.seller.ratings.length !== 0) {
-          let ratings = this.product.seller.ratings;
-          ratings.forEach((rating) => {
-            this.average += rating.like;
-          });
-          this.average =
-            Math.round((this.average / ratings.length) * 100) / 100;
-          this.hasAnAverage = true;
-        }
-        this.isLoading = false;
+        console.log('getProduct complete');
+        this.userService.getOne(this.product.sellerMail).subscribe({
+          next: (v) => {
+            this.user = v;
+          },
+          error: (e) => {
+            this.isAnError = true;
+            this.errorMessage = e.message;
+            this.isLoading = false;
+          },
+          complete: () => {
+            if (!this.isAnError && this.user.ratings.length !== 0) {
+              let ratings = this.user.ratings;
+              ratings.forEach((rating) => {
+                this.average += rating.like;
+              });
+              this.average =
+                Math.round((this.average / ratings.length) * 100) / 100;
+              this.hasAnAverage = true;
+            }
+            this.isLoading = false;
+          },
+        });
       },
-    });*/
+    });
   }
 }

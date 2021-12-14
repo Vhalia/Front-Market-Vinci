@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  background-color: #2c8a41;
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.col-img {
+  margin-right: 50px;
+}
+
+.badge-image {
+  width: 150px;
+  height: auto;
+}
+
+.col-text h3 {
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.locked {
+  background-color: grey;
+  color: black;
+}
+
+.unlocked {
+  background-color: #2c8a41;
+  color: white;
+}
+
+.col-text p {
+  font-size: large;
+}

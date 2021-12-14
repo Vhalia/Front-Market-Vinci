@@ -1,0 +1,10 @@
+<div class="container">
+  <div *ngFor="let badge of badges">
+    <app-badge-card
+      [title]="badge.title"
+      [description]="badge.description"
+      [image]="badge.image"
+      [isUnlocked]="badge.isUnlocked"
+    ></app-badge-card>
+  </div>
+</div>
