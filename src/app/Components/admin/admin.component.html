@@ -12,7 +12,6 @@
         <th>Nom</th>
         <th><i nz-icon nzType="alert" nzTheme="outline"></i> Admin</th>
         <th>Campus</th>
-        <th>Bannir</th>
       </tr>
     </thead>
     <tbody>
@@ -25,7 +24,6 @@
           <div *ngIf="!data.isAdmin">non </div>
         </td>
         <td>{{ data.campus }}</td>
-        <td class="displayBanButton"><button nz-button nzType="primary" class="banButton">Bannir {{data.name}}</button></td>
       </tr>
     </tbody>
   </nz-table>
@@ -56,8 +54,20 @@
         <td>{{ product.name }}</td>
         <td>{{ product.seller.name }}</td>
         <td>{{ product.adress}}</td>
-        <td>{{product.reasonNotValidated}}</td>
-        <td><button nz-button nzType="primary" class="ValidButton">Valider</button></td>
+        <td>
+          <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(product.id)">
+
+            <nz-form-item>
+                <input nz-input formControlName="reason" placeholder="raison" />
+            </nz-form-item>
+            
+            <nz-form-item>
+                <button nz-button nzType="primary" class='refuteButton'>réfuter</button>
+            </nz-form-item>
+
+          </form>
+        </td>
+        <td><button nz-button nzType="primary" (click)="validProduct(product.id)" class="ValidButton">Valider</button></td>
       </tr>
     </tbody>
   </nz-table>
