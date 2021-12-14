@@ -35,6 +35,7 @@ import {
   UserOutline,
   LockOutline,
 } from '@ant-design/icons-angular/icons';
+import { ErrorComponent } from './Components/error/error.component';
 
 const icons: IconDefinition[] = [
   LikeOutline,
@@ -64,6 +65,7 @@ const icons: IconDefinition[] = [
     ProfileMailComponent,
     LogoutComponent,
     ProfilePasswordComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

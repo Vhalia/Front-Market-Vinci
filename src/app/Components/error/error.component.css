@@ -1,0 +1,19 @@
+.container {
+  color: #2c8a41;
+  font-size: 2em;
+}
+
+.emoji {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+}
+
+.text {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

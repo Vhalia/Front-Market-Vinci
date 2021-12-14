@@ -18,7 +18,12 @@
         />
         <div>
           <p>
-            Vendu par <a>{{ product.seller.surname }}</a>
+            Vendu par
+            <a
+              [routerLink]="['/profil']"
+              [queryParams]="{ mail: product.seller.mail }"
+              >{{ product.seller.surname }}</a
+            >
             <span *ngIf="hasAnAverage">
               ( {{ average }}% d'évaluation positives )
             </span>
