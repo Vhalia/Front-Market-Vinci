@@ -10,6 +10,11 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./detail-product.component.css'],
 })
 export class DetailProductComponent implements OnInit {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductService
+  ) {}
+
   id: string = '';
   product!: Product;
   isLoading: boolean = true;
@@ -21,30 +26,40 @@ export class DetailProductComponent implements OnInit {
     ['AEchanger', 'A Echanger'],
     ['Tous', 'Tous'],
   ]);
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private productService: ProductService
-  ) {}
+
+  isAnError: boolean = false;
+  errorMessage: string = '';
 
   async ngOnInit() {
     await this.loadProduct();
-    this.isLoading = false;
-    console.log(this.product);
   }
 
   async loadProduct() {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.id = tmp;
-    console.log(this.id);
-    this.product = await lastValueFrom(this.productService.getById(this.id));
-    if (this.product.seller.ratings.length !== 0) {
-      let ratings = this.product.seller.ratings;
-      ratings.forEach((rating) => {
-        this.average += rating.like;
-      });
-      this.average = Math.round((this.average / ratings.length) * 100) / 100;
-      this.hasAnAverage = true;
-    }
+    this.productService.getById(this.id).subscribe({
+      next: (v) => {
+        this.product = v;
+      },
+      error: (e) => {
+        this.isAnError = true;
+        this.errorMessage = e.message;
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isAnError = false;
+        if (!this.isAnError && this.product.seller.ratings.length !== 0) {
+          let ratings = this.product.seller.ratings;
+          ratings.forEach((rating) => {
+            this.average += rating.like;
+          });
+          this.average =
+            Math.round((this.average / ratings.length) * 100) / 100;
+          this.hasAnAverage = true;
+        }
+        this.isLoading = false;
+      },
+    });
   }
 }

@@ -1,7 +1,10 @@
 <div class="container">
   <div *ngIf="isLoading"><nz-spin nzSimple [nzSize]="'large'"></nz-spin></div>
   <div *ngIf="!isLoading">
-    <div nz-row>
+    <div *ngIf="isAnError" class="error">
+      Une erreur est survenue <br />{{ errorMessage }}
+    </div>
+    <div nz-row *ngIf="!isAnError">
       <div nz-col [nzXs]="10" class="left-column">
         <div class="product-title">
           <h1>{{ product.name }}</h1>

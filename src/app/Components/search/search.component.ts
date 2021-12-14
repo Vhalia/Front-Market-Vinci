@@ -2,7 +2,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/Model/Product';
 import { ProductService } from '../../services/product.service';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +11,6 @@ import { lastValueFrom } from 'rxjs';
 export class SearchComponent implements OnInit {
   prods: Product[] = [];
   filtredProducts: Product[] = [];
-  isLoading: boolean = true;
 
   //Filter settings
   productName: string = '';
@@ -20,6 +18,9 @@ export class SearchComponent implements OnInit {
   maxPrice: number = -1;
   type: string = 'Tous';
   categories: string[] = [];
+
+  isAnError: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private productService: ProductService,
@@ -29,10 +30,20 @@ export class SearchComponent implements OnInit {
   async ngOnInit() {
     await this.loadQueryParams();
 
-    this.prods = await lastValueFrom(this.productService.getAll());
-    this.filtredProducts = this.prods;
-    this.filterList();
-    this.isLoading = false;
+    this.productService.getAll().subscribe({
+      next: (v) => {
+        this.prods = v;
+      },
+      error: (e) => {
+        this.isAnError = true;
+        this.errorMessage = e.message;
+      },
+      complete: () => {
+        this.isAnError = false;
+        this.filtredProducts = this.prods;
+        this.filterList();
+      },
+    });
   }
 
   filterList() {
