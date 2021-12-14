@@ -19,4 +19,5 @@ export interface Product {
   price: number;
   type: string;
   medias: uploadFileRequest[];
+  blobMedias: string[];
 }

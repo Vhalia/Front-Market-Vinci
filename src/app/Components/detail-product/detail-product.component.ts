@@ -51,7 +51,6 @@ export class DetailProductComponent implements OnInit {
         this.isLoading = false;
       },
       complete: () => {
-        console.log('getProduct complete');
         this.userService.getOne(this.product.sellerMail).subscribe({
           next: (v) => {
             this.user = v;
