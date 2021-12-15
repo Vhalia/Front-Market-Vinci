@@ -11,6 +11,8 @@ import { LogoutComponent } from '../Components/logout/logout.component';
 import { DetailProductComponent } from '../Components/detail-product/detail-product.component';
 import { ErrorComponent } from '../Components/error/error.component';
 import { BadgeComponent } from '../Components/badge/badge.component';
+import { HistoryComponent } from '../Components/history/history.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +25,9 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'detail', component: DetailProductComponent },
   { path: 'badge', component: BadgeComponent },
+  { path: 'historique', component: HistoryComponent},
+
+  //error page
   { path: '**', component: ErrorComponent },
 ];
 
