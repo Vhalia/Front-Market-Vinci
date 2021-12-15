@@ -24,7 +24,7 @@ export class ProductCardComponent implements OnInit {
     'https://blobuploadimage.blob.core.windows.net/produitsimages/caillasse.jpg';
 
   ngOnInit(): void {
-    if (this.product.blobMedias.length != 0)
+    if (this.product.blobMedias != null && this.product.blobMedias.length != 0)
       this.imageUrl = this.product.blobMedias[0];
   }
 
