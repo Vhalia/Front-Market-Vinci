@@ -1,0 +1,35 @@
+<div id="history">
+    <h1 id="hisotryTitle">Mon historique</h1>
+    <div class="prods">
+        <h2 id="hisotryUnderTitle">Mes achats</h2>
+        <div nz-row [nzJustify]="'space-around'">
+            <div 
+            nz-col
+            [nzXXl]="4"
+            [nzXl]="6"
+            [nzLg]="8"
+            [nzMd]="10"
+            [nzSm]="20"
+            [nzXs]="20"
+            *ngFor="let product of boughtProducts" class="custom-col">
+                <app-product-card [product]="product"></app-product-card>
+            </div>
+          </div>
+    </div>
+    <div class="prods">
+        <h2 id="hisotryUnderTitle">Mes ventes</h2>
+        <div nz-row [nzJustify]="'space-around'">
+          <div 
+          nz-col
+          [nzXXl]="4"
+          [nzXl]="6"
+          [nzLg]="8"
+          [nzMd]="10"
+          [nzSm]="20"
+          [nzXs]="20"
+          *ngFor="let product of soldProducts" class="custom-col">
+              <app-product-card [product]="product"></app-product-card>
+          </div>
+        </div>
+    </div>
+</div>

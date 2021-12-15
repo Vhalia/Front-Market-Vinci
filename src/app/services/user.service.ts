@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../Model/User';
 import { catchError, Observable, tap } from 'rxjs';
 import { uploadFileRequest } from '../Model/UploadFileRequest';
+import { Product } from '../Model/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class UserService {
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>("https://vinci-treasures-back.azurewebsites.net/users")
-      .pipe(tap(_ => console.log('fetched Products')),);
+      .pipe(tap(_ => console.log('fetched user')),);
   }
 
   login(userToConnect : User): Observable<User> {
@@ -45,6 +46,16 @@ export class UserService {
   updateImage(image : uploadFileRequest, idUser : string): Observable<User> {
     return this.http.patch<User>("https://vinci-treasures-back.azurewebsites.net/users/" + idUser, image, this.httpOptions)
       .pipe(tap(_ => console.log('user updated')));
+  }
+
+  getBoughtProduct(idUser : string): Observable<Product[]> {
+    return this.http.get<Product[]>("https://vinci-treasures-back.azurewebsites.net/users/boughtProduct/"+ idUser)
+      .pipe(tap(_ => console.log('fetched Products')),);
+  }
+
+  getSoldProduct(idUser : string): Observable<Product[]> {
+    return this.http.get<Product[]>("https://vinci-treasures-back.azurewebsites.net/users/soldProduct/"+ idUser)
+      .pipe(tap(_ => console.log('fetched Products')),);
   }
 
 }

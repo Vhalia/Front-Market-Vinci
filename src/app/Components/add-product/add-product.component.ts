@@ -82,14 +82,14 @@ export class AddProductComponent implements OnInit {
   selectFile(event: any) {
     //Angular 11, for stricter type
     if (!event.target.files[0] || event.target.files[0].length == 0) {
-      this.msg = 'You must select an image';
+      this.msg = 'vous devez selectionner une image';
       return;
     }
 
     var mimeType = event.target.files[0].type;
 
     if (mimeType.match(/image\/*/) == null) {
-      this.msg = 'Only images are supported';
+      this.msg = 'uniquement les images sont supportées';
       return;
     }
 
@@ -107,5 +107,34 @@ export class AddProductComponent implements OnInit {
 
       this.counter++;
     };
+  }
+
+  selectVideo(event: any) {
+    //Angular 11, for stricter type
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      this.msg = 'vous devez choisir une video';
+      return;
+    }
+
+    var mimeType = event.target.files[0].type;
+
+    if (mimeType.match(/video\/*/) == null) {
+      this.msg = 'uniquement les videos sont acceptées';
+      return;
+    }
+    console.log(event.target.files[0]);
+    
+    var reader = new FileReader();
+    var splited = event.target.files[0].name.split('.')
+    var exstention = splited[splited.length -1]
+    reader.readAsDataURL(event.target.files[0]);
+   
+    reader.onload = (_event) => {
+      this.msg = '';
+      this.newProduct.video = {} as uploadFileRequest;
+      this.newProduct.video.content = String(reader.result);
+      this.newProduct.video.fileName = this.sessionStorageService.getFromSessionStorage('user').id+Date.now() + this.counter+"."+ exstention
+    };
+    
   }
 }

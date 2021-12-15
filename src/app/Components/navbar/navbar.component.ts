@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   imageUrl: string = '';
   listOfPosition: NzPlacementType[] = ['bottomRight'];
   isConnected = false;
+  isAdmin = false;
   searchInput: string = '';
 
   constructor(
@@ -23,12 +24,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     if (this.sessionService.getFromSessionStorage('user') !== undefined) {
       this.isConnected = true;
-      if (
-        this.sessionService.getFromSessionStorage('user').image !== undefined
-      ) {
-        this.imageUrl = this.sessionService.getFromSessionStorage('user').image;
-      }
-    } else {
+      this.imageUrl = this.sessionService.getFromSessionStorage('user').image;
+      if(this.sessionService.getFromSessionStorage('user').isAdmin){
+        this.isAdmin = true
+      }   
     }
   }
 

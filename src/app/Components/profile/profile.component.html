@@ -38,13 +38,6 @@
                         <div nz-col nzSpan="20">
                             <b>adresse: </b>{{user.campus}}
                         </div>
-                        <div nz-col nzSpan="4" *ngIf="ownProfile">
-                            <ul nz-list-item-actions>
-                                <nz-list-item-action>
-                                    <a>edit</a>
-                                </nz-list-item-action>
-                            </ul>
-                        </div>
                     </div>
                 </li>
                 <li nz-list-item nzNoFlex class="profile-info-item" >
@@ -65,7 +58,9 @@
             </ul>
         </div>
         <div nz-col nzSpan="12" class="half-profile"><!--Top right of profile-->
-            <img id="profile-picture" src="{{image}}" alt="image de profil"/>
+            <ul nz-list nzSize="large" [nzLoading]="loading">
+                <img id="profile-picture" src="{{image}}" alt="image de profil"/>
+            </ul>
             <div id="profile-redirect-buttons">
                 <button 
                     nz-button 
@@ -73,6 +68,7 @@
                     nzBlock 
                     class="profile-redirect-button profile-button" 
                     *ngIf="ownProfile"
+                    routerLink="/historique"
                 >
                     Mon historique
                 </button>
@@ -82,6 +78,7 @@
                     nzBlock 
                     class="profile-redirect-button profile-button" 
                     *ngIf="ownProfile"
+                    routerLink="/badge"
                 >
                     Mes badges
                 </button>
