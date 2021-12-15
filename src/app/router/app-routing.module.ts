@@ -25,8 +25,10 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'detail', component: DetailProductComponent },
   { path: 'badge', component: BadgeComponent },
-  { path: '**', component: ErrorComponent },
   { path: 'historique', component: HistoryComponent},
+
+  //error page
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

@@ -1,1 +1,26 @@
-<p>history works!</p>
+<div id="history">
+    <h1>Mon historique</h1>
+    <div>
+        <h2>Mes achats</h2>
+        <div nz-row [nzJustify]="'space-around'">
+            <div
+              nz-col
+              [nzXXl]="5"
+              [nzXl]="8"
+              [nzLg]="10"
+              [nzMd]="12"
+              [nzSm]="24"
+              [nzXs]="24"
+              *ngFor="let product of boughtProducts"
+              class="custom-col"
+            >
+              <nz-list-item>
+                <app-product-card [product]="product"></app-product-card>
+              </nz-list-item>
+            </div>
+          </div>
+    </div>
+    <div>
+        <h2>Mes ventes</h2>
+    </div>
+</div>
