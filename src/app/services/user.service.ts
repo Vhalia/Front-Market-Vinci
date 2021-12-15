@@ -4,6 +4,7 @@ import { User } from '../Model/User';
 import { catchError, Observable, tap } from 'rxjs';
 import { uploadFileRequest } from '../Model/UploadFileRequest';
 import { Product } from '../Model/Product';
+import { Rating } from '../Model/Rating';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,11 @@ export class UserService {
   getSoldProduct(idUser : string): Observable<Product[]> {
     return this.http.get<Product[]>("https://vinci-treasures-back.azurewebsites.net/users/soldProduct/"+ idUser)
       .pipe(tap(_ => console.log('fetched Products')),);
+  }
+
+  patchRates(rate:Rating): Observable<any> {
+    return this.http.patch<any>("https://vinci-treasures-back.azurewebsites.net/users/soldProduct/", rate, this.httpOptions)
+      .pipe(tap(_ => console.log('fetched rates')),);
   }
 
 }

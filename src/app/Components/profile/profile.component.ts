@@ -4,6 +4,8 @@ import { User } from 'src/app/Model/User';
 import { UserService } from 'src/app/services/user.service';
 import { SessionStorageService } from 'src/app/services/sessionStorage.service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/Model/Product';
+import { Rating } from 'src/app/Model/Rating';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +24,9 @@ export class ProfileComponent implements OnInit {
   isBanned : boolean = false;
   isAdmin : boolean = false;
   ownProfile : boolean = false;
+  profileToRate : boolean = false;
   image : string = "";
+  userConnected = {} as User;
 
   constructor( 
     private userService : UserService, 
@@ -31,8 +35,9 @@ export class ProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
-    if(this.sessionService.getFromSessionStorage("user") === undefined){
-      this.router.navigate(['/']);
+    this.userConnected =this.sessionService.getFromSessionStorage("user")
+    if(this.userConnected === undefined){
+      this.router.navigate(['/login']);
     } else {
       //Initialising component variables
       const params = this.activatedRoute.snapshot.queryParamMap;
@@ -40,11 +45,20 @@ export class ProfileComponent implements OnInit {
       this.user = await this.getUser(mail);
 
       this.loading = false;
-      this.isAdmin = this.sessionService.getFromSessionStorage("user").isAdmin;
+      this.isAdmin = this.userConnected.isAdmin;
       this.userToUpdate = this.user;
       this.isBanned = this.user.isBanned;
-      if(this.sessionService.getFromSessionStorage("user").mail === this.user.mail){
+      if(this.userConnected.mail === this.user.mail){
         this.ownProfile = true;
+      }else{
+        //get rates and check if sessionPerson already rate it and if he bought something to him
+        let rates = this.user.ratings
+        if(!rates.find(rate => rate.idRater === this.userConnected.id)){
+          let prodsBought = await this.getBoughtProducts(this.userConnected.id)
+          if(prodsBought.find(prod => prod.sellerMail === this.user.mail)){
+            this.profileToRate = true;
+          }
+        }
       }
       if(this.user.image !== undefined){
         this.image = this.user.image;
@@ -99,13 +113,30 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  async rateAPerson (value : number){
+    let rate = {} as Rating;
+    rate.idRated = this.user.id
+    rate.idRater = this.userConnected.id
+    rate.like = value
+    await this.addARate(rate)
+    location.reload()
+  }
+
   //Methods calling services
-  async getUser(mail : string): Promise<User> {
+  private async getUser(mail : string): Promise<User> {
     return await lastValueFrom(this.userService.getOne(mail));
   }
 
-  async updateUser(): Promise<User> {
+  private async updateUser(): Promise<User> {
     return await lastValueFrom(this.userService.updateOne(this.user.id,this.userToUpdate));
+  }
+
+  private async getBoughtProducts(id : string): Promise<Product[]> {
+    return await lastValueFrom(this.userService.getBoughtProduct(id));
+  }
+
+  private async addARate(rate : Rating): Promise<Product[]> {
+    return await lastValueFrom(this.userService.patchRates(rate));
   }
   
 }

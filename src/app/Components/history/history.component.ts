@@ -30,15 +30,15 @@ export class HistoryComponent implements OnInit {
     } else {
       this.user = this.sessionService.getFromSessionStorage("user");
       this.boughtProducts = await this.getBoughtProducts(this.user.id)
-      //this.soldProducts = await this.getSoldProducts(this.user.id)
+      this.soldProducts = await this.getSoldProducts(this.user.id)
     }
   }
 
-  async getBoughtProducts(id : string): Promise<Product[]> {
+  private async getBoughtProducts(id : string): Promise<Product[]> {
     return await lastValueFrom(this.userService.getBoughtProduct(id));
   }
 
-  async getSoldProducts(id : string): Promise<Product[]> {
+  private async getSoldProducts(id : string): Promise<Product[]> {
     return await lastValueFrom(this.userService.getSoldProduct(id));
   }
 
