@@ -1,4 +1,4 @@
 export interface uploadFileRequest {
-    filePath : string;
+    content : string;
     fileName : string;
 }

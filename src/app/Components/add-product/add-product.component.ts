@@ -50,15 +50,13 @@ export class AddProductComponent implements OnInit {
       this.newProduct.sentType = this.validateForm.value.sentType;
       if (this.newProduct.sentType === 'AVendre') {
         this.newProduct.price = this.validateForm.value.price;
-      } else {
-        this.newProduct.price = 0;
       }
       this.newProduct.sellerId =
         this.sessionStorageService.getFromSessionStorage('user').id;
       console.log(this.newProduct);
 
-      //await this.createAProduct()
-      //this.router.navigate(['/']);
+      await this.createAProduct()
+      this.router.navigate(['/']);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -96,15 +94,17 @@ export class AddProductComponent implements OnInit {
     }
 
     var reader = new FileReader();
+    var splited = event.target.files[0].name.split('.')
+    var exstention = splited[splited.length -1]
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
       this.msg = '';
-      //this.url = reader.result;
-      console.log('B64', reader.result);
       this.urls[this.counter] = reader.result;
       this.medias[this.counter] = {} as uploadFileRequest;
-      this.medias[this.counter].filePath = String(reader.result);
+      this.medias[this.counter].content = String(reader.result);
+      this.medias[this.counter].fileName = this.sessionStorageService.getFromSessionStorage('user').id+Date.now() + this.counter+"."+ exstention
+
       this.counter++;
     };
   }
