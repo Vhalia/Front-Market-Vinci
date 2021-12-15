@@ -51,4 +51,10 @@ export class ProductService {
       .patch<Product>('https://vinci-treasures-back.azurewebsites.net/products/'+ id +'/validate',body, this.httpOptions)
       .pipe(tap((_) => console.log('fetched Products')));
   }
+
+  sellProduct(idProduct : string, idClient : string): Observable<Product> {
+    return this.http
+      .patch<Product>('https://vinci-treasures-back.azurewebsites.net/products/' + idProduct + '/' + idClient, this.httpOptions)
+      .pipe(tap((_) => console.log('sold product')));
+  }
 }
