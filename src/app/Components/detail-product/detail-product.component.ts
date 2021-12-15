@@ -48,7 +48,7 @@ export class DetailProductComponent implements OnInit {
       },
       error: (e) => {
         this.isAnError = true;
-        this.errorMessage = e.message;
+        this.errorMessage = e.error.message;
         this.isLoading = false;
       },
       complete: () => {
@@ -61,7 +61,7 @@ export class DetailProductComponent implements OnInit {
           },
           error: (e) => {
             this.isAnError = true;
-            this.errorMessage = e.message;
+            this.errorMessage = e.error.message;
             this.isLoading = false;
           },
           complete: () => {

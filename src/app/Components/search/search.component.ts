@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
       },
       error: (e) => {
         this.isAnError = true;
-        this.errorMessage = e.message;
+        this.errorMessage = e.error.message;
       },
       complete: () => {
         this.isAnError = false;
