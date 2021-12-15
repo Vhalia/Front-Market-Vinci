@@ -52,7 +52,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let product of products">
-        <td>{{ product.name }}</td>
+        <td><a [routerLink]="['/detail']" [queryParams]="{id:product.id}">{{ product.name }}</a></td>
         <td><a [routerLink]="['/profil']" [queryParams]="{mail:product.sellerMail}">{{ product.sellerMail }}</a></td>
         <td>{{ product.adress}}</td>
         <td>

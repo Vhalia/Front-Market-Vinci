@@ -29,6 +29,12 @@ export class HistoryComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       this.user = this.sessionService.getFromSessionStorage("user");
+
+      let userConnected = await this.getUser(this.user.mail)
+      this.user = userConnected
+      this.sessionService.addToSessionStorage('user',userConnected)
+
+      
       this.boughtProducts = await this.getBoughtProducts(this.user.id)
       this.soldProducts = await this.getSoldProducts(this.user.id)
     }
@@ -40,6 +46,10 @@ export class HistoryComponent implements OnInit {
 
   private async getSoldProducts(id : string): Promise<Product[]> {
     return await lastValueFrom(this.userService.getSoldProduct(id));
+  }
+
+  private async getUser(mail : string): Promise<User> {
+    return await lastValueFrom(this.userService.getOne(mail));
   }
 
 }
