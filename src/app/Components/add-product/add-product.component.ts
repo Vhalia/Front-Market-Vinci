@@ -55,8 +55,8 @@ export class AddProductComponent implements OnInit {
         this.sessionStorageService.getFromSessionStorage('user').id;
       console.log(this.newProduct);
 
-      //await this.createAProduct()
-      //this.router.navigate(['/']);
+      await this.createAProduct()
+      this.router.navigate(['/']);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {

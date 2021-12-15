@@ -26,6 +26,8 @@ import { ErrorComponent } from './Components/error/error.component';
 import { BadgeComponent } from './Components/badge/badge.component';
 import { BadgeCardComponent } from './Components/badge-card/badge-card.component';
 import { DetailProductSellComponent } from './Components/detail-product-sell/detail-product-sell.component';
+import { HistoryComponent } from './Components/history/history.component';
+
 
 //ICONS
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -72,6 +74,7 @@ const icons: IconDefinition[] = [
     BadgeComponent,
     BadgeCardComponent,
     DetailProductSellComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
