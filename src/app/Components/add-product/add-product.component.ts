@@ -90,7 +90,7 @@ export class AddProductComponent implements OnInit {
 
     var reader = new FileReader();
     var splited = event.target.files[0].name.split('.');
-    var exstention = splited[splited.length - 1];
+    var extention = splited[splited.length - 1];
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
@@ -103,7 +103,7 @@ export class AddProductComponent implements OnInit {
         Date.now() +
         this.counter +
         '.' +
-        exstention;
+        extention;
 
       this.counter++;
     };
