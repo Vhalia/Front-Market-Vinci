@@ -20,4 +20,5 @@ export interface Product {
   type: string;
   medias: uploadFileRequest[];
   video: uploadFileRequest
+  blobMedias: string[];
 }

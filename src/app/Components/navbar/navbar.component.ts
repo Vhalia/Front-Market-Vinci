@@ -10,7 +10,7 @@ import { SessionStorageService } from 'src/app/services/sessionStorage.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  imageUrl : string = "";
+  imageUrl: string = '';
   listOfPosition: NzPlacementType[] = ['bottomRight'];
   isConnected = false;
   isAdmin = false;
@@ -24,13 +24,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     if (this.sessionService.getFromSessionStorage('user') !== undefined) {
       this.isConnected = true;
+      this.imageUrl = this.sessionService.getFromSessionStorage('user').image;
       if(this.sessionService.getFromSessionStorage('user').isAdmin){
         this.isAdmin = true
-      }
-    }
-
-    if(this.sessionService.getFromSessionStorage('user').image !== undefined){
-      this.imageUrl = this.sessionService.getFromSessionStorage('user').image;
+      }   
     }
   }
 
@@ -46,7 +43,7 @@ export class NavbarComponent implements OnInit {
   async profileNavigate() {
     await this.router.navigate(['/profil'], {
       queryParams: {
-        mail: this.sessionService.getFromSessionStorage("user").mail,
+        mail: this.sessionService.getFromSessionStorage('user').mail,
       },
     });
     location.reload();
