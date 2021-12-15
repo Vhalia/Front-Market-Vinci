@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   maxPrice: number = -1;
   type: string = 'Tous';
   categories: string[] = [];
+  isLoading: boolean = true;
 
   isAnError: boolean = false;
   errorMessage: string = '';
@@ -42,6 +43,7 @@ export class SearchComponent implements OnInit {
         this.isAnError = false;
         this.filtredProducts = this.prods;
         this.filterList();
+        this.isLoading = false;
       },
     });
   }
@@ -69,7 +71,9 @@ export class SearchComponent implements OnInit {
     }
     if (this.productName != '') {
       this.filtredProducts = this.filtredProducts.filter((elt) =>
-        elt.name.includes(this.productName)
+        elt.name
+          .toLocaleLowerCase()
+          .includes(this.productName.toLocaleLowerCase())
       );
     }
   }

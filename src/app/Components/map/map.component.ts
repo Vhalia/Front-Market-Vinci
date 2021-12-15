@@ -23,7 +23,6 @@ export class MapComponent implements AfterViewInit {
     this.productService.getCoordonates(this.adress).then((res) =>
       res.subscribe({
         next: (v) => {
-          console.log(v.results[0]);
           this.latitude = v.results[0].geometry.lat;
           this.longitude = v.results[0].geometry.lng;
         },

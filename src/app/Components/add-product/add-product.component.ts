@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Product } from 'src/app/Model/Product';
@@ -36,13 +32,13 @@ export class AddProductComponent implements OnInit {
       sentType: [null, [Validators.required]],
       price: [null, [Validators.required]],
       implantation: [null, [Validators.required]],
-      type: [null, [Validators.required]]
+      type: [null, [Validators.required]],
     });
   }
 
   async submitForm() {
     if (this.validateForm.valid) {
-      this.newProduct.type = this.validateForm.value.type
+      this.newProduct.type = this.validateForm.value.type;
       this.newProduct.medias = this.medias;
       this.newProduct.name = this.validateForm.value.name;
       this.newProduct.description = this.validateForm.value.description;
@@ -53,9 +49,8 @@ export class AddProductComponent implements OnInit {
       }
       this.newProduct.sellerId =
         this.sessionStorageService.getFromSessionStorage('user').id;
-      console.log(this.newProduct);
 
-      await this.createAProduct()
+      await this.createAProduct();
       this.router.navigate(['/']);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
@@ -94,8 +89,8 @@ export class AddProductComponent implements OnInit {
     }
 
     var reader = new FileReader();
-    var splited = event.target.files[0].name.split('.')
-    var exstention = splited[splited.length -1]
+    var splited = event.target.files[0].name.split('.');
+    var exstention = splited[splited.length - 1];
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
@@ -103,7 +98,12 @@ export class AddProductComponent implements OnInit {
       this.urls[this.counter] = reader.result;
       this.medias[this.counter] = {} as uploadFileRequest;
       this.medias[this.counter].content = String(reader.result);
-      this.medias[this.counter].fileName = this.sessionStorageService.getFromSessionStorage('user').id+Date.now() + this.counter+"."+ exstention
+      this.medias[this.counter].fileName =
+        this.sessionStorageService.getFromSessionStorage('user').id +
+        Date.now() +
+        this.counter +
+        '.' +
+        exstention;
 
       this.counter++;
     };
@@ -122,19 +122,22 @@ export class AddProductComponent implements OnInit {
       this.msg = 'uniquement les videos sont acceptées';
       return;
     }
-    console.log(event.target.files[0]);
-    
+
     var reader = new FileReader();
-    var splited = event.target.files[0].name.split('.')
-    var exstention = splited[splited.length -1]
+    var splited = event.target.files[0].name.split('.');
+    var exstention = splited[splited.length - 1];
     reader.readAsDataURL(event.target.files[0]);
-   
+
     reader.onload = (_event) => {
       this.msg = '';
       this.newProduct.video = {} as uploadFileRequest;
       this.newProduct.video.content = String(reader.result);
-      this.newProduct.video.fileName = this.sessionStorageService.getFromSessionStorage('user').id+Date.now() + this.counter+"."+ exstention
+      this.newProduct.video.fileName =
+        this.sessionStorageService.getFromSessionStorage('user').id +
+        Date.now() +
+        this.counter +
+        '.' +
+        exstention;
     };
-    
   }
 }

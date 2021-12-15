@@ -22,10 +22,12 @@ export class ProductCardComponent implements OnInit {
   //TODO: changer url par defaut
   imageUrl: string =
     'https://blobuploadimage.blob.core.windows.net/produitsimages/caillasse.jpg';
+  userUrl: string = '';
 
   ngOnInit(): void {
     if (this.product.blobMedias != null && this.product.blobMedias.length != 0)
       this.imageUrl = this.product.blobMedias[0];
+    this.userUrl = '/profil?mail=' + this.product.sellerMail;
   }
 
   async handleClick() {
