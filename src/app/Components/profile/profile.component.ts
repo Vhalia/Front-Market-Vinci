@@ -39,6 +39,8 @@ export class ProfileComponent implements OnInit {
     if(this.userConnected === undefined){
       this.router.navigate(['/login']);
     } else {
+      this.userConnected = await this.getUser(this.userConnected.mail)
+      this.sessionService.addToSessionStorage('user',this.userConnected)
       //Initialising component variables
       const params = this.activatedRoute.snapshot.queryParamMap;
       let mail: any = params.get('mail');
