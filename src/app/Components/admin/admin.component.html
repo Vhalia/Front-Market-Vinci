@@ -1,5 +1,5 @@
 <div class="tabUsers">
-<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+<nz-table #nzTable [nzData]="listOfDisplayData" nzShowPagination="false" nzTableLayout="fixed">
     <thead>
       <tr>
         <th nzCustomFilter>
@@ -16,7 +16,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of listOfDisplayData">
-        <td>{{ data.mail }}</td>
+        
+        <td><a [routerLink]="['/profil']" [queryParams]="{mail:data.mail}">{{ data.mail }}</a></td>
         <td>{{ data.name }}</td>
         <td>{{ data.surname }}</td>
         <td > 
@@ -39,11 +40,11 @@
 </div>
 
 <div class="tabProductsToValidate">
-  <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+  <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" nzShowPagination="false">
     <thead>
       <tr>
         <th>Nom de l'objet</th>
-        <th>Prénom du vendeur</th>
+        <th>E-mail du vendeur</th>
         <th>Adresse d'échange</th>
         <th>raison de refus</th>
         <th>Valider l'article</th>
@@ -52,7 +53,7 @@
     <tbody>
       <tr *ngFor="let product of products">
         <td>{{ product.name }}</td>
-        <td>{{ product.sellerMail }}</td>
+        <td><a [routerLink]="['/profil']" [queryParams]="{mail:product.sellerMail}">{{ product.sellerMail }}</a></td>
         <td>{{ product.adress}}</td>
         <td>
           <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(product.id)">

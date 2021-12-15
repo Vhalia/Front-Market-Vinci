@@ -35,13 +35,12 @@ export class LoginComponent implements OnInit {
 
   async submitForm(data: any) {
     if (this.validateForm.valid) {
-      console.log("je passe dans le component")
       this.userToConnect.mail = data.userName
       this.userToConnect.password = data.password
       this.userConnected = await this.loginAUser()
       this.sessionStorageService.addToSessionStorage('user', this.userConnected)
-      location.reload();
       this.router.navigate(['/']);
+      location.reload()
       
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
