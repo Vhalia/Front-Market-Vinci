@@ -16,12 +16,10 @@ export class HistoryComponent implements OnInit {
 
   boughtProducts: Product[] = [];
   soldProducts : Product[] = [];
-
   user = {} as User;
 
   constructor(
     private userService : UserService, 
-    private productService : ProductService,
     private sessionService : SessionStorageService, 
     private router: Router,
     ) { }
@@ -30,27 +28,18 @@ export class HistoryComponent implements OnInit {
     if(this.sessionService.getFromSessionStorage("user") === undefined){
       this.router.navigate(['/']);
     } else {
-      this.user = await this.getUser(this.sessionService.getFromSessionStorage("user").mail);
-
-      this.user.bought.forEach(async productId => {
-        let product = await this.getProduct(productId);
-        this.boughtProducts.push(product);
-      });
-
-      this.user.sold.forEach(async productId => {
-        let product = await this.getProduct(productId);
-        this.soldProducts.push(product);
-      });
-
+      this.user = this.sessionService.getFromSessionStorage("user");
+      this.boughtProducts = await this.getBoughtProducts(this.user.id)
+      //this.soldProducts = await this.getSoldProducts(this.user.id)
     }
   }
 
-  async getUser(mail : string): Promise<User> {
-    return await lastValueFrom(this.userService.getOne(mail));
+  async getBoughtProducts(id : string): Promise<Product[]> {
+    return await lastValueFrom(this.userService.getBoughtProduct(id));
   }
 
-  async getProduct(id : string): Promise<Product> {
-    return await lastValueFrom(this.productService.getById(id));
+  async getSoldProducts(id : string): Promise<Product[]> {
+    return await lastValueFrom(this.userService.getSoldProduct(id));
   }
 
 }

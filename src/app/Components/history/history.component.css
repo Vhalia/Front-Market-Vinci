@@ -2,3 +2,19 @@
     margin-top: 100px;
     margin-left: 2%;
 }
+
+#hisotryUnderTitle{
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+}
+
+#hisotryTitle{
+    font-family: "Sunflower", Arial, Helvetica, sans-serif;
+}
+
+.custom-col{
+    margin: 10px;
+}
+
+.prods{
+    margin-bottom: 2%;
+}
