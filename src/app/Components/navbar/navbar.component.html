@@ -19,6 +19,9 @@
 
   <div id="leftNavBar">
     <a id="objectsPageNavbar" routerLink="/recherche">Objets</a>
+    <div *ngIf="isAdmin">
+      <a id="AdminNavbar" routerLink="/admin">Admin</a>
+    </div>
     <div *ngIf="isConnected">
       <ng-container
         class="containerDropdown"

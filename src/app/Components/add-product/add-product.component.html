@@ -34,8 +34,9 @@
           id="description"
           formControlName="description"
           nz-input
-          placeholder="description de maximum 6 lignes"
+          placeholder="description de maximum 300 caractères"
           [nzAutosize]="{ minRows: 1, maxRows: 6 }"
+          maxlength="300"
         ></textarea>
       </nz-form-control>
     </nz-form-item>
@@ -173,7 +174,21 @@
     <div class="uploadInput">
       <div [innerHtml]="msg" *ngIf="msg" style="color: red"></div>
       <p>
-        <input type="file" (change)="selectFile($event)" />
+        <nz-form-label
+        nzFor="addImage"
+        nzTooltipTitle="autant que vous voulez, (non-obligatoire)"
+      >images</nz-form-label>
+        <input accept=".jpg, .jpeg, .png, .gif" id="addImage" type="file" (change)="selectFile($event)" />
+      </p>
+    </div>
+    <div class="uploadInput">
+      <div [innerHtml]="msg" *ngIf="msg" style="color: red"></div>
+      <p>
+        <nz-form-label
+        nzFor="addVideo"
+        nzTooltipTitle="une seule (non-obligatoire), qui ne sera pas affichée sur cette page"
+      >video</nz-form-label>
+        <input accept=".mp4, .mkv, .avi, .mov" id="addVideo" type="file" (change)="selectVideo($event)" />
       </p>
     </div>
 
