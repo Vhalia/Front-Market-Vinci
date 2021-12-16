@@ -79,6 +79,9 @@ export class ProductService {
   sellProduct(idProduct : string, idClient : string): Observable<Product> {
     return this.http
       .patch<Product>('https://vinci-treasures-back.azurewebsites.net/products/sell/' + idProduct + '/' + idClient, this.httpOptions)
-      .pipe(tap((_) => console.log('sold product')));
+  }
+
+  deleteProduct(idProduct: string) : void {
+    this.http.delete('https://vinci-treasures-back.azurewebsites.net/products/' + idProduct).subscribe()
   }
 }

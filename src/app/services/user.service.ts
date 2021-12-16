@@ -54,9 +54,6 @@ export class UserService {
   }
 
   updateImage(image: uploadFileRequest, idUser: string): Observable<any> {
-    console.log(idUser)
-    console.log(image)
-
     return this.http.put<User>(
       'https://vinci-treasures-back.azurewebsites.net/users/imageContent/' + idUser,
       image,
@@ -66,21 +63,24 @@ export class UserService {
 
   getBoughtProduct(idUser: string): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'https://vinci-treasures-back.azurewebsites.net/users/boughtProduct/' +
-        idUser
+      'https://vinci-treasures-back.azurewebsites.net/users/boughtProduct/' + idUser
     );
   }
 
   getSoldProduct(idUser: string): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'https://vinci-treasures-back.azurewebsites.net/users/soldProduct/' +
-        idUser
+      'https://vinci-treasures-back.azurewebsites.net/users/soldProduct/' + idUser
+    );
+  }
+
+  getNotValidatedProduct(idUser: string): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      'https://vinci-treasures-back.azurewebsites.net/users/' + idUser + '/pending'
     );
   }
 
   getUserMails(): Observable<string[]> {
     return this.http.get<string[]>("https://vinci-treasures-back.azurewebsites.net/users/mail")
-      .pipe(tap(_ => console.log('received mails')));
   }
 
   patchRates(rate: Rating): Observable<any> {

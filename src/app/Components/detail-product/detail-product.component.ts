@@ -43,7 +43,7 @@ export class DetailProductComponent implements OnInit {
 
   async ngOnInit() {
     if (this.sessionService.getFromSessionStorage('user') === undefined)
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.idProduct = tmp;
@@ -99,4 +99,12 @@ export class DetailProductComponent implements OnInit {
     });
   }
 
+  async deleteThisProduct() {
+    await this.deleteProduct()
+    this.router.navigate(['/'])
+  }
+
+  private async deleteProduct() : Promise<void>{
+    this.productService.deleteProduct(this.idProduct)
+  }
 }
