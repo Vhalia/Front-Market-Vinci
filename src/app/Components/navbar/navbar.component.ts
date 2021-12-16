@@ -49,19 +49,3 @@ export class NavbarComponent implements OnInit {
     location.reload();
   }
 }
-function keyEvent(
-  event: Event | undefined,
-  KeyboardEvent: {
-    new (
-      type: string,
-      eventInitDict?: KeyboardEventInit | undefined
-    ): KeyboardEvent;
-    prototype: KeyboardEvent;
-    readonly DOM_KEY_LOCATION_LEFT: number;
-    readonly DOM_KEY_LOCATION_NUMPAD: number;
-    readonly DOM_KEY_LOCATION_RIGHT: number;
-    readonly DOM_KEY_LOCATION_STANDARD: number;
-  }
-) {
-  throw new Error('Function not implemented.');
-}
