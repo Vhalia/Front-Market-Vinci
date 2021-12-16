@@ -20,6 +20,7 @@
         <nz-form-item>
             <nz-form-control nzErrorTip="Veuillez entrer le mail de l'acheteur">
                 <input 
+                    id="client-mail-input"
                     formControlName="clientMail" 
                     nz-input placeholder="Adresse mail de l'acheteur" 
                     (ngModelChange)="checkMailValidity(clientmail.value)"

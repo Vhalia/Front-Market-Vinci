@@ -13,3 +13,7 @@
 #error-msg{
     color: #FF4D4F;
 }
+
+#client-mail-input{
+    width: 20vw;
+}
