@@ -17,7 +17,8 @@ export class DetailProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private userService: UserService,
-    private sessionService : SessionStorageService
+    private sessionService : SessionStorageService,
+    private router: Router
   ) {}
 
   idProduct: string = '';
@@ -41,6 +42,8 @@ export class DetailProductComponent implements OnInit {
   ownProduct: boolean = false;
 
   async ngOnInit() {
+    if (this.sessionService.getFromSessionStorage('user') === undefined)
+      this.router.navigate(['/']);
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.idProduct = tmp;
