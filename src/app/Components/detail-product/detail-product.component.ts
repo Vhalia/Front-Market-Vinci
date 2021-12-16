@@ -29,6 +29,7 @@ export class DetailProductComponent implements OnInit {
   idProduct: string = '';
   product!: Product;
   user!: User;
+  currentUser!: User;
   containVideo: boolean = false;
   average: number = 0;
   hasAnAverage: boolean = false;
@@ -47,7 +48,7 @@ export class DetailProductComponent implements OnInit {
 
   async ngOnInit() {
     if (this.sessionService.getFromSessionStorage('user') === undefined)
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.idProduct = tmp;
@@ -101,6 +102,10 @@ export class DetailProductComponent implements OnInit {
             ) {
               this.ownProduct = true;
             }
+            this.currentUser =
+              this.sessionService.getFromSessionStorage('user');
+            console.log(this.currentUser.id);
+            console.log(this.product.sellerId);
 
             this.isLoading = false;
           },
@@ -133,5 +138,13 @@ export class DetailProductComponent implements OnInit {
   cancelForm() {
     this.ngOnInit();
     this.isInEditMode = false;
+  }
+  async deleteThisProduct() {
+    await this.deleteProduct();
+    this.router.navigate(['/']);
+  }
+
+  private async deleteProduct(): Promise<void> {
+    this.productService.deleteProduct(this.idProduct);
   }
 }

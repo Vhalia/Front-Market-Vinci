@@ -88,6 +88,14 @@ export class ProductService {
       .pipe(tap((_) => console.log('sold product')));
   }
 
+  deleteProduct(idProduct: string): void {
+    this.http
+      .delete(
+        'https://vinci-treasures-back.azurewebsites.net/products/' + idProduct
+      )
+      .subscribe();
+  }
+
   updateProduct(product: Product): Observable<Product> {
     console.log(product);
 

@@ -69,11 +69,6 @@ input[type="number"] {
   width: 25%;
 }
 
-/* .ant-radio-button-checked {
-  background-color: #2c8a41;
-  border-color: #2c8a41;
-} */
-
 .submitBtn {
   background-color: #2c8a41;
   border-color: #2c8a41;
@@ -81,4 +76,8 @@ input[type="number"] {
 
 .submit-div button {
   margin-right: 5vw;
+}
+
+.deleteButton {
+  margin-bottom: 1%;
 }

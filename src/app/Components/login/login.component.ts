@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
       this.userToConnect.password = data.password;
       this.loginAUser()
         .then((res) => {
-          console.log(res);
           this.userConnected = res;
           this.sessionStorageService.addToSessionStorage(
             'user',

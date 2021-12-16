@@ -55,7 +55,6 @@ export class DetailProductSellComponent implements OnInit {
   }
 
   async submitMail(value : any) {
-    console.log(this.mailIsValid);
     
     if(this.mailIsValid){
       this.client = await this.getUser(value.clientMail);
@@ -66,10 +65,6 @@ export class DetailProductSellComponent implements OnInit {
 
   displaySellInput(): void {
     this.displaySell = true;
-  }
-
-  submitForm(): void {
-    console.log('submit', this.validateForm.value);
   }
   
   //Methods calling service
