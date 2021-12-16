@@ -9,10 +9,13 @@
 </div>
 <div *ngIf="!isUnlocked" class="card locked">
   <div class="col-img">
-    <img class="badge-image" [src]="image" alt="badge image" />
+    <img
+      class="badge-image"
+      src="https://blobuploadimage.blob.core.windows.net/badgesimages/notdiscovered.png"
+      alt="badge image"
+    />
   </div>
   <div class="col-text">
     <h3>{{ title }}</h3>
-    <p>{{ description }}</p>
   </div>
 </div>

@@ -1,10 +1,155 @@
 <div class="container">
-  <div *ngIf="isLoading"><nz-spin nzSimple [nzSize]="'large'"></nz-spin></div>
+  <nz-spin *ngIf="isLoading" nzSimple [nzSize]="'large'"></nz-spin>
+
   <div *ngIf="!isLoading">
+    <!-- THERE IS AN ERROR -->
     <div *ngIf="isAnError" class="error">
       Une erreur est survenue <br />{{ errorMessage }}
     </div>
-    <div nz-row *ngIf="!isAnError">
+
+    <div nz-row *ngIf="!isAnError && isInEditMode" class="edit-container">
+      <form>
+        <h1>Modifier un produit</h1>
+        <div>
+          Nom
+          <input
+            nz-input
+            type="text"
+            [(ngModel)]="product.name"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Entrez un nom de produit"
+          />
+        </div>
+        <div>
+          Description
+          <textarea
+            nz-input
+            placeholder="Veuillez entrer une description"
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            maxlength="300"
+            [(ngModel)]="product.description"
+            [ngModelOptions]="{ standalone: true }"
+          ></textarea>
+        </div>
+        <div>
+          Type d'échange
+          <nz-radio-group
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="product.sentType"
+            nzButtonStyle="solid"
+          >
+            <label nz-radio-button nzValue="ADonner">Donner</label>
+            <label nz-radio-button nzValue="AVendre">Vendre</label>
+            <label nz-radio-button nzValue="AEchanger">Troquer</label>
+          </nz-radio-group>
+        </div>
+        <div>
+          prix
+          <input
+            nz-input
+            [ngModelOptions]="{ standalone: true }"
+            value="0"
+            min="0"
+            step="1"
+            type="number"
+            [(ngModel)]="product.price"
+          />
+        </div>
+        <div>
+          type
+          <nz-radio-group
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="product.type"
+            nzButtonStyle="solid"
+            class="radioBtn"
+          >
+            <label nz-radio-button nzValue="Maison">Maison</label>
+            <label nz-radio-button nzValue="Jardin">Jardin</label>
+            <label nz-radio-button nzValue="Famille">Famille</label>
+            <label nz-radio-button nzValue="Vetements">Vetements</label>
+            <label nz-radio-button nzValue="Accessoires">Accessoires</label>
+            <label nz-radio-button nzValue="Loisirs">Loisirs</label>
+            <label nz-radio-button nzValue="Electroniques">Electroniques</label>
+          </nz-radio-group>
+        </div>
+        <div>
+          implentation
+          <nz-select
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="product.adress"
+          >
+            <nz-option
+              nzLabel="Place de l'Alma 3, 1200 Woluwe-Saint-Lambert"
+              nzValue="Place de l'Alma 3, 1200 Woluwe-Saint-Lambert"
+            >
+            </nz-option>
+            <nz-option
+              nzLabel="Clos Chapelle-aux-Champs 43, 1200 Woluwe-Saint-Lambert"
+              nzValue="Clos Chapelle-aux-Champs 43, 1200 Woluwe-Saint-Lambert"
+            ></nz-option>
+            <nz-option
+              nzLabel="Promenade de l'Alma 59, 1200 Woluwe-Saint-Lambert"
+              nzValue="Promenade de l'Alma 59, 1200 Woluwe-Saint-Lambert"
+            ></nz-option>
+            <nz-option
+              nzLabel="Place de l'Alma 2, 1200 Woluwe-Saint-Lambert"
+              nzValue="Place de l'Alma 2, 1200 Woluwe-Saint-Lambert"
+            ></nz-option>
+            <nz-option
+              nzLabel="Chaussée de Wavre 249, 1050 Ixelles"
+              nzValue="Chaussée de Wavre 249, 1050 Ixelles"
+            ></nz-option>
+            <nz-option
+              nzLabel="Rue de Trèves 84, 1050 Ixelles"
+              nzValue="Rue de Trèves 84, 1050 Ixelles"
+            ></nz-option>
+            <nz-option
+              nzLabel="Rue Limauge 14, 1050 Ixelles"
+              nzValue="Rue Limauge 14, 1050 Ixelles"
+            ></nz-option>
+            <nz-option
+              nzLabel="Rue d'Arlon 11, 1050 Ixelles"
+              nzValue="Rue d'Arlon 11, 1050 Ixelles"
+            ></nz-option>
+            <nz-option
+              nzLabel="Voie Cardijn 10, 1348 Ottignies-Louvain-la-Neuve"
+              nzValue="Voie Cardijn 10, 1348 Ottignies-Louvain-la-Neuve"
+            ></nz-option>
+            <nz-option
+              nzLabel="Rue du Traité de Rome, 1348 Ottignies-Louvain-la-Neuve"
+              nzValue="Rue du Traité de Rome, 1348 Ottignies-Louvain-la-Neuve"
+            ></nz-option>
+            <nz-option
+              nzLabel="Rue de l'Union européenne 4, 1348 Ottignies-Louvain-la-Neuve"
+              nzValue="Rue de l'Union européenne 4, 1348 Ottignies-Louvain-la-Neuve"
+            ></nz-option>
+            <nz-option
+              nzLabel="Chemin de la Bardane 17, 1348 Ottignies-Louvain-la-Neuve"
+              nzValue="Chemin de la Bardane 17, 1348 Ottignies-Louvain-la-Neuve"
+            ></nz-option>
+            <nz-option
+              nzLabel="Rue Paulin Ladeuze 14, 1348 Ottignies-Louvain-la-Neuve"
+              nzValue="Rue Paulin Ladeuze 14, 1348 Ottignies-Louvain-la-Neuve"
+            ></nz-option>
+          </nz-select>
+        </div>
+        <div class="submit-div">
+          <button
+            nz-button
+            nzType="primary"
+            class="submitBtn"
+            (click)="submitForm()"
+          >
+            Modifier
+          </button>
+          <button nz-button nzType="primary" nzDanger (click)="cancelForm()">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div nz-row *ngIf="!isAnError && !isInEditMode">
       <div nz-col [nzXs]="10" class="left-column">
         <div class="product-title">
           <h1>{{ product.name }}</h1>
@@ -34,18 +179,25 @@
               user.mail
             }}</a>
           </p>
-          <a class="contact-btn" href="mailto:{{ product.sellerMail }}" *ngIf="!productIsSold && !ownProduct">
+          <a
+            class="contact-btn"
+            href="mailto:{{ product.sellerMail }}"
+            *ngIf="!productIsSold && !ownProduct"
+          >
             Contactez le vendeur
           </a>
         </div>
-        <app-detail-product-sell 
-          [displaySell]="false" 
-          idProduct="{{idProduct}}"
+        <app-detail-product-sell
+          [displaySell]="false"
+          idProduct="{{ idProduct }}"
           *ngIf="!productIsSold && ownProduct"
         >
         </app-detail-product-sell>
       </div>
       <div nz-col [nzXs]="14" class="product-content">
+        <div>
+          <button (click)="toggleEditMode()">Modifier le produit</button>
+        </div>
         <div>
           <h3>Description</h3>
           {{ product.description }}

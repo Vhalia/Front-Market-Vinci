@@ -55,10 +55,13 @@ export class ProfileComponent implements OnInit {
         this.ownProfile = true;
       } else {
         //get rates and check if sessionPerson already rate it and if he bought something to him
-        let rates = this.user.ratings
-        if(rates.find(rate => rate.idRater === this.userConnected.id) == undefined){
-          let prodsBought = await this.getBoughtProducts(this.userConnected.id)
-          if(prodsBought.find(prod => prod.sellerId === this.user.id)){
+        let rates = this.user.ratings;
+        if (
+          rates.find((rate) => rate.idRater === this.userConnected.id) ==
+          undefined
+        ) {
+          let prodsBought = await this.getBoughtProducts(this.userConnected.id);
+          if (prodsBought.find((prod) => prod.sellerId === this.user.id)) {
             this.profileToRate = true;
           }
         }
@@ -109,7 +112,6 @@ export class ProfileComponent implements OnInit {
     if (this.isAdmin) {
       this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
       await this.updateUser();
-      this.sessionService.addToSessionStorage('user', this.userToUpdate);
       location.reload();
     }
   }
@@ -118,7 +120,6 @@ export class ProfileComponent implements OnInit {
     if (this.isAdmin) {
       this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
       await this.updateUser();
-      this.sessionService.addToSessionStorage('user', this.userToUpdate);
       location.reload();
     }
   }
@@ -132,9 +133,7 @@ export class ProfileComponent implements OnInit {
     location.reload();
   }
 
-
   async handleChangeImage(event: any) {
-    //Angular 11, for stricter type
     if (!event.target.files[0] || event.target.files[0].length == 0) {
       return;
     }
@@ -153,19 +152,21 @@ export class ProfileComponent implements OnInit {
     reader.onload = async (_event) => {
       newImage.content = String(reader.result);
       newImage.fileName = this.user.id + Date.now() + 'profil.' + extention;
-      this.user = await this.changeProfileImage(newImage)
-      this.sessionService.addToSessionStorage('user', this.user)
-      location.reload()
+      this.user = await this.changeProfileImage(newImage);
+      this.sessionService.addToSessionStorage('user', this.user);
+      location.reload();
     };
   }
 
   //Methods calling services
 
-  private async changeProfileImage(image : uploadFileRequest): Promise<User> {
-    return await lastValueFrom(this.userService.updateImage(image, this.user.id));
+  private async changeProfileImage(image: uploadFileRequest): Promise<User> {
+    return await lastValueFrom(
+      this.userService.updateImage(image, this.user.id)
+    );
   }
 
-  private async getUser(mail : string): Promise<User> {
+  private async getUser(mail: string): Promise<User> {
     return await lastValueFrom(this.userService.getOne(mail));
   }
 
