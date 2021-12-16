@@ -53,10 +53,12 @@ export class UserService {
     );
   }
 
-  updateImage(image: uploadFileRequest, idUser: string): Observable<User> {
+  updateImage(image: uploadFileRequest, idUser: string): Observable<any> {
+    console.log(idUser)
     console.log(image)
-    return this.http.patch<User>(
-      'https://vinci-treasures-back.azurewebsites.net/users/' + idUser,
+
+    return this.http.put<User>(
+      'https://vinci-treasures-back.azurewebsites.net/users/imageContent/' + idUser,
       image,
       this.httpOptions
     );

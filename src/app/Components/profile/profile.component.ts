@@ -143,13 +143,13 @@ export class ProfileComponent implements OnInit {
     var extention = splited[splited.length - 1];
     reader.readAsDataURL(event.target.files[0]);
     let newImage = {} as uploadFileRequest;
-    reader.onload = (_event) => {
+    reader.onload = async (_event) => {
       newImage.content = String(reader.result);
-      newImage.fileName = this.user.id + Date.now() + 'profile.' + extention;
-      
+      newImage.fileName = this.user.id + Date.now() + 'profil.' + extention;
+      this.user = await this.changeProfileImage(newImage)
+      this.sessionService.addToSessionStorage('user', this.user)
+      location.reload()
     };
-    await this.changeProfileImage(newImage)
-    //location.reload()
   }
 
   //Methods calling services
