@@ -81,3 +81,8 @@ input[type="number"] {
 .deleteButton {
   margin-bottom: 1%;
 }
+
+.prod-vid {
+  max-width: 50%;
+  height: auto;
+}

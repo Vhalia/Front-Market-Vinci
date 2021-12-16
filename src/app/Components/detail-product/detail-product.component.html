@@ -164,7 +164,7 @@
           <div *ngIf="containVideo">
             <video
               [src]="product.blobVideo"
-              class="prod-img"
+              class="prod-img prod-vid"
               controls="true"
             ></video>
           </div>
@@ -188,7 +188,7 @@
           </a>
         </div>
         <div
-          *ngIf="ownProduct || product.state != 'Envoye'"
+          *ngIf="ownProduct && product.state != 'Envoye'"
           class="deleteButton"
         >
           <button
