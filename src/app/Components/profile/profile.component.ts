@@ -56,9 +56,9 @@ export class ProfileComponent implements OnInit {
       }else{
         //get rates and check if sessionPerson already rate it and if he bought something to him
         let rates = this.user.ratings
-        if(!rates.find(rate => rate.idRater === this.userConnected.id)){
+        if(rates.find(rate => rate.idRater === this.userConnected.id) == undefined){
           let prodsBought = await this.getBoughtProducts(this.userConnected.id)
-          if(prodsBought.find(prod => prod.sellerMail === this.user.mail)){
+          if(prodsBought.find(prod => prod.sellerId === this.user.id)){
             this.profileToRate = true;
           }
         }

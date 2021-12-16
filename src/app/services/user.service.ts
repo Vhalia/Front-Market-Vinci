@@ -80,7 +80,7 @@ export class UserService {
 
   patchRates(rate: Rating): Observable<any> {
     return this.http.patch<any>(
-      'https://vinci-treasures-back.azurewebsites.net/users/soldProduct/',
+      'https://vinci-treasures-back.azurewebsites.net/users/ratings',
       rate,
       this.httpOptions
     );
