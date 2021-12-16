@@ -17,6 +17,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 @NgModule({
   exports: [
@@ -38,6 +39,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
     NzInputModule,
     NzSelectModule,
     NzCarouselModule,
+    NzUploadModule
   ],
 })
 export class DemoNgZorroAntdModule {}

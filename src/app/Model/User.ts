@@ -14,8 +14,5 @@ export interface User {
   ratings: Rating[];
   image: string;
   favTypes: undefined;
-  sold: string[];
-  bought: string[];
-  favProducts: string[];
   badges: Badge[];
 }
