@@ -187,7 +187,10 @@
             Contactez le vendeur
           </a>
         </div>
-        <div *ngIf="ownProduct" class="deleteButton">
+        <div
+          *ngIf="ownProduct || product.state != 'Envoye'"
+          class="deleteButton"
+        >
           <button
             (click)="deleteThisProduct()"
             nz-button
