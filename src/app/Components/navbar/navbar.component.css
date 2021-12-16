@@ -1,5 +1,5 @@
 nav {
-  font-size: 1.2em;
+  font-size: 1em;
   background-color: #2c8a41;
   position: fixed !important;
   top: 0;
@@ -14,10 +14,11 @@ nav {
 
 #titleNavBar {
   font-family: "Sunflower", Arial, Helvetica, sans-serif;
-  margin-left: 2%;
+  margin-left: 3%;
   font-size: 200%;
   color: white !important;
 }
+
 
 #searchNavBar {
   background-color: #2c8a41;
@@ -25,9 +26,15 @@ nav {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
-  border-bottom: solid 2px white;
-  font-size: 140%;
-  padding-right: 10%;
+  border-bottom: solid 1px white;
+  font-size: 1.1em;
+  margin-left: 5%;
+  width: 40vw;
+}
+
+#searchDiv {
+  width: 100vh;
+  justify-self: left;
 }
 
 ::placeholder {
@@ -35,20 +42,41 @@ nav {
   opacity: 1;
 }
 
+#objectsPageNavbar {
+  margin-left: 5%;
+}
+
 #objectsPageNavbar,
 #AdminNavbar,
 #loginNavbar {
   color: white;
-  padding-right: 20px;
+  margin-right: 5%;
   font-size: 130%;
+}
+
+.text-nav-wrapper{
+  height: 100%;
+  display: flex;
+  align-self: center;
+  margin-right: 10%;
+}
+
+#imageContainer {
+  margin-top: 35%;
 }
 
 #leftNavBar {
   display: flex;
   flex-direction: row;
+}
+
+
+#rightNavBar {
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  margin-top: 20px;
   margin-right: 2%;
+  align-self: center;
 }
 
 #addButtonNavbar {
@@ -56,8 +84,7 @@ nav {
 }
 
 #buttonSize {
-  margin-top: 14px;
-  width: 110%;
+  width: 130px;
   height: 35px;
 }
 

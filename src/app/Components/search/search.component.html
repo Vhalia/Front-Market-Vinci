@@ -15,6 +15,7 @@
         [maxPrice]="maxPrice"
         [type]="type"
         [selectedCategories]="categories"
+        (refreshSearchList)="refreshList($event)"
       ></app-search-sidebar>
     </div>
     <div
@@ -26,11 +27,18 @@
       [nzSm]="12"
       [nzXs]="12"
     >
+      <div *ngIf="isLoading">
+        <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+      </div>
       <div *ngIf="isAnError" class="error">
         Une erreur est survenue <br />{{ errorMessage }}
       </div>
       <nz-list nzGrid *ngIf="!isAnError">
-        <div nz-row [nzJustify]="'space-around'">
+        <div
+          nz-row
+          [nzJustify]="'space-around'"
+          *ngIf="filtredProducts.length != 0"
+        >
           <div
             nz-col
             [nzXXl]="5"
@@ -46,6 +54,9 @@
               <app-product-card [product]="product"></app-product-card>
             </nz-list-item>
           </div>
+        </div>
+        <div *ngIf="!isLoading && filtredProducts.length == 0">
+          Aucun produit
         </div>
       </nz-list>
     </div>

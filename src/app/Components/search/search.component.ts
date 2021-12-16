@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   maxPrice: number = -1;
   type: string = 'Tous';
   categories: string[] = [];
+  isLoading: boolean = true;
 
   isAnError: boolean = false;
   errorMessage: string = '';
@@ -29,28 +30,32 @@ export class SearchComponent implements OnInit {
 
   async ngOnInit() {
     await this.loadQueryParams();
-
     this.productService.getAll().subscribe({
       next: (v) => {
         this.prods = v;
       },
       error: (e) => {
         this.isAnError = true;
-        this.errorMessage = e.message;
+        this.errorMessage = e.error.message;
       },
       complete: () => {
         this.isAnError = false;
         this.filtredProducts = this.prods;
         this.filterList();
+        this.isLoading = false;
       },
     });
+  }
+
+  async refreshList(value: string) {
+    this.categories = [];
+    await this.ngOnInit();
   }
 
   filterList() {
     this.filtredProducts = this.filtredProducts.filter(
       (elt) => elt.isValidated
     );
-
     this.filtredProducts = this.filtredProducts.filter(
       (elt) => this.type === 'Tous' || elt.sentType == this.type
     );
@@ -69,7 +74,9 @@ export class SearchComponent implements OnInit {
     }
     if (this.productName != '') {
       this.filtredProducts = this.filtredProducts.filter((elt) =>
-        elt.name.includes(this.productName)
+        elt.name
+          .toLocaleLowerCase()
+          .includes(this.productName.toLocaleLowerCase())
       );
     }
   }
@@ -105,6 +112,5 @@ export class SearchComponent implements OnInit {
       if (tmp.length === 0) this.categories = [];
       else this.categories = tempS.map((item) => item);
     }
-    return;
   }
 }

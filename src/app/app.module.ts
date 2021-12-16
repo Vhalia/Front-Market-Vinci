@@ -41,6 +41,7 @@ import {
   UserOutline,
   LockOutline,
 } from '@ant-design/icons-angular/icons';
+import { FooterComponent } from './Components/footer/footer.component';
 
 const icons: IconDefinition[] = [
   LikeOutline,
@@ -75,6 +76,7 @@ const icons: IconDefinition[] = [
     BadgeCardComponent,
     DetailProductSellComponent,
     HistoryComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

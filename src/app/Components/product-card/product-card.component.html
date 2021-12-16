@@ -15,13 +15,30 @@
   </nz-card>
   <ng-template #sentType>
     <div *ngIf="product.sentType === 'AEchanger'">
-      <a> A Echanger </a>
+      <div class="flex">
+        <div>A Echanger</div>
+        <div>
+          <a [href]="userUrl">{{ product.sellerMail }}</a>
+        </div>
+      </div>
     </div>
     <div *ngIf="product.sentType === 'ADonner'">
-      <a> A Donner </a>
+      <div class="flex">
+        <div>A Donner</div>
+        <div>
+          <a [href]="userUrl">{{ product.sellerMail }}</a>
+        </div>
+      </div>
     </div>
     <div *ngIf="product.sentType === 'AVendre'">
-      <a>{{ dictSentType.get(product.sentType) }} : {{ product.price }}€</a>
+      <div class="flex">
+        <div>
+          {{ dictSentType.get(product.sentType) }} : {{ product.price }}€
+        </div>
+        <div>
+          <a [href]="userUrl">{{ product.sellerMail }}</a>
+        </div>
+      </div>
     </div>
   </ng-template>
   <ng-template #coverTemplate>

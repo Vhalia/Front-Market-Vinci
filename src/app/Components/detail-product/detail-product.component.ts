@@ -24,6 +24,7 @@ export class DetailProductComponent implements OnInit {
   product!: Product;
   user!: User;
   isLoading: boolean = true;
+  containVideo: boolean = false;
   average: number = 0;
   hasAnAverage: boolean = false;
   dictSentType: Map<string, string> = new Map([
@@ -53,17 +54,20 @@ export class DetailProductComponent implements OnInit {
       },
       error: (e) => {
         this.isAnError = true;
-        this.errorMessage = e.message;
+        this.errorMessage = e.error.message;
         this.isLoading = false;
       },
       complete: () => {
+        if (this.product.blobVideo !== '') {
+          this.containVideo = true;
+        }
         this.userService.getOne(this.product.sellerMail).subscribe({
           next: (v) => {
             this.user = v;
           },
           error: (e) => {
             this.isAnError = true;
-            this.errorMessage = e.message;
+            this.errorMessage = e.error.message;
             this.isLoading = false;
           },
           complete: () => {
