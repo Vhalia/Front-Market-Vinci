@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { Product } from 'src/app/Model/Product';
 import { User } from 'src/app/Model/User';
 import { ProductService } from 'src/app/services/product.service';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +16,9 @@ export class DetailProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private userService: UserService
+    private userService: UserService,
+    private sessionService : SessionStorageService,
+    private router: Router
   ) {}
 
   id: string = '';
@@ -35,6 +38,8 @@ export class DetailProductComponent implements OnInit {
   errorMessage: string = '';
 
   async ngOnInit() {
+    if (this.sessionService.getFromSessionStorage('user') === undefined)
+      this.router.navigate(['/']);
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
     this.id = tmp;
