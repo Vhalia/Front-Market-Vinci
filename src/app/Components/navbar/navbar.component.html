@@ -1,28 +1,36 @@
 <nav>
-  <a id="titleNavBar" routerLink="/">Vinci Treasures</a>
-  <div class="searchDiv">
-    <input
-      id="searchNavBar"
-      placeholder="Recherche"
-      type="text"
-      [(ngModel)]="searchInput"
-    />
-    <button (click)="submitSearch()" class="btnSearch">
-      <i nz-icon nzType="search" nzTheme="outline"></i>
-    </button>
-  </div>
-  <div *ngIf="isConnected">
-    <a id="addButtonNavbar" routerLink="/ajouter">
-      <button id="buttonSize">Ajouter un Objet</button>
+  <div id="leftNavBar">
+    <a id="titleNavBar" routerLink="/">
+      <img height="50" width="50" alt="logo" src="../../../assets/logo-vinci-leaf-blanc.png">
     </a>
+    <div class="searchDiv">
+      <input
+        id="searchNavBar"
+        placeholder="Recherche"
+        type="text"
+        [(ngModel)]="searchInput"
+      />
+      <button (click)="submitSearch()" class="btnSearch">
+        <i nz-icon nzType="search" nzTheme="outline"></i>
+      </button>
+    </div>
   </div>
 
-  <div id="leftNavBar">
-    <a id="objectsPageNavbar" routerLink="/recherche">Objets</a>
-    <div *ngIf="isAdmin">
-      <a id="AdminNavbar" routerLink="/admin">Admin</a>
+  <div id="rightNavBar">
+    <div class="text-nav-wrapper">
+      <div *ngIf="isConnected">
+        <a id="addButtonNavbar" routerLink="/ajouter">
+          <button id="buttonSize">Ajouter un Objet</button>
+        </a>
+      </div>
+      <a id="objectsPageNavbar" routerLink="/recherche">Objets</a>
+      <div *ngIf="isAdmin">
+        <a id="AdminNavbar" routerLink="/admin">Admin</a>
+      </div>
     </div>
+    
     <div *ngIf="isConnected">
+      <div id="imageContainer">
       <ng-container
         class="containerDropdown"
         *ngFor="let position of listOfPosition"
@@ -50,9 +58,12 @@
           </ul>
         </nz-dropdown-menu>
       </ng-container>
+      </div>
     </div>
-    <div *ngIf="!isConnected">
-      <a id="loginNavbar" routerLink="/login">Connexion</a>
+    <div class="text-nav-wrapper">
+      <div *ngIf="!isConnected">
+        <a id="loginNavbar" routerLink="/login">Connexion</a>
+      </div>
     </div>
   </div>
 </nav>
