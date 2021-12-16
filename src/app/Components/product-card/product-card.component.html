@@ -32,11 +32,11 @@
     </div>
     <div *ngIf="product.sentType === 'AVendre'">
       <div class="flex">
-        <div>A Donner</div>
         <div>
-          <a [href]="userUrl"
-            >{{ dictSentType.get(product.sentType) }} : {{ product.price }}€</a
-          >
+          {{ dictSentType.get(product.sentType) }} : {{ product.price }}€
+        </div>
+        <div>
+          <a [href]="userUrl">{{ product.sellerMail }}</a>
         </div>
       </div>
     </div>

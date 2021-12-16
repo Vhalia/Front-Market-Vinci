@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,6 +23,7 @@ export class SearchSidebarComponent implements OnInit {
   @Input() maxPrice: number = this.maxPriceAll;
   @Input() selectedCategories: string[] = [];
   @Input() type: string = 'Tous';
+  @Output() refreshSearchList = new EventEmitter<string>();
 
   priceRange = [this.minPrice, this.maxPrice];
   selectedSentType: string = '';
@@ -93,27 +93,16 @@ export class SearchSidebarComponent implements OnInit {
     }
   }
 
-  async onSubmit() {
-    await this.router.navigate(['/recherche'], {
-      queryParams: {
-        name: this.productName,
-        minPrice: this.priceRange[0],
-        maxPrice: this.priceRange[1],
-        type: this.type,
-        cat: this.getSelectedCategories(),
-      },
-    });
-    location.reload();
-  }
-
   async onReset() {
     this.productName = '';
     this.minPrice = 0;
-    this.maxPrice = this.maxPriceAll;
+    this.maxPrice = -1;
+    this.priceRange = [0, 500];
     this.type = 'Tous';
     this.selectedCategories = [];
+    this.listCategorie.forEach((elt) => (elt.checked = false));
     await this.router.navigate(['/recherche']);
-    location.reload();
+    this.refreshSearchList.emit('submit');
   }
 
   getSelectedCategories(): string {
@@ -123,5 +112,26 @@ export class SearchSidebarComponent implements OnInit {
     });
     retour = retour.slice(0, retour.length - 1);
     return retour;
+  }
+
+  async onSubmit() {
+    let queryParams = new Map();
+    if (this.productName != '') queryParams.set('name', this.productName);
+    if (this.minPrice != 0) queryParams.set('minPrice', this.priceRange[0]);
+    if (this.priceRange[1] != 500)
+      queryParams.set('maxPrice', this.priceRange[1]);
+    if (this.type != 'Tous') queryParams.set('type', this.type);
+    if (this.getSelectedCategories() != '')
+      queryParams.set('cat', this.getSelectedCategories());
+    await this.router.navigate(['/recherche'], {
+      queryParams: {
+        name: queryParams.get('name'),
+        minPrice: queryParams.get('minPrice'),
+        maxPrice: queryParams.get('maxPrice'),
+        type: queryParams.get('type'),
+        cat: queryParams.get('cat'),
+      },
+    });
+    this.refreshSearchList.emit('submit');
   }
 }
