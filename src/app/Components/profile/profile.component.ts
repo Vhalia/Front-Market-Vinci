@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { User } from 'src/app/Model/User';
 import { UserService } from 'src/app/services/user.service';
-import { SessionStorageService } from 'src/app/services/sessionStorage.service'
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/Model/Product';
 import { Rating } from 'src/app/Model/Rating';
@@ -11,37 +11,37 @@ import { uploadFileRequest } from 'src/app/Model/UploadFileRequest';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
   loading = true;
 
   user = {} as User;
   userToUpdate = {} as User;
-  like : number = 0;
-  dislike : number = 0;
-  evaluation : number = 0;
-  isBanned : boolean = false;
-  isAdmin : boolean = false;
-  ownProfile : boolean = false;
-  profileToRate : boolean = false;
-  image : string = "";
+  like: number = 0;
+  dislike: number = 0;
+  evaluation: number = 0;
+  isBanned: boolean = false;
+  isAdmin: boolean = false;
+  ownProfile: boolean = false;
+  profileToRate: boolean = false;
+  image: string = '';
   userConnected = {} as User;
 
-  constructor( 
-    private userService : UserService, 
-    private sessionService : SessionStorageService, 
+  constructor(
+    private userService: UserService,
+    private sessionService: SessionStorageService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
-    this.userConnected =this.sessionService.getFromSessionStorage("user")
-    if(this.userConnected === undefined){
+    this.userConnected = this.sessionService.getFromSessionStorage('user');
+    if (this.userConnected === undefined) {
       this.router.navigate(['/login']);
     } else {
-      this.userConnected = await this.getUser(this.userConnected.mail)
-      this.sessionService.addToSessionStorage('user',this.userConnected)
+      this.userConnected = await this.getUser(this.userConnected.mail);
+      this.sessionService.addToSessionStorage('user', this.userConnected);
       //Initialising component variables
       const params = this.activatedRoute.snapshot.queryParamMap;
       let mail: any = params.get('mail');
@@ -51,35 +51,37 @@ export class ProfileComponent implements OnInit {
       this.isAdmin = this.userConnected.isAdmin;
       this.userToUpdate = this.user;
       this.isBanned = this.user.isBanned;
-      if(this.userConnected.mail === this.user.mail){
+      if (this.userConnected.mail === this.user.mail) {
         this.ownProfile = true;
-      }else{
+      } else {
         //get rates and check if sessionPerson already rate it and if he bought something to him
-        let rates = this.user.ratings
-        if(!rates.find(rate => rate.idRater === this.userConnected.id)){
-          let prodsBought = await this.getBoughtProducts(this.userConnected.id)
-          if(prodsBought.find(prod => prod.sellerMail === this.user.mail)){
+        let rates = this.user.ratings;
+        if (!rates.find((rate) => rate.idRater === this.userConnected.id)) {
+          let prodsBought = await this.getBoughtProducts(this.userConnected.id);
+          if (prodsBought.find((prod) => prod.sellerMail === this.user.mail)) {
             this.profileToRate = true;
           }
         }
       }
-      if(this.user.image !== undefined){
+      if (this.user.image !== undefined) {
         this.image = this.user.image;
       }
 
       //Calculating user ratings
-      this.user.ratings.forEach(rating => {
-        if(rating.like == 1){
+      this.user.ratings.forEach((rating) => {
+        if (rating.like == 1) {
           this.like++;
-        } else if(rating.like == -1){
+        } else if (rating.like == -1) {
           this.dislike++;
         }
       });
 
-      if(this.like > 0 && this.dislike == 0){
+      if (this.like > 0 && this.dislike == 0) {
         this.evaluation = 100;
-      } else if(this.like > 0 && this.dislike > 0) {
-        this.evaluation = Math.round(this.like / (this.like + this.dislike) * 100);
+      } else if (this.like > 0 && this.dislike > 0) {
+        this.evaluation = Math.round(
+          (this.like / (this.like + this.dislike)) * 100
+        );
       }
     }
   }
@@ -87,42 +89,47 @@ export class ProfileComponent implements OnInit {
   async updateMail(newMail: any) {
     this.userToUpdate.mail = newMail;
     await this.updateUser();
-    this.sessionService.addToSessionStorage("user", this.userToUpdate);
+    this.sessionService.addToSessionStorage('user', this.userToUpdate);
+    await this.router.navigate(['/profil'], {
+      queryParams: {
+        mail: newMail,
+      },
+    });
     location.reload();
   }
 
   async updatePassword(newPassword: any) {
     this.userToUpdate.password = newPassword;
     await this.updateUser();
-    this.sessionService.addToSessionStorage("user", this.userToUpdate);
+    this.sessionService.addToSessionStorage('user', this.userToUpdate);
     location.reload();
   }
 
   async banUser() {
-    if(this.isAdmin){
+    if (this.isAdmin) {
       this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
       await this.updateUser();
-      this.sessionService.addToSessionStorage("user", this.userToUpdate);
+      this.sessionService.addToSessionStorage('user', this.userToUpdate);
       location.reload();
     }
   }
 
   async unbanUser() {
-    if(this.isAdmin){
+    if (this.isAdmin) {
       this.userToUpdate.isBanned = !this.userToUpdate.isBanned;
       await this.updateUser();
-      this.sessionService.addToSessionStorage("user", this.userToUpdate);
+      this.sessionService.addToSessionStorage('user', this.userToUpdate);
       location.reload();
     }
   }
 
-  async rateAPerson (value : number){
+  async rateAPerson(value: number) {
     let rate = {} as Rating;
-    rate.idRated = this.user.id
-    rate.idRater = this.userConnected.id
-    rate.like = value
-    await this.addARate(rate)
-    location.reload()
+    rate.idRated = this.user.id;
+    rate.idRater = this.userConnected.id;
+    rate.like = value;
+    await this.addARate(rate);
+    location.reload();
   }
 
 
@@ -153,6 +160,7 @@ export class ProfileComponent implements OnInit {
   }
 
   //Methods calling services
+
   private async changeProfileImage(image : uploadFileRequest): Promise<User> {
     return await lastValueFrom(this.userService.updateImage(image, this.user.id));
   }
@@ -162,15 +170,16 @@ export class ProfileComponent implements OnInit {
   }
 
   private async updateUser(): Promise<User> {
-    return await lastValueFrom(this.userService.updateOne(this.user.id,this.userToUpdate));
+    return await lastValueFrom(
+      this.userService.updateOne(this.user.id, this.userToUpdate)
+    );
   }
 
-  private async getBoughtProducts(id : string): Promise<Product[]> {
+  private async getBoughtProducts(id: string): Promise<Product[]> {
     return await lastValueFrom(this.userService.getBoughtProduct(id));
   }
 
-  private async addARate(rate : Rating): Promise<Product[]> {
+  private async addARate(rate: Rating): Promise<Product[]> {
     return await lastValueFrom(this.userService.patchRates(rate));
   }
-  
 }

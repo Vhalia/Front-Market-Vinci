@@ -21,7 +21,7 @@ export class DetailProductComponent implements OnInit {
     private router: Router
   ) {}
 
-  id: string = '';
+  idProduct: string = '';
   product!: Product;
   user!: User;
   isLoading: boolean = true;
@@ -36,18 +36,22 @@ export class DetailProductComponent implements OnInit {
   ]);
   isAnError: boolean = false;
   errorMessage: string = '';
+  productState: string = '';
+  productSeller: string = '';
+  productIsSold: boolean = false;
+  ownProduct: boolean = false;
 
   async ngOnInit() {
     if (this.sessionService.getFromSessionStorage('user') === undefined)
       this.router.navigate(['/']);
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
-    this.id = tmp;
+    this.idProduct = tmp;
     await this.getProduct();
   }
 
   async getProduct() {
-    this.productService.getById(this.id).subscribe({
+    this.productService.getById(this.idProduct).subscribe({
       next: (v) => {
         this.product = v;
       },
@@ -79,10 +83,20 @@ export class DetailProductComponent implements OnInit {
                 Math.round((this.average / ratings.length) * 100) / 100;
               this.hasAnAverage = true;
             }
+            if(this.product.state === "Envoye"){
+              this.productIsSold = true;
+            }
+            
+            if(this.product.sellerMail === this.sessionService.getFromSessionStorage("user").mail){
+              this.ownProduct = true;
+            }
+            
             this.isLoading = false;
+            
           },
         });
       },
     });
   }
+
 }

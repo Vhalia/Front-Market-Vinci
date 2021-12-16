@@ -57,6 +57,9 @@ export class SearchComponent implements OnInit {
       (elt) => elt.isValidated
     );
     this.filtredProducts = this.filtredProducts.filter(
+      (elt) => elt.state == 'EnLigne'
+    );
+    this.filtredProducts = this.filtredProducts.filter(
       (elt) => this.type === 'Tous' || elt.sentType == this.type
     );
     if (this.maxPrice !== 0) {

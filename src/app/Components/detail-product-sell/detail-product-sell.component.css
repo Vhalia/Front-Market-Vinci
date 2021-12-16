@@ -1,0 +1,19 @@
+.sell-btn{
+    font-size: 1.1em;
+    padding-bottom: 30px;
+    background-color: #2C8A41;
+    border-color: #2C8A41;
+}
+
+.sell-btn:disabled{
+    background-color: white;
+    border-color: #2C8A41;
+}
+
+#error-msg{
+    color: #FF4D4F;
+}
+
+#client-mail-input{
+    width: 20vw;
+}
