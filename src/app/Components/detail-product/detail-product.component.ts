@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { Product } from 'src/app/Model/Product';
 import { User } from 'src/app/Model/User';
 import { ProductService } from 'src/app/services/product.service';
+import { SessionStorageService } from 'src/app/services/sessionStorage.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,10 +16,11 @@ export class DetailProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private userService: UserService
+    private userService: UserService,
+    private sessionService : SessionStorageService
   ) {}
 
-  id: string = '';
+  idProduct: string = '';
   product!: Product;
   user!: User;
   isLoading: boolean = true;
@@ -33,16 +35,20 @@ export class DetailProductComponent implements OnInit {
   ]);
   isAnError: boolean = false;
   errorMessage: string = '';
+  productState: string = '';
+  productSeller: string = '';
+  productIsSold: boolean = false;
+  ownProduct: boolean = false;
 
   async ngOnInit() {
     const params = this.activatedRoute.snapshot.queryParamMap;
     let tmp: any = params.get('id');
-    this.id = tmp;
+    this.idProduct = tmp;
     await this.getProduct();
   }
 
   async getProduct() {
-    this.productService.getById(this.id).subscribe({
+    this.productService.getById(this.idProduct).subscribe({
       next: (v) => {
         this.product = v;
       },
@@ -74,10 +80,20 @@ export class DetailProductComponent implements OnInit {
                 Math.round((this.average / ratings.length) * 100) / 100;
               this.hasAnAverage = true;
             }
+            if(this.product.state === "Envoye"){
+              this.productIsSold = true;
+            }
+            
+            if(this.product.sellerMail === this.sessionService.getFromSessionStorage("user").mail){
+              this.ownProduct = true;
+            }
+            
             this.isLoading = false;
+            
           },
         });
       },
     });
   }
+
 }

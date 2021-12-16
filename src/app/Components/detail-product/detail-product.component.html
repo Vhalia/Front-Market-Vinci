@@ -34,10 +34,16 @@
               user.mail
             }}</a>
           </p>
-          <a class="contact-btn" href="mailto:{{ product.sellerMail }}"
-            >Contactez le vendeur</a
-          >
+          <a class="contact-btn" href="mailto:{{ product.sellerMail }}" *ngIf="!productIsSold && !ownProduct">
+            Contactez le vendeur
+          </a>
         </div>
+        <app-detail-product-sell 
+          [displaySell]="false" 
+          idProduct="{{idProduct}}"
+          *ngIf="!productIsSold && ownProduct"
+        >
+        </app-detail-product-sell>
       </div>
       <div nz-col [nzXs]="14" class="product-content">
         <div>
@@ -46,7 +52,7 @@
         </div>
         <div>
           <h3>Prix</h3>
-          {{ product.price }}
+          {{ product.price }}€
         </div>
         <div>
           <h3>Campus</h3>

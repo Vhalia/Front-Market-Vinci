@@ -78,6 +78,11 @@ export class UserService {
     );
   }
 
+  getUserMails(): Observable<string[]> {
+    return this.http.get<string[]>("https://vinci-treasures-back.azurewebsites.net/users/mail")
+      .pipe(tap(_ => console.log('received mails')));
+  }
+
   patchRates(rate: Rating): Observable<any> {
     return this.http.patch<any>(
       'https://vinci-treasures-back.azurewebsites.net/users/soldProduct/',
