@@ -49,6 +49,7 @@ export class SearchComponent implements OnInit {
 
   async refreshList(value: string) {
     this.categories = [];
+    this.productName = '';
     await this.ngOnInit();
   }
 
