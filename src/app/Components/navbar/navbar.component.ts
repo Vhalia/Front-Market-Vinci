@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzPlacementType } from 'ng-zorro-antd/dropdown';
@@ -25,9 +25,9 @@ export class NavbarComponent implements OnInit {
     if (this.sessionService.getFromSessionStorage('user') !== undefined) {
       this.isConnected = true;
       this.imageUrl = this.sessionService.getFromSessionStorage('user').image;
-      if(this.sessionService.getFromSessionStorage('user').isAdmin){
-        this.isAdmin = true
-      }   
+      if (this.sessionService.getFromSessionStorage('user').isAdmin) {
+        this.isAdmin = true;
+      }
     }
   }
 
