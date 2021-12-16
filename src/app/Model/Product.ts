@@ -19,6 +19,7 @@ export interface Product {
   price: number;
   type: string;
   medias: uploadFileRequest[];
-  video: uploadFileRequest
+  video: uploadFileRequest;
   blobMedias: string[];
+  blobVideo: string;
 }

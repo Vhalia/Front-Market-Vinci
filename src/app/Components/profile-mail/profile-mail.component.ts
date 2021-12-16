@@ -4,17 +4,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-profile-mail',
   templateUrl: './profile-mail.component.html',
-  styleUrls: ['./profile-mail.component.css']
+  styleUrls: ['./profile-mail.component.css'],
 })
 export class ProfileMailComponent implements OnInit {
-
   validateForm!: FormGroup;
 
   displayUpdateInput(): void {
     this.displayUpdate = true;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   @Input()
   title!: string;
@@ -31,15 +30,13 @@ export class ProfileMailComponent implements OnInit {
   @Output()
   mailUpdateEvent = new EventEmitter<string>();
 
-  mailUpdate(value: any){
-    console.log(value);
+  mailUpdate(value: any) {
     this.mailUpdateEvent.emit(value.newValueInput);
   }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      newValueInput: [null, [Validators.required]]
+      newValueInput: [null, [Validators.required]],
     });
   }
-
 }

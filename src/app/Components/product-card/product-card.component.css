@@ -3,3 +3,7 @@ img {
   height: 250px;
   object-fit: contain;
 }
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+}
