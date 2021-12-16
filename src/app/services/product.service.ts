@@ -30,19 +30,19 @@ export class ProductService {
 
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'https://vinci-treasures-back.azurewebsites.net/products'
+      'https://vinci-treasures-api.azurewebsites.net/products'
     );
   }
 
   getById(productId: string): Observable<Product> {
     return this.http.get<Product>(
-      'https://vinci-treasures-back.azurewebsites.net/products/' + productId
+      'https://vinci-treasures-api.azurewebsites.net/products/' + productId
     );
   }
 
   createOne(productToCreate: Product): Observable<Product> {
     let obj = this.http.post<Product>(
-      'https://vinci-treasures-back.azurewebsites.net/products',
+      'https://vinci-treasures-api.azurewebsites.net/products',
       productToCreate,
       this.httpOptions
     );
@@ -51,13 +51,13 @@ export class ProductService {
 
   getNotValidated(): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'https://vinci-treasures-back.azurewebsites.net/products/notValidated'
+      'https://vinci-treasures-api.azurewebsites.net/products/notValidated'
     );
   }
 
   patchProduct(id: string, body: any): Observable<Product> {
     return this.http.patch<Product>(
-      'https://vinci-treasures-back.azurewebsites.net/products/' +
+      'https://vinci-treasures-api.azurewebsites.net/products/' +
         id +
         '/validate',
       body,
@@ -79,7 +79,7 @@ export class ProductService {
   sellProduct(idProduct: string, idClient: string): Observable<Product> {
     return this.http
       .patch<Product>(
-        'https://vinci-treasures-back.azurewebsites.net/products/sell/' +
+        'https://vinci-treasures-api.azurewebsites.net/products/sell/' +
           idProduct +
           '/' +
           idClient,
@@ -91,7 +91,7 @@ export class ProductService {
   deleteProduct(idProduct: string): void {
     this.http
       .delete(
-        'https://vinci-treasures-back.azurewebsites.net/products/' + idProduct
+        'https://vinci-treasures-api.azurewebsites.net/products/' + idProduct
       )
       .subscribe();
   }
@@ -100,7 +100,7 @@ export class ProductService {
     console.log(product);
 
     return this.http.patch<Product>(
-      'https://vinci-treasures-back.azurewebsites.net/products/' + product.id,
+      'https://vinci-treasures-api.azurewebsites.net/products/' + product.id,
       product,
       this.httpOptions
     );

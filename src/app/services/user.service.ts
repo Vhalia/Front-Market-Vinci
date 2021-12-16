@@ -18,13 +18,13 @@ export class UserService {
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(
-      'https://vinci-treasures-back.azurewebsites.net/users'
+      'https://vinci-treasures-api.azurewebsites.net/users'
     );
   }
 
   login(userToConnect: User): Observable<User> {
     return this.http.post<User>(
-      'https://vinci-treasures-back.azurewebsites.net/login',
+      'https://vinci-treasures-api.azurewebsites.net/login',
       userToConnect,
       this.httpOptions
     );
@@ -32,13 +32,13 @@ export class UserService {
 
   getOne(mail: string): Observable<User> {
     return this.http.get<User>(
-      'https://vinci-treasures-back.azurewebsites.net/users/' + mail
+      'https://vinci-treasures-api.azurewebsites.net/users/' + mail
     );
   }
 
   createOne(userToCreate: User): Observable<User> {
     let obj = this.http.post<User>(
-      'https://vinci-treasures-back.azurewebsites.net/users',
+      'https://vinci-treasures-api.azurewebsites.net/users',
       userToCreate,
       this.httpOptions
     );
@@ -47,7 +47,7 @@ export class UserService {
 
   updateOne(id: string, userToUpdate: User): Observable<User> {
     return this.http.patch<User>(
-      'https://vinci-treasures-back.azurewebsites.net/users/' + id,
+      'https://vinci-treasures-api.azurewebsites.net/users/' + id,
       userToUpdate,
       this.httpOptions
     );
@@ -55,7 +55,7 @@ export class UserService {
 
   updateImage(image: uploadFileRequest, idUser: string): Observable<any> {
     return this.http.put<User>(
-      'https://vinci-treasures-back.azurewebsites.net/users/imageContent/' + idUser,
+      'https://vinci-treasures-api.azurewebsites.net/users/imageContent/' + idUser,
       image,
       this.httpOptions
     );
@@ -63,29 +63,29 @@ export class UserService {
 
   getBoughtProduct(idUser: string): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'https://vinci-treasures-back.azurewebsites.net/users/boughtProduct/' + idUser
+      'https://vinci-treasures-api.azurewebsites.net/users/boughtProduct/' + idUser
     );
   }
 
   getSoldProduct(idUser: string): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'https://vinci-treasures-back.azurewebsites.net/users/soldProduct/' + idUser
+      'https://vinci-treasures-api.azurewebsites.net/users/soldProduct/' + idUser
     );
   }
 
   getNotValidatedProduct(idUser: string): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'https://vinci-treasures-back.azurewebsites.net/users/' + idUser + '/pending'
+      'https://vinci-treasures-api.azurewebsites.net/users/' + idUser + '/pending'
     );
   }
 
   getUserMails(): Observable<string[]> {
-    return this.http.get<string[]>("https://vinci-treasures-back.azurewebsites.net/users/mail")
+    return this.http.get<string[]>("https://vinci-treasures-api.azurewebsites.net/users/mail")
   }
 
   patchRates(rate: Rating): Observable<any> {
     return this.http.patch<any>(
-      'https://vinci-treasures-back.azurewebsites.net/users/ratings',
+      'https://vinci-treasures-api.azurewebsites.net/users/ratings',
       rate,
       this.httpOptions
     );
