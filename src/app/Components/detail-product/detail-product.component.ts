@@ -122,7 +122,7 @@ export class DetailProductComponent implements OnInit {
     newProduct.description = this.product.description;
     newProduct.adress = this.product.adress;
     newProduct.sentType = this.product.sentType;
-    newProduct.sellerId = this.sessionService.getFromSessionStorage('user').id;
+    newProduct.sellerId = this.product.sellerId;
     if (this.product.sentType === 'AVendre') {
       newProduct.price = this.product.price;
     } else {
