@@ -1,0 +1,39 @@
+<div *ngIf="!displaySell">
+    <button 
+        nz-button 
+        nzType="primary" 
+        class="sell-btn" 
+        (click)="displaySellInput()"
+    >
+        Indiquer comme vendu
+    </button>
+</div>
+
+<div *ngIf="displaySell">
+    <form 
+        #clientmail = "ngForm" 
+        nz-form 
+        [nzLayout]="'inline'" 
+        [formGroup]="validateForm" 
+        (ngSubmit)="submitMail(clientmail.value)"
+    >
+        <nz-form-item>
+            <nz-form-control>
+                <input 
+                    id="client-mail-input"
+                    formControlName="clientMail" 
+                    nz-input placeholder="Adresse mail de l'acheteur" 
+                    (ngModelChange)="checkMailValidity(clientmail.value)"
+                />
+                <div id="error-msg" *ngIf="!mailIsValid">
+                    {{errorMsg}}
+                </div>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control>
+                <button nz-button nzType="primary" [disabled]="!mailIsValid" class="sell-btn">Valider</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</div>

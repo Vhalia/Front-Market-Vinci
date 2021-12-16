@@ -75,4 +75,10 @@ export class ProductService {
       address;
     return this.http.get(url);
   }
+
+  sellProduct(idProduct : string, idClient : string): Observable<Product> {
+    return this.http
+      .patch<Product>('https://vinci-treasures-back.azurewebsites.net/products/sell/' + idProduct + '/' + idClient, this.httpOptions)
+      .pipe(tap((_) => console.log('sold product')));
+  }
 }

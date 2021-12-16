@@ -1,7 +1,12 @@
 <nav>
   <div id="leftNavBar">
     <a id="titleNavBar" routerLink="/">
-      <img height="50" width="50" alt="logo" src="https://blobuploadimage.blob.core.windows.net/imagecontainer/logovincileafblanc.png">
+      <img
+        height="50"
+        width="50"
+        alt="logo"
+        src="https://blobuploadimage.blob.core.windows.net/imagecontainer/logovincileafblanc.png"
+      />
     </a>
     <div class="searchDiv">
       <input
@@ -9,6 +14,7 @@
         placeholder="Recherche"
         type="text"
         [(ngModel)]="searchInput"
+        (keyup.enter)="submitSearch()"
       />
       <button (click)="submitSearch()" class="btnSearch">
         <i nz-icon nzType="search" nzTheme="outline"></i>
@@ -28,36 +34,40 @@
         <a id="AdminNavbar" routerLink="/admin">Admin</a>
       </div>
     </div>
-    
+
     <div *ngIf="isConnected">
       <div id="imageContainer">
-      <ng-container
-        class="containerDropdown"
-        *ngFor="let position of listOfPosition"
-      >
-        <img
-          nz-button
-          nz-dropdown
-          [nzDropdownMenu]="menu"
-          [nzPlacement]="position"
-          class="profileImg"
-          src="{{imageUrl}}"
-          alt="image par defaut"
-        />
-        <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul nz-menu>
-            <li nz-menu-item>
-              <a class="dropdown-button" (click)="profileNavigate()">Profil</a>
-            </li>
-            <li nz-menu-item>
-              <a class="dropdown-button" routerLink="/historique">Historique</a>
-            </li>
-            <li nz-menu-item>
-              <a id="dropdown-disconnect" routerLink="/logout">Deconnexion</a>
-            </li>
-          </ul>
-        </nz-dropdown-menu>
-      </ng-container>
+        <ng-container
+          class="containerDropdown"
+          *ngFor="let position of listOfPosition"
+        >
+          <img
+            nz-button
+            nz-dropdown
+            [nzDropdownMenu]="menu"
+            [nzPlacement]="position"
+            class="profileImg"
+            src="{{ imageUrl }}"
+            alt="image par defaut"
+          />
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a class="dropdown-button" (click)="profileNavigate()"
+                  >Profil</a
+                >
+              </li>
+              <li nz-menu-item>
+                <a class="dropdown-button" routerLink="/historique"
+                  >Historique</a
+                >
+              </li>
+              <li nz-menu-item>
+                <a id="dropdown-disconnect" routerLink="/logout">Deconnexion</a>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </ng-container>
       </div>
     </div>
     <div class="text-nav-wrapper">

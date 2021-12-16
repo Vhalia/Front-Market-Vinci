@@ -24,9 +24,15 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Archive dist files'
   inputs:
-    rootFolderOrFile: 'dist/front-vinci-treasures'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/front-vinci-treasures'
+    archiveType: zip
+    includeRootFolder: false
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    ArtifactName: 'drop'
+    publishLocation: Container
 
 
