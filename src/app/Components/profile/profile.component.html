@@ -66,6 +66,10 @@
         <div nz-col nzSpan="12" class="half-profile"><!--Top right of profile-->
             <ul nz-list nzSize="large" [nzLoading]="loading">
                 <img id="profile-picture" src="{{image}}" alt="image de profil"/>
+                <div class="positionUpload">
+                    <label class="labelHidden" for="addImage">changer d'image</label>
+                    <input accept=".jpg, .jpeg, .png, .gif" id="addImage" type="file" (change)="handleChangeImage($event)" hidden/>
+                </div>
             </ul>
             <div id="profile-redirect-buttons">
                 <button 

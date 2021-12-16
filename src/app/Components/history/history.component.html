@@ -3,6 +3,9 @@
     <div class="prods">
         <h2 id="hisotryUnderTitle">Mes achats</h2>
         <div nz-row [nzJustify]="'space-around'">
+            <div *ngIf="!boughtProducts">
+                pas de produits achetés pour le moment
+            </div>  
             <div 
             nz-col
             [nzXXl]="4"
@@ -19,6 +22,9 @@
     <div class="prods">
         <h2 id="hisotryUnderTitle">Mes ventes</h2>
         <div nz-row [nzJustify]="'space-around'">
+          <div *ngIf="!soldProducts">
+              pas de produits vendu pour le moment
+          </div>  
           <div 
           nz-col
           [nzXXl]="4"

@@ -6,6 +6,7 @@ import { SessionStorageService } from 'src/app/services/sessionStorage.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/Model/Product';
 import { Rating } from 'src/app/Model/Rating';
+import { uploadFileRequest } from 'src/app/Model/UploadFileRequest';
 
 @Component({
   selector: 'app-profile',
@@ -124,7 +125,38 @@ export class ProfileComponent implements OnInit {
     location.reload()
   }
 
+
+  async handleChangeImage(event: any) {
+    //Angular 11, for stricter type
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+    console.log(event.target.files[0]);
+    var mimeType = event.target.files[0].type;
+
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    var splited = event.target.files[0].name.split('.');
+    var extention = splited[splited.length - 1];
+    reader.readAsDataURL(event.target.files[0]);
+    let newImage = {} as uploadFileRequest;
+    reader.onload = (_event) => {
+      newImage.content = String(reader.result);
+      newImage.fileName = this.user.id + Date.now() + 'profile.' + extention;
+      
+    };
+    await this.changeProfileImage(newImage)
+    //location.reload()
+  }
+
   //Methods calling services
+  private async changeProfileImage(image : uploadFileRequest): Promise<User> {
+    return await lastValueFrom(this.userService.updateImage(image, this.user.id));
+  }
+
   private async getUser(mail : string): Promise<User> {
     return await lastValueFrom(this.userService.getOne(mail));
   }
