@@ -95,4 +95,23 @@
             </div>
         </div>
     </div>
+    <div class="secondHalf" *ngIf="ownProfile">
+        <h2>Objets à valider par un administrateur: </h2>
+        <div nz-row [nzJustify]="'space-around'">
+            <div *ngIf="notValidatedProducts == []">
+                Pas de produits en attente de pour le moment
+            </div>  
+            <div 
+            nz-col
+            [nzXXl]="4"
+            [nzXl]="6"
+            [nzLg]="8"
+            [nzMd]="10"
+            [nzSm]="20"
+            [nzXs]="20"
+            *ngFor="let product of notValidatedProducts" class="custom-col">
+                <app-product-card [product]="product"></app-product-card>
+            </div>
+          </div>
+    </div>
 </div>

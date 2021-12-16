@@ -38,6 +38,11 @@
             Contactez le vendeur
           </a>
         </div>
+
+        <div *ngIf="ownProduct" class="deleteButton">
+          <button (click)="deleteThisProduct()" nz-button nzType="primary" nzDanger>supprimer le produit</button>
+        </div>
+
         <app-detail-product-sell 
           [displaySell]="false" 
           idProduct="{{idProduct}}"
@@ -50,7 +55,7 @@
           <h3>Description</h3>
           {{ product.description }}
         </div>
-        <div>
+        <div *ngIf="product.price">
           <h3>Prix</h3>
           {{ product.price }}€
         </div>

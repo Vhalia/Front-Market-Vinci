@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   profileToRate: boolean = false;
   image: string = '';
   userConnected = {} as User;
+  notValidatedProducts : Product[] = []
 
   constructor(
     private userService: UserService,
@@ -53,6 +54,7 @@ export class ProfileComponent implements OnInit {
       this.isBanned = this.user.isBanned;
       if (this.userConnected.mail === this.user.mail) {
         this.ownProfile = true;
+        this.notValidatedProducts = await this.getNotValidatedProducts(this.userConnected.id)
       } else {
         //get rates and check if sessionPerson already rate it and if he bought something to him
         let rates = this.user.ratings
@@ -138,7 +140,6 @@ export class ProfileComponent implements OnInit {
     if (!event.target.files[0] || event.target.files[0].length == 0) {
       return;
     }
-    console.log(event.target.files[0]);
     var mimeType = event.target.files[0].type;
 
     if (mimeType.match(/image\/*/) == null) {
@@ -177,6 +178,10 @@ export class ProfileComponent implements OnInit {
 
   private async getBoughtProducts(id: string): Promise<Product[]> {
     return await lastValueFrom(this.userService.getBoughtProduct(id));
+  }
+
+  private async getNotValidatedProducts(id: string): Promise<Product[]> {
+    return await lastValueFrom(this.userService.getNotValidatedProduct(id));
   }
 
   private async addARate(rate: Rating): Promise<Product[]> {
