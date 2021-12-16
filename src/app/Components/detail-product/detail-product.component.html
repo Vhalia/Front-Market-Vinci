@@ -33,7 +33,11 @@
             <span *ngIf="!hasAnAverage"> ( Encore aucune évaluation )</span>
           </p>
         </div>-->
-        <app-detail-product-sell>
+        <app-detail-product-sell 
+          [displaySell]="false" 
+          idProduct="{{idProduct}}"
+          *ngIf="!productIsSold && ownProduct"
+        >
         </app-detail-product-sell>
       </div>
       <div nz-col [nzXs]="14" class="product-content">
@@ -43,7 +47,7 @@
         </div>
         <div>
           <h3>Prix</h3>
-          {{ product.price }}
+          {{ product.price }}€
         </div>
         <div>
           <h3>Campus</h3>

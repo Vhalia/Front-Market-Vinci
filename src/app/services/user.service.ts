@@ -58,4 +58,9 @@ export class UserService {
       .pipe(tap(_ => console.log('fetched Products')),);
   }
 
+  getUserMails(): Observable<string[]> {
+    return this.http.get<string[]>("https://vinci-treasures-back.azurewebsites.net/users/mail")
+      .pipe(tap(_ => console.log('received mails')));
+  }
+
 }
