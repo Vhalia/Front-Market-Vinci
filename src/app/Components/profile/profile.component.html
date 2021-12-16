@@ -49,8 +49,8 @@
                         <div nz-col nzSpan="12">
                             <div id="rateBox" *ngIf="profileToRate">
                                 évaluer le vendeur:
-                                <button click="rateAPerson(1)" class="rateButton" ><i nz-icon nzType="like" nzTheme="outline"></i></button>
-                                <button class="rateButton(-1)"><i nz-icon nzType="dislike" nzTheme="outline"></i></button>
+                                <button (click)="rateAPerson(1)" class="rateButton" ><i nz-icon nzType="like" nzTheme="outline"></i></button>
+                                <button (click)="rateAPerson(-1)" class="rateButton"><i nz-icon nzType="dislike" nzTheme="outline"></i></button>
                             </div>
                         </div>
                     </div>
