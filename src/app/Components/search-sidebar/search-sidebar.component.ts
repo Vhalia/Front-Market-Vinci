@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,6 +23,7 @@ export class SearchSidebarComponent implements OnInit {
   @Input() maxPrice: number = this.maxPriceAll;
   @Input() selectedCategories: string[] = [];
   @Input() type: string = 'Tous';
+  @Output() refreshSearchList = new EventEmitter<string>();
 
   priceRange = [this.minPrice, this.maxPrice];
   selectedSentType: string = '';
@@ -96,11 +96,13 @@ export class SearchSidebarComponent implements OnInit {
   async onReset() {
     this.productName = '';
     this.minPrice = 0;
-    this.maxPrice = this.maxPriceAll;
+    this.maxPrice = -1;
+    this.priceRange = [0, 500];
     this.type = 'Tous';
     this.selectedCategories = [];
+    this.listCategorie.forEach((elt) => (elt.checked = false));
     await this.router.navigate(['/recherche']);
-    location.reload();
+    this.refreshSearchList.emit('submit');
   }
 
   getSelectedCategories(): string {
@@ -130,6 +132,6 @@ export class SearchSidebarComponent implements OnInit {
         cat: queryParams.get('cat'),
       },
     });
-    location.reload();
+    this.refreshSearchList.emit('submit');
   }
 }

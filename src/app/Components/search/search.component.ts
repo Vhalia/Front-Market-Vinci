@@ -30,7 +30,6 @@ export class SearchComponent implements OnInit {
 
   async ngOnInit() {
     await this.loadQueryParams();
-
     this.productService.getAll().subscribe({
       next: (v) => {
         this.prods = v;
@@ -48,11 +47,15 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  async refreshList(value: string) {
+    this.categories = [];
+    await this.ngOnInit();
+  }
+
   filterList() {
     this.filtredProducts = this.filtredProducts.filter(
       (elt) => elt.isValidated
     );
-
     this.filtredProducts = this.filtredProducts.filter(
       (elt) => this.type === 'Tous' || elt.sentType == this.type
     );
@@ -109,6 +112,5 @@ export class SearchComponent implements OnInit {
       if (tmp.length === 0) this.categories = [];
       else this.categories = tempS.map((item) => item);
     }
-    return;
   }
 }
