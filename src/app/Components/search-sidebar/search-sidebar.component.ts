@@ -115,14 +115,19 @@ export class SearchSidebarComponent implements OnInit {
   }
 
   async onSubmit() {
+    console.log(this.priceRange[0]);
+
     let queryParams = new Map();
     if (this.productName != '') queryParams.set('name', this.productName);
-    if (this.minPrice != 0) queryParams.set('minPrice', this.priceRange[0]);
+    if (this.priceRange[0] != 0)
+      queryParams.set('minPrice', this.priceRange[0]);
     if (this.priceRange[1] != 500)
       queryParams.set('maxPrice', this.priceRange[1]);
     if (this.type != 'Tous') queryParams.set('type', this.type);
     if (this.getSelectedCategories() != '')
       queryParams.set('cat', this.getSelectedCategories());
+    console.log(queryParams);
+
     await this.router.navigate(['/recherche'], {
       queryParams: {
         name: queryParams.get('name'),

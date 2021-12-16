@@ -77,15 +77,13 @@ export class ProductService {
   }
 
   sellProduct(idProduct: string, idClient: string): Observable<Product> {
-    return this.http
-      .patch<Product>(
-        'https://vinci-treasures-api.azurewebsites.net/products/sell/' +
-          idProduct +
-          '/' +
-          idClient,
-        this.httpOptions
-      )
-      .pipe(tap((_) => console.log('sold product')));
+    return this.http.patch<Product>(
+      'https://vinci-treasures-api.azurewebsites.net/products/sell/' +
+        idProduct +
+        '/' +
+        idClient,
+      this.httpOptions
+    );
   }
 
   deleteProduct(idProduct: string): void {
@@ -97,8 +95,6 @@ export class ProductService {
   }
 
   updateProduct(product: Product): Observable<Product> {
-    console.log(product);
-
     return this.http.patch<Product>(
       'https://vinci-treasures-api.azurewebsites.net/products/' + product.id,
       product,

@@ -104,9 +104,6 @@ export class DetailProductComponent implements OnInit {
             }
             this.currentUser =
               this.sessionService.getFromSessionStorage('user');
-            console.log(this.currentUser.id);
-            console.log(this.product.sellerId);
-
             this.isLoading = false;
           },
         });
